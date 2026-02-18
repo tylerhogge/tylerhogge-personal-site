@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Only First-Class Business In a First-Class Way — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Only First-Class Business In a First-Class Way</h1>
+  <div class="post-date">June 13, 2024</div>
+</div>
+<div class="post-body">
+<p>Over the past several years I’ve learned a valuable lesson over and over again: world-class is just the best we’ve seen.&nbsp;</p>
+
+
+
+<p>What do I mean? Let me give you a few examples.</p>
+
+
+
+<ul>
+<li>I grew up playing baseball. When I was very little, I remember watching the big kids play being in awe at how hard they could hit the ball. If you asked me then what world-class looked like, I would have said those big kids. Then my dad showed me major league baseball. It wasn’t until I watched Mark Mcgwire hit balls 500 feet and I watched pitchers throw 100 miles per hour that I actually knew what world-class was. From that point on, I measured myself against the real world-class standard. I never did make it to the big leagues, but I played Division 1 baseball. Far below world class.</li>
+
+
+
+<li>Early in my career, I met some “venture capitalists” in Utah at a firm that no longer exists. I thought they were awesome and smart. I looked up to them. If you asked me what world-class looked like, I would have said them. Then I read a blog post from Marc Andreessen:</li>
+</ul>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXciG6wP6kXG6g-urexre8_a3HLqfOLBULPLzen3l1YIt6u1us-gasdRc2Umw0AG-mxWGZOmnOGKMfDKRacJwh-ad0uEvzabdN3Ll-UfRH_8QPmPMHmFi8d27QGL82dZoC9krbBm52uVHMA6xu-7Bwgs4fDY?key=uUY9Kb4lrFfRXOil2AiupA" alt="" /></figure>
+
+
+
+<p>I knew I needed to move to Silicon Valley to truly see world class, so I spent <a href="https://tylerhogge.com/2018/04/13/a-linkedin-message-an-email-and-a-tweet/">months convincing a16z to hire me</a>. They finally did, and I landed a dream internship. There, I saw what world class actually looked like. A16z became my venture capital standard.</p>
+
+
+
+<ul>
+<li>During the pandemic I started to play chess. When you first start out in chess your “elo” score adjusts quickly as you play other players with similar ability to you. I remember the first time I broke 1000 elo. I was ecstatic. I looked at other chess players with a 1200 elo and it felt like they were world class. Then I watched some videos of Magnus Carlsen and Hikaru Nakamura that would blow your mind. What’s their elo rating? 2700, 2800. Truly world class. So I set a goal to be 95% percentile ranked in chess worldwide. I ended up getting 1600 elo and 98% percentile. Miles away from world class, but at least respectable. Kind of like D1 baseball vs the major leagues. Not actually close, but ok.</li>
+</ul>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXfoX5SRW7-tLusRcQDK8X9NeXYjYckpAX18mkx3-pzjhVD47Ags5uQTmOBco_kEokxeqhPcU1XeNqDpghuNO8kfIMrqZMoOErh1FiksqpE5HZ9tX10IbahvUY_AilZx-OjqpcaBdLey3oEK9ey2vODP7zs0?key=uUY9Kb4lrFfRXOil2AiupA" alt="" /></figure>
+
+
+
+<p>Why do I bring up these examples? Probably one reason is so I can brag a little. After all, D1 baseball, an internship at a16z, and 98% in chess are pretty cool. But it’s actually not that.</p>
+
+
+
+<p>None of those results are world class. They’re pretty good. And pretty good is not world class. </p>
+
+
+
+<p>I haven't been world-class yet in anything I've tried.</p>
+
+
+
+<p>Here is what I love about the business of investing in and building startups: it’s an opportunity to still chase world-class in a highly competitive sport against some of the best competition in the world. It's an opportunity to play in the major leagues.&nbsp;</p>
+
+
+
+<p>I <em>think</em> I have a good sense for what world-class founders and operators look like, having studied many of the best, worked for and with many of the best, and having played against some of the best in some pretty high-stakes games. And as a result, I think I know where I can compete, and I know where the gaps are. And I plan to play in a few more of these games over the coming decade or two.</p>
+
+
+
+<p>Similarly, I <em>think</em> I have a good sense for what world-class investors look like, having tried to study the best in the world for many hours over many years, and fortunately having been directly mentored by a few of the best. And as a result, I have a very real sense of how far away I am from those investors today.&nbsp;</p>
+
+
+
+<p>There could be a whole post written on what world class looks like in investing (or operating) but a few investing thoughts here:</p>
+
+
+
+<ul>
+<li>World-class investors have a deep respect for the entrepreneurial process and as a result, a deep respect for the founder. And so a world-class investor shows that respect through being the most prepared, asking the best questions, sharing the best insights, and helping the most.</li>
+
+
+
+<li>World-class investors hustle harder than most people think is reasonable. They get on the plane, last minute, to meet with the next great founder. They take the 11 pm meeting from Travis Kalanick to brainstorm ideas for Uber, which is what I understand Bill Gurley did to originally earn the right to invest.</li>
+
+
+
+<li>World-class investors always tell the truth, even if the truth is hard to hear. They will never break their word. If they say they will reply by a certain time, they do. In fact, if they say they’ll do anything, they do it.</li>
+</ul>
+
+
+
+<p>I could go on, and on, and on about what I think world class means. It’s a way of doing <em>everything</em>, so the list is endless. It’s how you talk, how you act, and how you think.&nbsp;</p>
+
+
+
+<p>Pursuing world class, chasing it obsessively, is a choice. It’s a path that requires constantly failing, and constant reminders of what the standard really is. It requires militant discipline to hold yourself against that standard, because the easiest thing in the world to do is to quit chasing world-class and to simply be mediocre. In one of my favorite poems called ‘The Man Watching’, Rainer Rilke says, “Winning does not tempt that man. This is how he grows: by being defeated, decisively, by constantly greater beings.” I think that’s what chasing world class feels like. Constant defeat.</p>
+
+
+
+<p>In 1933, J. Pierpont Morgan, Jr. described his philosophy on business: when he said: “I should state that at all times the idea of doing only first-class business, and that in a first-class way, has been before our minds.” That’s the quote that inspired this post.</p>
+
+
+
+<p>One of my heroes, Kobe Bryant, perhaps said it the best:</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXeTexiPxSOiTt8uU7ZA02JNQkyx-OhKEIXQRX8PctwdES039P1SXGJpfbMw5Yd1lNShHuC7oyManXr6rMTHiuehq1nToiNvhLgv6WxlAzAASpk04yNONPeriO8oAXgD_fomJ31YwVCaKFoGVkeoRADmX0fM?key=uUY9Kb4lrFfRXOil2AiupA" alt="" /></figure>
+
+
+
+<p>It is a privilege to be in one of the most competitive games in the world - venture-backed startups - pursuing world-class, no matter how wide the gap is now (and it is wide). Anyone who is lucky enough to be a part of this great startup world should feel the same sense of gratitude, and anyone who is trying to pursue greatness is who I want to be around. If that’s you, please find me and let’s chase it together.</p>
+</div>
+<div class="post-nav"><a href="/blog/why-we-invested-in-jump/">← Why We Invested In Jump</a>
+<a href="/blog/sell-%e2%86%92-design-%e2%86%92-build/">Sell → Design → Build →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

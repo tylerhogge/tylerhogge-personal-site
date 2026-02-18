@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Announcing the 2025 Exceptional Startups List — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Announcing the 2025 Exceptional Startups List</h1>
+  <div class="post-date">February 11, 2025</div>
+</div>
+<div class="post-body">
+<p>I’m excited to share the 2025 Exceptional Startups List today. You can see the list <a href="https://exceptionalstartups.com/list-2025">here</a>.</p>
+
+
+
+<p>A few quick highlights to share:</p>
+
+
+
+<ul>
+<li>240 startups made this year’s list - up from around 140 last year. Huge growth.</li>
+
+
+
+<li>43% of startups in Bay Area</li>
+
+
+
+<li>30+ top venture firms submitted names this year - up from ~20 or so last year, including some of the best funds on earth:</li>
+
+
+
+<li><img class="wp-image-815" style="width: 750px" src="https://tylerhogge.wordpress.com/wp-content/uploads/2025/02/screenshot-2025-02-11-at-8.19.35e280afpm.png" alt=""></li>
+
+
+
+<li>As expected, AI is the main driver of the size of the list. The growth of these companies is unprecedented - the 2025 exceptional startups are growing faster than any cohort of startups I’ve ever studied. Eric said it perfectly here:<img width="624" height="169" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeRbCli9qH0TbQZFmMEMICo9fn7bayhd2Z5LbNi2i2UvEb5qpxlBj5HFGNJpQth__lmC9k_heWUokDmUn7Sc6B_WmCBDsfh5Q3T2dHmc8elJ4cbBSJ_U1lH9eSZJZtuf786WtfT_A?key=DRMXHzgH2H9AR--RxNwQoZoG"></li>
+</ul>
+
+
+
+<p>I also thought it would be useful to share how last year’s list turned out:</p>
+
+
+
+<ul>
+<li>Over 100,000 job seekers used ExceptionalStartups.com to find their next role</li>
+
+
+
+<li>Several dozen founders shared that they used their inclusion on the list as a selling point to potential candidates</li>
+
+
+
+<li>5+ investors used the list to help them close candidates on behalf of their portfolio</li>
+
+
+
+<li>Several dozen exceptional startups raised large up-rounds or even filed to go public! Very cool to see.</li>
+</ul>
+
+
+
+<p>A good first year -&nbsp; certainly an experiment worth continuing.</p>
+
+
+
+<p>So, what is the future of ExceptionalStartups.com?</p>
+
+
+
+<p>We are going to continue to do the annual list, in Q1 every year. In addition to that, we are going to help Exceptional Startups tell their story and recruit the best candidates.&nbsp;</p>
+
+
+
+<p>Here’s the offer: an open invite for any Exceptional Startups founder/CEO to get all of the following:</p>
+
+
+
+<ol>
+<li>An <a href="https://t.co/tsL9oREcfl">IO Podcast episode</a> with any Exceptional Startup founder/CEO, to help you share your startup’s story with thousands of IO Podcast followers</li>
+
+
+
+<li>A free sponsorship of the podcast episode so your product is featured on the episode where you are the guest</li>
+
+
+
+<li>Free billboard takeover for several days on the most valuable billboard in Utah.</li>
+
+
+
+<li>An Exceptional Startups deep dive on your company to help job seekers better understand why they should join your company. To see previous examples of this, check out ones we did for <a href="https://tylerhogge.com/2024/08/06/why-we-invested-in-remi/">Remi</a>, <a href="https://tylerhogge.com/2024/08/20/the-redo-opportunity/">Redo</a>, and <a href="https://tylerhogge.com/2024/06/10/why-we-invested-in-jump/">Jump</a>.</li>
+</ol>
+
+
+
+<p>If you are an exceptional startup founder and want that package above, <a href="https://x.com/thogge">DM me</a>!&nbsp;</p>
+
+
+
+<p>And for any job seeker - I strongly believe the best investment you can make is to join the right company. That single choice has more impact than any other choice you will make in your financial life. I hope the Exceptional Startups List can help you in that journey.&nbsp;</p>
+</div>
+<div class="post-nav"><a href="/blog/the-captain-and-the-current/">← The Captain and The Current</a>
+<a href="/blog/agree-com-and-the-power-of-disruption/">Agree.com and the power of disruption →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

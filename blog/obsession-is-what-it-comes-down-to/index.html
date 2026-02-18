@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Obsession Is What It Comes Down To — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Obsession Is What It Comes Down To</h1>
+  <div class="post-date">May 21, 2024</div>
+</div>
+<div class="post-body">
+<blockquote>
+<p><em>“I can carry on playing at this level because I like hitting the tennis ball.” -Novak Djokivic</em></p>
+</blockquote>
+
+
+
+<p>Have you ever watched the show ‘Alone’?</p>
+
+
+
+<p>It’s wild. They put a bunch of contestants in a remote location and let them survive on their own for as long as they can. They build their own shelter, kill their own food, and fill their own time. The one who lasts the longest wins $500k.</p>
+
+
+
+<p>In season 6, they drop off 10 contestants in the northwest territories of Canada. It’s freezing cold and totally remote. One by one, people start dropping out. Injured ankle. Starvation. Depression. As they drop out, the show hosts come and pick them up and take them home.</p>
+
+
+
+<p>On day 73, the second-place finisher dropped out due to starvation, which left Jordan Jonas the last man standing and winner of the show and $500,000.</p>
+
+
+
+<p>The show did a good job of manufacturing drama, making it seem like it was going to be a close call. But it wasn’t a close call. Jordan was on a different level. He <em>seemed to prefer</em> living alone. He could have gone on for 500 days. Or forever. It turns out, Jordan is a self-reliance and wilderness living expert. While everyone else couldn’t get enough calories, Jordan was killing Moose and happily living off buckets of stored moose fat that he eats like butter. While everyone else was depressed and counting the days, Jordan was giddy to be at home in the deep wilderness.&nbsp;</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/gAHDP0xC-vvoR08rgtvepvH5jMSJ4cmohsJcyD93iH-GZF8PSI8LAOqJYN--muU4Tuxr1mWsqCS6GXq-uUaLEC7Pt9xVzhxVpltUyhpmDnul8f2vKJTnnEl4eNT4nMvHqg5aDnC-1pImhePVxZBBRWw" alt="" style="width:440px;height:auto" /></figure>
+
+
+
+<p>As the saying goes, the man who loves walking will walk farther than the man who loves the destination. It’s hard to compete against the person who loves the process - who actually lets that love turn into obsession about the journey.&nbsp;</p>
+
+
+
+<p>And that’s what it all comes down to: a deep love of something, or in a word, <em>obsession</em>.</p>
+
+
+
+<p>Today, I finally get to the root of an issue I’ve thought a lot about.</p>
+
+
+
+<p>It started by trying to understand the <a href="https://tylerhogge.com/2023/09/07/elements-of-exceptional-startups/">elements of successful startups</a>. That led to the most important <a href="https://tylerhogge.com/2024/01/29/a-few-thoughts-on-intensity/">cultural trait of exceptional startups, which I believe is intensity</a>.</p>
+
+
+
+<p>But studying intensity led me (and others) to ask - where does that intensity come from? <em>Why</em> is someone intense? If intensity is really the most important trait of a startup, shouldn’t we understand how intensity comes to be in the first place?&nbsp;</p>
+
+
+
+<p>Yes, I think we should understand it. And now I think I do.&nbsp;</p>
+
+
+
+<p><strong>In one sentence: when you love something so much that you become obsessed, that obsession shows itself through intensity.</strong></p>
+
+
+
+<p>That’s what this post is about.&nbsp;</p>
+
+
+
+<p>I’m going to lay out 10 examples below of people who teach this principle. What you’ll notice about each individual is they are one of the best in their field. And they are all obsessed.</p>
+
+
+
+<p><strong>Tom Brady</strong></p>
+
+
+
+<ul>
+<li>“My advice to people is that whatever you are going to do, make sure you love doing it. Because if you love doing it, you’re going to work hard at it. And if you are going to work hard at it, you’re going to have fun. And ultimately there is gonna be success.”</li>
+
+
+
+<li>“Outside of playing football, the one thing I love to do is prepare for it.”</li>
+</ul>
+
+
+
+<p><strong>Kobe Bryant</strong></p>
+
+
+
+<p class="has-text-align-center"><img width="299" height="241" src="https://lh7-us.googleusercontent.com/LptoZ7KTVKbFkZpRROaFPmKu6inZcXIdBBLxisV93JzcVl99OEVDFrQmjxuTRHlScB6TBzmzrDN0hP6Vq-s5JYX7M1h5XDehZjc6BiaDc3e5Njv3nfOtQVapx-mqui5DlwUiQfT1spcXKLf0bQRz118"></p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2024/05/img_6442.png?w=935" alt="" class="wp-image-690" /></figure>
+
+
+
+<figure><div style="max-width:241px;margin:auto">
+https://videopress.com/v/aaN5cUYS?resizeToParent=true&amp;cover=true&amp;preloadContent=metadata&amp;useAverageColor=true
+</div></figure>
+
+
+
+<figure><div style="max-width:243px;margin:auto">
+https://videopress.com/v/0ZwlTI64?resizeToParent=true&amp;cover=true&amp;preloadContent=metadata&amp;useAverageColor=true
+</div></figure>
+
+
+
+<p><strong>Jerry Seinfeld</strong></p>
+
+
+
+<figure><div style="max-width:246px;margin:auto">
+https://videopress.com/v/vu0LQXPL?resizeToParent=true&amp;cover=true&amp;preloadContent=metadata&amp;useAverageColor=true
+</div></figure>
+
+
+
+<p><strong>Wayne Gretzky</strong> </p>
+
+
+
+<figure><div style="max-width:240px;margin:auto">
+https://videopress.com/v/qHh05oNQ?resizeToParent=true&amp;cover=true&amp;preloadContent=metadata&amp;useAverageColor=true
+</div></figure>
+
+
+
+<p><strong>Michael Jordan</strong></p>
+
+
+
+<p class="has-text-align-center"><img width="282" height="251" src="https://lh7-us.googleusercontent.com/VJPFjVBn_Wqc6ACumvser9tyrA2AMdr9s1S0V5NG2eB4SABs5nc7FIk3mIq1ZgKoEMKVdOsIOxnWPbVr0R3SssCnFII0C0ozP9U-PUWOo8qcKNhtoVZU5Vr3v2GIRDVj2_Pw1rpwAOUGc4Cc6jB1WPs"></p>
+
+
+
+<p><strong>Warren Buffett</strong></p>
+
+
+
+<p>“My friend Bill Gates likes to say whatever you are obsessed about between the age of 13 and 18 is the thing you have the most chance of being world class at. For him it was coding. For me it was investing.”</p>
+
+
+
+<p>“I tap dance into work everyday.”</p>
+
+
+
+<p><strong>Elon Musk</strong></p>
+
+
+
+<p>Consider <a href="http://qr.ae/RPwscU">this Quora answer</a> from Justine Musk, Elon’s ex-wife:</p>
+
+
+
+<p class="has-text-align-center"><img src="https://lh7-us.googleusercontent.com/Ge-abHHAVUo_WB-h2eylOM3KsyUiVC-pDXf_x3uXCCIgu7M6HTBY7QqDjHk1adJsgD1Ce8tASM_WZHVjq4YMapNzsAUV7z7DJt4FSz_lyNZZlnyFdD6tm7uFbDE_cHX_NAj2QFlNGuwi5j44zvzj3ng" width="415" height="434"></p>
+
+
+
+<p><strong>Sam Altman</strong></p>
+
+
+
+<p>"It is hard to be wildly successful at anything you aren’t obsessed with."</p>
+
+
+
+<p><strong>Paul Graham</strong></p>
+
+
+
+<p>“It’s hard to do a really good job on anything you don’t think about in the shower.”</p>
+
+
+
+<p><strong>Michael Moritz</strong></p>
+
+
+
+<p>“Great leadership has many different attributes, but it starts with knowledge of a particular pursuit, because without the knowledge and mastery of that particular pursuit, I don’t think you have the authority to convey it with conviction to others. It usually is associated with an obsession, because to be a great leader, you have to be obsessed by something, otherwise everything seems false and hollow. You have to then be able to convey your obsession to people in a manner that inspires and encourages and motivates them to perform at a level they didn’t think they were ever capable of performing at. All of those, when knitted together, help to define what separates a great leader from a very capable manager.”&nbsp;</p>
+
+
+
+<p>A few questions I’d love to explore in another post:</p>
+
+
+
+<ul>
+<li>Where does obsession come from?&nbsp;</li>
+
+
+
+<li>Is it something you’re born with?</li>
+
+
+
+<li>Do many people have an obsession or only a few?</li>
+
+
+
+<li>What are the downsides to obsession?</li>
+
+
+
+<li>How do you test for someone’s obsession?</li>
+</ul>
+
+
+
+<p>So, the message is simple: find the torture you are comfortable with, or even better, the torture that you love. When that love deepens, it becomes an obsession. That obsession will drive each of us to pursue the thing where the <em>work itself is the reward.</em> When the work itself is the reward, we “work” nonstop, which others call <em>intensity</em>. Working intensely leads to greatness. </p>
+
+
+
+<p>We flip from the pursuit of happiness to the happiness of pursuit. By loving the journey, we get closer to our potential, which is ultimately what we should aspire to, and what I believe we’ll be held accountable to someday. </p>
+
+
+
+<p>As John Waters famously said: “Life is nothing if you’re not obsessed.”</p>
+
+
+
+<p></p>
+</div>
+<div class="post-nav"><a href="/blog/my-new-favorite-product/">← My New Favorite Product</a>
+<a href="/blog/why-we-invested-in-jump/">Why We Invested In Jump →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

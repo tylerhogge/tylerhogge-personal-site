@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A few thoughts on conviction. — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>A few thoughts on conviction.</h1>
+  <div class="post-date">December 11, 2025</div>
+</div>
+<div class="post-body">
+<p>“One man with conviction will overwhelm a hundred who have only opinions.”<br><strong>-Winston Churchill</strong>.”</p>
+
+
+
+<p>Have I ever told you my favorite venture capitalist joke? (h/t <a href="https://www.linkedin.com/in/kristylmuir/">Kristy M)</a></p>
+
+
+
+<p>Why didn’t the venture capitalist cross the road?<br>Because he was waiting to see if Sequoia crossed it first.</p>
+
+
+
+<p>It’s funny because of how true it is.&nbsp;</p>
+
+
+
+<p>Our industry, perhaps more than others, is full of sheep. Even funnier, it’s the only industry I know of that constantly preaches the downfalls of <a href="https://en.wikipedia.org/wiki/Mimetic_theory">mimetic theory</a>…..mimetically. I have been guilty of this, and I try hard to minimize it. It’s hard.</p>
+
+
+
+<p>So, what makes someone a sheep?&nbsp;</p>
+
+
+
+<p>A sheep blindly follows others. A sheep doesn’t really think for itself. A sheep lacks all conviction. As a result, a sheep does not blaze new trails, and blazing new trails is the only way to earn outsized returns in a hyper-competive market either as an investor or an operator.&nbsp;</p>
+
+
+
+<p>This reminds me of a second joke:&nbsp;</p>
+
+
+
+<p>A teacher asks the class a question: “If there are 10 sheep in the pen, and one jumps out, how many sheep are left?”</p>
+
+
+
+<p>Everyone but one boy says 9 sheep are left.&nbsp;</p>
+
+
+
+<p>One boy says there are none left.</p>
+
+
+
+<p>The teacher says to him: “I don’t think you understand arithmetic” and the boy replies: “I don’t think you understand sheep.”</p>
+
+
+
+<p>The truth is, actual conviction (which I will try and describe below) is one of the scarcest things in the world. Almost no one has it, on almost anything. There are many reasons for this. The first is that true conviction takes hard work, mostly the thinking type of hard work, and most people avoid that type. The second is that if you get conviction in something, it is scary because it means you must act on it, and by acting on it, you risk failure. It is much easier to avoid both the hard work and the risk of embarrassing failure, which is why we tend to avoid getting conviction in anything.</p>
+
+
+
+<p>I want to try and describe three things:&nbsp;</p>
+
+
+
+<ol>
+<li>What is “actual conviction”?</li>
+
+
+
+<li>How do you get it?</li>
+
+
+
+<li>Why does it matter so much?</li>
+</ol>
+
+
+
+<h3>What is it?</h3>
+
+
+
+<p>Conviction is the rare combination of clarity and courage that lets someone act boldly when everyone else hesitates.</p>
+
+
+
+<p>Let me share a few examples first.</p>
+
+
+
+<p>The first is from Sam Altman:</p>
+
+
+
+<figure><img src="https://tylerhogge.wordpress.com/wp-content/uploads/2025/12/image-3-1.png?w=556" alt="" class="wp-image-863" /></figure>
+
+
+
+<p>The second is from Josh Kushner:</p>
+
+
+
+<figure><img src="https://tylerhogge.wordpress.com/wp-content/uploads/2025/12/image-3-5.png?w=1024" alt="" class="wp-image-868" /></figure>
+
+
+
+<p>“This is the one.” Man.&nbsp;</p>
+
+
+
+<p>The third is Stanley Druckenmiller:</p>
+
+
+
+<figure><img src="https://tylerhogge.wordpress.com/wp-content/uploads/2025/12/image-3.png?w=828" alt="" class="wp-image-864" /></figure>
+
+
+
+<p>And the fourth example comes from an excellent podcast conversation between Pat Grady, one of Sequoia Capital’s stewards, and Harry Stebbings.</p>
+
+
+
+<p>Harry: “When you review decisions internally at Sequoia, are the unanimous ones the best outcomes, or is it the contrarian ones?”</p>
+
+
+
+<p>Pat: “We have data on this. The best we can tell - whether something is consensus or contentious actually doesn’t matter. <strong>The thing that matters is the presence of conviction</strong>.”</p>
+
+
+
+<p>These 4 examples point to something pretty clear: Conviction is one of the most important ingredients to outlier success. Setting aside pure luck, I would call it a prerequisite to outlier success.</p>
+
+
+
+<p>One of my favorite descriptions of conviction comes from Jason Debolt. I particularly like his distinction between commitment and conviction. I think it’s brilliant:</p>
+
+
+
+<figure><img src="https://tylerhogge.wordpress.com/wp-content/uploads/2025/12/image-3-3.png?w=963" alt="" class="wp-image-866" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.wordpress.com/wp-content/uploads/2025/12/image-3-2.png?w=1024" alt="" class="wp-image-865" /></figure>
+
+
+
+<h3>How do you get it?</h3>
+
+
+
+<p>I think the best example of getting to conviction is marriage. Marriage is the ultimate act of conviction - the dedication of your life to someone else, and the explicit promise that you will take care of that person ahead of yourself, come what may. You also commit that half of what you own now belongs to that person in the event of separation. This takes conviction.</p>
+
+
+
+<p>So, how do you get married?</p>
+
+
+
+<p>Well, I do think there is at least some truth in love at first sight. You can “know” very quickly. But this is the first hypothesis: “I could marry that person.” It has not been tested.&nbsp;</p>
+
+
+
+<p>In my view, once you have that first hypothesis, you must stress test it…hard.&nbsp;</p>
+
+
+
+<p>This is dating. In business, we call this “due diligence.”</p>
+
+
+
+<p>But due diligence is not where you get conviction. The conviction is there, even if early and shallow, and due diligence either deepens it, or ruins it.&nbsp;</p>
+
+
+
+<p>In order to deepen your conviction, you try to answer very hard questions like:</p>
+
+
+
+<ul>
+<li>What are this person’s goals for the future?</li>
+
+
+
+<li>What are their values?</li>
+
+
+
+<li>Do we have the same interests?</li>
+
+
+
+<li>Do our plans complement each other?</li>
+
+
+
+<li>Do I admire them?</li>
+
+
+
+<li>Do I trust them?</li>
+
+
+
+<li>How does this person handle stress?</li>
+
+
+
+<li>Do I want to spend the rest of my life with this person?</li>
+</ul>
+
+
+
+<p>And dozens of others.&nbsp;</p>
+
+
+
+<p>And, at the end of the process, you have true, deep, conviction, or you do not. And if you do, you hope the other person feels the same. And if they do, you get married.</p>
+
+
+
+<p>I do believe that true conviction requires hard work, even if you fall in love at first sight. That doesn’t mean it has to take long…in fact, I do think you can get to real conviction quickly, especially in business, but i do think there is work involved.</p>
+
+
+
+<ul>
+<li>Why did Elon have such conviction that SpaceX was going to Mars? He had done the work.</li>
+
+
+
+<li>How did Kushner <em>know</em> OpenAI was the one? He had presumably done the work, and he has excellent judgment to recognize greatness when he sees it.</li>
+
+
+
+<li>Why did Druckenmiller go all in on his best investments? He had done the work, and he has excellent judgment. </li>
+</ul>
+
+
+
+<p>So, how do you get conviction?</p>
+
+
+
+<p>You get <a href="https://tylerhogge.com/2023/06/30/startup-spiritual-conversion/">spiritually converted first</a> (you fall in love), and you do the work to confirm your judgment and deepen your conviction.&nbsp;</p>
+
+
+
+<h3>Why does it matter so much?</h3>
+
+
+
+<p>I have thought a lot about what Pat Grady said, that the “presence of conviction” is the most predictive ingredient in successful Sequoia investments.&nbsp;</p>
+
+
+
+<p>Why is that?</p>
+
+
+
+<p>I think there are two reasons. The first is that true, deep, conviction can only come from the two step process I laid out above (falling in love, and then doing your work), so when conviction is present, it implies someone has done the work, and hopefully that person has excellent judgment (which I think is also a prerequisite).</p>
+
+
+
+<p>The second reason why I think it is so important is found in this quote from Peter Fenton:</p>
+
+
+
+<figure><img src="https://tylerhogge.wordpress.com/wp-content/uploads/2025/12/image-3-4.png?w=1024" alt="" class="wp-image-867" /></figure>
+
+
+
+<p>Startups (and marriages), are just brutally hard.</p>
+
+
+
+<p>They will test you in every way imaginable. This is really not a question.</p>
+
+
+
+<p>So, if you are going to be tested to the limit, how can you ensure you do not break (or get divorced)?&nbsp;</p>
+
+
+
+<p>You must have true conviction. You must fall in love. You must be “spiritually converted” as I mentioned above.&nbsp;</p>
+
+
+
+<p>Because, if you don’t, you will regret it.</p>
+
+
+
+<p>If you do have that convection, then when the storms come, as they will, your conviction will bend, but not break.</p>
+
+
+
+<p>And it’s only when some person, or some company, bends, but not breaks, that you can truly see the fruits of conviction, which are amazing beyond description.</p>
+
+
+
+<p>True conviction leads to true marriages.</p>
+
+
+
+<p>True conviction leads to enduring startups.</p>
+
+
+
+<p>True conviction is required to live an abundant life.</p>
+
+
+
+<p>So, as we enter 2026, my hope for everyone reading is this:</p>
+
+
+
+<p>Find conviction in a few crucial things, and let that conviction lead us all to deeper joy than can be found anywhere else.</p>
+
+
+
+<p>I have conviction this principle is true.</p>
+</div>
+<div class="post-nav"><a href="/blog/why-we-invested-in-valinor/">← Why we invested in Valinor</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

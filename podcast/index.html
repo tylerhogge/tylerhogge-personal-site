@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Podcast — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/" style="color:#1a1a1a;font-weight:600">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="page-header"><h1>Podcast</h1></div>
+<div class="page-body">
+  <p>The <a href="http://www.investoroperator.io" target="_blank" rel="noopener">IO Podcast</a> — a monthly conversation with the world's best investors and operators.</p>
+  <p><a href="https://www.investoroperator.io/" target="_blank" rel="noopener">Listen at investoroperator.io →</a></p>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

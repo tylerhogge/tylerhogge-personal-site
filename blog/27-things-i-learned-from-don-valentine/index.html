@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>27 Things I Learned From Don Valentine — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>27 Things I Learned From Don Valentine</h1>
+  <div class="post-date">November 29, 2023</div>
+</div>
+<div class="post-body">
+<p>I’m going to start a new series of posts where I share my learnings from the most interesting people I study. This will help me retain what I learn, and I hope it’s also fun to read.</p>
+
+
+
+<p>The first person I studied in depth this year was Don Valentine, the founder of Sequoia Capital. Don gave an incredible interview in 2009 with a PhD student from The University of California. It's 75 pages long, but I have chopped out the best 27 highlights from the interview for you. </p>
+
+
+
+<p>Why did I choose Don to study first? I think he was a uniquely talented leader who helped create venture capital as an industry, and he think and speaks clearly on topics I care deeply about improving in myself.</p>
+
+
+
+<p>Don viewed that venture capital done right is actually company building alongside founders. And venture capital done wrong is MBA-type money management asset gathering.</p>
+
+
+
+<p>The next two quotes are good summaries of the interview and of Don overall:</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image.png?w=1024" alt="" class="wp-image-539" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-2.png?w=1024" alt="" class="wp-image-541" /></figure>
+
+
+
+<p>Don, as you can tell, was also hilarious.</p>
+
+
+
+<p>Below are the top 27 Things I learned from Don Valentine, followed by screenshots of the actual quotes from an <a href="https://digitalassets.lib.berkeley.edu/roho/ucb/text/valentine_donald.pdf">interview</a> he gave that inspired the learnings. Make sure you read the actual quotes - because my few-line summaries do not do them justice.&nbsp;</p>
+
+
+
+<ol>
+<li>Venture Capital practiced the right way looks more like building companies than managing money. Many (most?) VCs are dumb. VC is the business of building great companies alongside exceptional founders.</li>
+
+
+
+<li>Socratic questioning is an essential skill for a successful VC. There are two steps to this: you first must find out the right questions, then you must answer them. Interrogation is key.</li>
+
+
+
+<li>Reputation is an essential asset to attract exceptional founders.</li>
+
+
+
+<li>Don believed he had four unique advantages that contributed to his success (money to invest, reputation, he knew the future, and unique experience at Fairchild), but his biggest advantage was knowing the future. What he meant by that was he knew, from his time at Fairchild, that semiconductors were going to grow at incredible rates.</li>
+
+
+
+<li>Like many incredible investors, his first investment was a big winner. Atari.&nbsp;</li>
+
+
+
+<li>There is great value in being exceptionally blunt.</li>
+
+
+
+<li>Business can be simple, and boiled down into two things: High gross margins. And cash flow</li>
+
+
+
+<li>One of Sequoia’s investment criteria was that the founder had to be ok with Sequoia’s active involvement in the business.</li>
+
+
+
+<li>Silicon Valley was special for a number of reasons, but he believed a major cause was a wealth flywheel, created by some early successes like Fairchild, that causes would-be founders to leave their companies to create similar wealth, which continues to build on itself.</li>
+
+
+
+<li>It’s important to know what matters and what doesn’t matter when building a successful startup. One thing that didn’t matter was whether the founder was eccentric, weird, awkward (like Steve Jobs). Which is why he was open to working with “crazy” people. </li>
+
+
+
+<li>Asian immigrants have a unique skill set that have been a major contributor to Silicon Valley’s success.</li>
+
+
+
+<li>Most politicians are worthy of contempt.&nbsp;</li>
+
+
+
+<li>You must be very confident to work at Sequoia.&nbsp;</li>
+
+
+
+<li>He looks for people very different from him so he can have productive confrontations.</li>
+
+
+
+<li>He built sequoia with the stability and continuity of partnership in mind.</li>
+
+
+
+<li>He only invested in founders that were talented storytellers.</li>
+
+
+
+<li>He never let the appearance of a founder dissuade him from investing</li>
+
+
+
+<li>Great founders have incredibly clear vision of what they are doing</li>
+
+
+
+<li>The importance of a giant market over all. He tried to pick a great market over a great person.</li>
+
+
+
+<li>His investment objective was to return 20-25% a year.&nbsp;</li>
+
+
+
+<li>He didn’t like MBAs or lawyers at all. He thought the best school was to work at an excellent startup, which for him, was Fairchild Semiconductor. MBA is the second greatest crime after being a lawyer. He wants to nail lawyers up in the lobby. Having an MBA doesn’t make you a great VC. Knowing how to build a business does.</li>
+
+
+
+<li>There are many paths to success as a VC, but you must be primarily be interested in identifying and managing change.&nbsp;</li>
+
+
+
+<li>Companies start to die when they let HR take over. HR people are communists at heart.</li>
+
+
+
+<li>He said what he thought, fearlessly.</li>
+
+
+
+<li>Sequoia was the only firm interested in CISCO, because the management was so broken.</li>
+
+
+
+<li>He always spoke last.</li>
+
+
+
+<li>Sequoia makes decisions by consensus of the partners.</li>
+</ol>
+
+
+
+<p>Below are the actual quotes. Enjoy!</p>
+
+
+
+<ol>
+<li>Great investing looks more like building companies than managing money. Many VCs are dumb. VC is the business of building great companies.</li>
+</ol>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-3.png?w=1024" alt="" class="wp-image-542" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-4.png?w=1024" alt="" class="wp-image-544" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-5.png?w=1024" alt="" class="wp-image-545" /></figure>
+
+
+
+<p>2. Socratic questioning is a key skill. First must find out the right questions, then must answer them.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-6.png?w=1024" alt="" class="wp-image-547" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-7.png?w=1024" alt="" class="wp-image-548" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-8.png?w=1024" alt="" class="wp-image-549" /></figure>
+
+
+
+<p>3. Reputation is an essential asset to attract exceptional founders</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-9.png?w=1024" alt="" class="wp-image-550" /></figure>
+
+
+
+<p>4. He had four unique advantages (money, reputation, knew the future, and unique experience at Fairchild), but his biggest advantage was knowing the future</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-10.png?w=1024" alt="" class="wp-image-551" /></figure>
+
+
+
+<p>5. His first investment was a winner. Atari.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-11.png?w=1024" alt="" class="wp-image-552" /></figure>
+
+
+
+<p>6. He was exceptionally blunt</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-12.png?w=1024" alt="" class="wp-image-553" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-13.png?w=1024" alt="" class="wp-image-554" /></figure>
+
+
+
+<p>7. Business can be simple. High gross margins. And Cash flow</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-14.png?w=1024" alt="" class="wp-image-555" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-15.png?w=1024" alt="" class="wp-image-556" /></figure>
+
+
+
+<p>8. One of sequoia’s investment criteria was that the founder had to be ok with their active involvement.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-16.png?w=1024" alt="" class="wp-image-557" /></figure>
+
+
+
+<p>9. He had some amazing thoughts for why silicon valley is so special</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-17.png?w=1024" alt="" class="wp-image-558" /></figure>
+
+
+
+<p>10. He knew what mattered and what didn’t matter when building a successful startup, which is why he was open to working with “crazy” people.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-18.png?w=1024" alt="" class="wp-image-559" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-19.png?w=1024" alt="" class="wp-image-561" /></figure>
+
+
+
+<p>11. He loved asian immigrants.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-20.png?w=1024" alt="" class="wp-image-562" /></figure>
+
+
+
+<p>12. He had a low opinion of politicians.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-21.png?w=1024" alt="" class="wp-image-563" /></figure>
+
+
+
+<p>13. You must be very confident to work at Sequoia.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-22.png?w=1024" alt="" class="wp-image-564" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-23.png?w=1024" alt="" class="wp-image-566" /></figure>
+
+
+
+<p>14. He looks for people very different from him so he can have productive confrontation.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-24.png?w=1024" alt="" class="wp-image-567" /></figure>
+
+
+
+<p>15. He built sequoia with stability of partnership in mind</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-25.png?w=1024" alt="" class="wp-image-568" /></figure>
+
+
+
+<p>16. He only invested in founders that were talented storytellers.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-26.png?w=1024" alt="" class="wp-image-569" /></figure>
+
+
+
+<p>17. He never let the appearance of a founder dissuade him from investing</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-27.png?w=1024" alt="" class="wp-image-570" /></figure>
+
+
+
+<p>18. Great founders have incredibly clear vision of what they are doing</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-28.png?w=1024" alt="" class="wp-image-572" /></figure>
+
+
+
+<p>19. The importance of a giant market over all. He tried to pick a great market over a great person.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-29.png?w=1024" alt="" class="wp-image-573" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-30.png?w=1024" alt="" class="wp-image-574" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-31.png?w=1024" alt="" class="wp-image-575" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-32.png?w=1024" alt="" class="wp-image-576" /></figure>
+
+
+
+<p>20. His investment objective was to return 20-25% a year.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-33.png?w=1024" alt="" class="wp-image-577" /></figure>
+
+
+
+<p>21. He didn’t like MBAs - he thought the best school was to work at an excellent startup, which for him, was Fairchild Semiconductor. MBA is the second greatest crime after being a lawyer. He wants to nail lawyers up in the lobby. Having an MBA doesn’t make you a great VC. Knowing how to build a business does.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-34.png?w=1024" alt="" class="wp-image-578" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-35.png?w=1024" alt="" class="wp-image-579" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-36.png?w=1024" alt="" class="wp-image-580" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-37.png?w=1024" alt="" class="wp-image-581" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-38.png?w=1024" alt="" class="wp-image-582" /></figure>
+
+
+
+<p>22. There are many paths to success as a VC, but you must be interested in managing change and identifying change.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-39.png?w=1024" alt="" class="wp-image-583" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-40.png?w=1024" alt="" class="wp-image-584" /></figure>
+
+
+
+<p>23. Companies start to die when they let HR take over. HR people are communists at heart.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-41.png?w=1024" alt="" class="wp-image-585" /></figure>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-42.png?w=1024" alt="" class="wp-image-586" /></figure>
+
+
+
+<p>24. He said what he thought, fearlessly.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-43.png?w=1024" alt="" class="wp-image-587" /></figure>
+
+
+
+<p>25. Sequoia was the only firm interested in CISCO, because the management was so broken.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-44.png?w=1024" alt="" class="wp-image-588" /></figure>
+
+
+
+<p>26. He always spoke last.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-45.png?w=1024" alt="" class="wp-image-589" /></figure>
+
+
+
+<p>27. Sequoia makes decisions by consensus of the partners.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2023/11/image-46.png?w=1024" alt="" class="wp-image-590" /></figure>
+</div>
+<div class="post-nav"><a href="/blog/sardines-and-a-magic-box/">← Sardines and the Magic Box</a>
+<a href="/blog/the-awful-arithmetic-of-valuation/">The Awful Arithmetic Of Valuation →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prom Queens And Rough Diamonds: VC As A Dating Pool — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Prom Queens And Rough Diamonds: VC As A Dating Pool</h1>
+  <div class="post-date">December 13, 2024</div>
+</div>
+<div class="post-body">
+<p>Venture capital is like a dating pool, and I believe there are two ways to “win” the dating pool.&nbsp;</p>
+
+
+
+<p>Buckle up. This post is going to piss a lot of people off. But I think it’s right. Let me know if you disagree 🙂.</p>
+
+
+
+<p>Do you remember the dating pool in high school and college? There was a group of really attractive girls. Everyone knew who they were, and every guy tried to date one of those few highly attractive girls. The girl had their pick of the “best” guy, and there were 10 guys pursuing every one of these girls. Let’s call these girls the prom queens.</p>
+
+
+
+<p>The best founders also get to pick who they work with. Just like most women, they seek the highest value VC. There are very few perfect 10 founders, and for every one of them, there are 10+ firms pursuing them. Think Bret Taylor picking Peter Fenton. That’s the ultimate prom queen and king.</p>
+
+
+
+<p>Jason Lemkin says this is 75% of the secret to being a great venture fund - attracting the perfect 10’s.</p>
+
+
+
+<figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXc2jdbyDXLnOOkMZYCT_2ivnHWz23VLivULCvztgxADKJ9zZ16NN-4u_MykzfNMHnvB3X2HDszNyvC4plMiDyEPDkNgeTf3en2SRi1FV0BoAeOB7AKbXZEkG9UgV_SYaW97ofe5nw?key=uA9zg4RILte7Plnmi1Fq7zh3" alt="" /></figure>
+
+
+
+<p>The only way to win these types of founders is to work your ass off to be one of those highest value men. Like Peter Fenton, you generally have an aura of success because you have been involved with massive successes in the past, so the halo effect is self fulfilling. But that Halo effect is usually on top of some really unique talent that the VC has, which could be knowledge of how to build an enduring business, a network that can help the startup, incredible interpersonal skills that make you a highly desirable partner, and many other things. There’s no way to fake this. Either you are one of the most desirable VCs to work with, or you are shunned by these prom queen founders. A little like a VC incel.</p>
+
+
+
+<p>Charlie Munger said this most profoundly: “the best way to find a good spouse is to actually deserve a good spouse.” The best way to attract a prom queen founder is to actually deserve to work with a prom queen founder.</p>
+
+
+
+<p>This is one important way to win as a VC, but it’s not the only way.&nbsp;</p>
+
+
+
+<p>Remember that group of prom queen candidates we talked about? Most of us know how this actually plays out - a lot of these girls didn’t actually amount to much. Perhaps they were pretty, but they didn’t age well. Perhaps they weren’t that smart after all, or they were lazy. Maybe they were actually deeply unkind and lost all their friends. For many reasons, they don’t actually live up to that high school potential. Some do! But many don’t.</p>
+
+
+
+<p>But there is another group of girls. These girls are the diamonds in the rough. They have incredible potential, but the groupthink among the guys means it’s not well known.</p>
+
+
+
+<p>Look at Jason’s tweet again. He says the “next” zuckerberg and Benioff. The market yet doesn’t know who these people are. And so the best VCs actually identify this undiscovered founder talent and partner with them before the rest of the world knows.</p>
+
+
+
+<p><br>Who is the best in the world at this? YC.&nbsp;</p>
+
+
+
+<p>YC makes a bet on these founders all the time. They are 22 years old. They dropped out of college. They have no real accomplishments yet. But YC thinks they are diamonds in the rough. So they fund them, and in aggregate, it works incredibly well.</p>
+
+
+
+<p>These are the two paths to alpha as a VC: win over the prom queens, or identify the diamonds in the rough. That’s it.&nbsp;</p>
+
+
+
+<p>And what’s true in both cases is: you must be good enough to pick the right prom queens, or the diamonds in the rough, and you must be good enough to “get picked” back.&nbsp;</p>
+
+
+
+<p>There’s no way around Munger’s law: the best way to find a good partner is to actually deserve it.</p>
+</div>
+<div class="post-nav"><a href="/blog/the-empty-suit-executive/">← The Empty Suit Executive</a>
+<a href="/blog/the-captain-and-the-current/">The Captain and The Current →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

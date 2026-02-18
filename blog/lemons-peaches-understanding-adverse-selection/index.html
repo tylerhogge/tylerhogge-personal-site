@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lemons and Peaches: Understanding Adverse Selection — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Lemons and Peaches: Understanding Adverse Selection</h1>
+  <div class="post-date">May 7, 2016</div>
+</div>
+<div class="post-body">
+<section class=" section--body section--first">
+<div class="section-content">
+<div class="section-inner layoutSingleColumn">
+<p id="f88e" class="graf--p graf--hasDropCapModel graf--hasDropCap graf-after--h3"><span class="graf-dropCap">L</span>ast month I wrote about&nbsp;<a class="markup--anchor markup--p-anchor" href="https://tylerhogge.com/2016/01/09/my-list-of-mental-models/" rel="nofollow">my list of favorite mental models</a>. Perhaps my very favorite, and most commonly used, is adverse selection.</p>
+<p id="3b48" class="graf--p graf-after--p">There’s a reason for this: adverse selection seems to be this unseen force affects just about every system I see around me. And the more I learn about it, the more I see it.</p>
+
+<blockquote id="e6d1" class="graf--blockquote graf-after--p"><strong>The simplest definition I use is: adverse selection is a phenomenon that causes you to attract the exact&nbsp;<span class="markup--strong markup--blockquote-strong"><span class="markup--em markup--blockquote-em">opposite</span></span>&nbsp;of what you want to attract.&nbsp;<span class="markup--quote markup--blockquote-quote is-other">In other words, you end up with the thing that’s most likely to kill you (or put you out of business, etc).</span></strong></blockquote>
+<p id="1c3f" class="graf--p graf-after--blockquote">The classic example of adverse selection is the&nbsp;<a class="markup--anchor markup--p-anchor" href="https://en.wikipedia.org/wiki/The_Market_for_Lemons" rel="nofollow">lemon problem</a>&nbsp;in the used car market: used car buyers can’t tell the difference between a nice used car (a peach) or a crappy used car (a lemon), so they end up paying the average of the two while hoping for the best. The seller knows whether the car is good or bad, so sellers of good cars are mad and quit selling (they can't get a good price for their peach) and sellers of crappy cars are happy (they get an above-market price for their lemon). Play this out a few iterations and you’re left with a market that is overwhelmed by lemons. Buyers are left with the exact thing they&nbsp;<span class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">didn’t</em></span>&nbsp;want. The bad drives out the good.</p>
+<p id="fd42" class="graf--p graf-after--p">The second classic example is in insurance: an insurance company wants more customers, so it lowers its prices. Customers who are most likely respond to cheap insurance are those the company doesn’t want, i.e. those that intentionally live risky lifestyles. Insurers are then left with a risk pool of only high-cost, high-risk customers — the exact opposite of what they set out to attract. The bad drives out the good. Prices raise for everyone. Safe customers leave the market even quicker. etc. etc. etc. This is also, in my opinion, the strongest argument against Obamacare.</p>
+https://twitter.com/modestproposal1/status/728669238337146880
+
+But it also shows up in places you wouldn't expect.
+<p id="551b" class="graf--p graf-after--p"><span class="markup--quote markup--p-quote is-other">Let’s say you’re a startup founder, pitching a VC. You intentionally don’t label the y-axis on your powerpoint graph to mask the fact that your growth isn’t quite a strong as it could appear. The VC takes the bait and invests. You rejoice. But should you? Probably not. Adverse selection says that any investor who is stupid enough to not catch that is exactly the wrong type of person you’d want in your company. You attracted the opposite of what you wanted. Lemons.</span></p>
+<p id="b7af" class="graf--p graf-after--p">Or let’s say you’re a VC, and you offer extremely unfavorable terms to an entrepreneur (which means they were very favorable to you). The founder takes your money. Good news? Any founder with options, any great founder, wouldn’t accept them. You’re likely to get left with entrepreneurs who simply can’t raise money from anyone else. Again, the exact investments you want to avoid. Lemons.</p>
+<p id="85dc" class="graf--p graf-after--p"><span class="markup--quote markup--p-quote is-other">Venture capital is an industry rife with adverse selection.</span>&nbsp;A few months ago I had a conversation with a prominent VC from a reputable firm in NYC. I asked him how he goes about picking investments, and his answer surprised me: “<span class="markup--quote markup--p-quote is-other">With every pitch we listen to, I’m constantly asking myself,&nbsp;<span class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">why are we the lucky ones to get to hear this founder while our competitors are not? Are we just victims of adverse selection?”</em></span></span></p>
+<p id="f984" class="graf--p graf-after--p">He’s well aware that in VC, the best founders can usually&nbsp;<em class="markup--em markup--p-em">choose&nbsp;</em>what VCs they work with. Smart VCs realize this and spent the majority of their effort becoming the VC that attracts the best entrepreneurs, that is, overcomes adverse selection.</p>
+<p id="bbb2" class="graf--p graf-after--p">I imagine a sage VC on her deathbed being asked: “How did you pick such great investments throughout your career?” and answering simply, “we got them to pick us first.”</p>
+https://twitter.com/joshk/status/724971287068684288
+
+https://twitter.com/harryh/status/725679057111814145
+
+https://twitter.com/fredwilson/status/725687243361374208
+
+<span class="markup--quote markup--p-quote is-other"><strong><span class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">US politics is another example.</em></span>&nbsp;</strong>What type of individuals has the country attracted to run for its highest office this election? The majority of citizens have highly unfavorable opinions of both leading candidates. This is adverse selection at work.&nbsp;</span>The best-qualified US citizens aren’t attracted to the idea of running for president, so we’re left with a market of lemons. (Again, I’m just referencing the favorability data).
+<div class="iframeContainer"><img class="aligncenter" src="https://media.giphy.com/media/SvgmMm20VGHzq/giphy.gif" width="320" height="174"></div>
+<ul class="postList">
+ 	<li id="1fa8" class="graf--li graf-after--figure">You’ll find it in the dating pool (hello Tinder!)</li>
+ 	<li id="422c" class="graf--li graf-after--li">You’ll find it if you’re hiring a VP of Sales (why don’t they already have a great job?!)</li>
+ 	<li id="b402" class="graf--li graf-after--li">You’ll find it in the IPO allocation market (retail investors left with smart money scraps)</li>
+ 	<li id="65d8" class="graf--li graf-after--li graf--last">You’ll find it among MBA students (if you are such a high potential candidate, why was it so easy to leave your job?)</li>
+</ul>
+</div>
+</div>
+</section>
+<section class=" section--body section--last">
+<div class="section-divider layoutSingleColumn">
+
+<hr class="section-divider">
+
+</div>
+<div class="section-content">
+<div class="section-inner layoutSingleColumn">
+<p id="9e36" class="graf--p graf--hasDropCapModel graf--hasDropCap graf--first"><span class="graf-dropCap">T</span>he opposite of adverse selection is&nbsp;<em class="markup--em markup--p-em">positive</em>&nbsp;selection, or&nbsp;<em class="markup--em markup--p-em">advantageous&nbsp;</em>selection<em class="markup--em markup--p-em">,&nbsp;</em>where you actually have a system that attracts the&nbsp;<span class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">exact candidate you want</em></span>. This is the holy grail.</p>
+<p id="f0bc" class="graf--p graf-after--p"><span class="markup--quote markup--p-quote is-other">My favorite example of positive selection is the US’ ability to attract the top innovators and entrepreneurs from around the world who proactively choose to come here.</span>&nbsp;I believe this magnetic force, sometimes called the American Dream, is simply positive selection. This is what I view as possibly the greatest risk of a lemon US president — that is, that we will lose the positive selection virtuous cycle and spiral towards an adverse selection vicious cycle.</p>
+<p id="61e1" class="graf--p graf-after--p">Even within the US I think there are second-level geographic pockets that benefit from positive selection, for example, Silicon Valley. Call it positive selection squared™️.</p>
+https://twitter.com/ValaAfshar/status/706340270288326656
+
+https://twitter.com/pmarca/status/479307770601017344
+<p id="75d7" class="graf--p graf-after--figure">YCombinator is a good example of creating positive selection. They’ve convinced the top computer engineers in the world to apply to their highly selective program for the chance to give away 7% of their company for $120,000. Instead of their candidate pool being overwhelmed with adverse selection candidates, they now have a pool of highly qualified Stanford-trained engineers, all hungry to start companies with their help. To be sure, YC&nbsp;<em class="markup--em markup--p-em">does,</em>&nbsp;in fact, attract many adverse selection candidates as well, and that’s where the picking comes in. But “picking” is a problem only those who have solved for positive selection even have.</p>
+https://twitter.com/jasonlk/status/654497756967362560
+<blockquote id="8414" class="graf--blockquote graf-after--p"><span class="markup--strong markup--blockquote-strong">My hypothesis is that:</span>
+(a) winner-take-all, power law,&nbsp;<a class="markup--anchor markup--blockquote-anchor" href="https://en.wikipedia.org/wiki/Matthew_effect" rel="nofollow">cumulative advantage</a>&nbsp;outcomes are driven by
+(b) virtuous cycles, and that those virtuous cycles are driven by
+(c) positive selection.</blockquote>
+<p id="e7ed" class="graf--p graf-after--blockquote">This is my current topic of study: how do you set up positive selection to work in your favor? What conditions must exist?</p>
+<p id="4723" class="graf--p graf-after--p graf--last">I think it’s the key. And while the first step is avoiding adverse selection, I’m very interested in the second step: proactively creating positive selection. If you’ve got any great reading, I’m all ears.</p>
+
+</div>
+</div>
+</section>
+</div>
+<div class="post-nav"><a href="/blog/my-list-of-mental-models/">← My List of Mental Models</a>
+<a href="/blog/humans-worst-cognitive-flaw-how-to-fix-it/">Humans'  Worst Cognitive Flaw &amp; How to Fix It →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What I Learned From My Dad. — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>What I Learned From My Dad.</h1>
+  <div class="post-date">June 15, 2025</div>
+</div>
+<div class="post-body">
+<p>For the past year I have tried to compile the top lessons I have learned from my Dad. There are so many. Everyone who knows him will agree that he is a uniquely amazing person. He's an incredible leader, teacher, friend, and example. I think I've narrowed it down to the top 20 lessons, and behind each of these lessons, there is a story. Thank you, dad.</p>
+
+
+
+<p>1. Always tell the truth, no matter what. Your word is infinitely valuable. You would rather die than break your word.</p>
+
+
+
+<p>2. Always keep your commitments, no matter what.</p>
+
+
+
+<p>3. Work unreasonably hard and sacrifice for the things you want. The greater the goal, the greater the sacrifice required.</p>
+
+
+
+<p>4. Don’t wait to be told what to do; just do it. You are an agent that can bend the world. “Verily I say, men should be anxiously engaged in a good cause, and do many things of their own free will, and bring to pass much righteousness; For the power is in them, wherein they are agents unto themselves. And inasmuch as men do good they shall in nowise lose their reward.” This is his favorite scripture.</p>
+
+
+
+<p>5. If you want it bad enough, you’ll find a way to get it, and if you don’t get it, you didn’t want it bad enough.</p>
+
+
+
+<p>6. Set specific goals and sign your name to them.</p>
+
+
+
+<p>7. Be kind, especially to those who are most different from you.</p>
+
+
+
+<p>8. Be generous, especially to those less fortunate than you.</p>
+
+
+
+<p>9. You must make your own decisions and live with the consequences of your decisions. Consequences are valuable teachers.</p>
+
+
+
+<p>10. You are never a victim. You alone own the outcome. There is no one else to blame.</p>
+
+
+
+<p>11. Family over everything. Be fiercely loyal to family first.</p>
+
+
+
+<p>12. God put us on earth to lead. Being a leader is extremely important.</p>
+
+
+
+<p>13. A leader serves others and makes others the best versions of themselves.</p>
+
+
+
+<p>14. Have a deep belief in yourself. Never lose confidence in yourself.</p>
+
+
+
+<p>15. Confident people build others up and give genuine compliments, weak people tear others down. It is easy to spot someone with low self esteem.</p>
+
+
+
+<p>16. Control your thoughts to control your outcomes. Our thoughts have outsized impact on our life. As a man thinketh, so is he.</p>
+
+
+
+<p>17. Be truly grateful for all things. Including trials. Always say thank you.</p>
+
+
+
+<p>18. You can get excited when you go through hard times because it means something great is coming and you are going to get stronger.</p>
+
+
+
+<p>19. Find the positive in every situation. Negative people go nowhere in life.</p>
+
+
+
+<p>20. Keep a small group of friends extremely close, and do whatever they need at a moments notice.</p>
+</div>
+<div class="post-nav"><a href="/blog/pattern-matching-20-habits-of-exceptional-startups/">← Pattern Matching 20 Habits of Exceptional Startups</a>
+<a href="/blog/why-we-invested-in-vector/">Why We Invested In Vector →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Speak Plainly. — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Speak Plainly.</h1>
+  <div class="post-date">January 4, 2024</div>
+</div>
+<div class="post-body">
+<p>Something weird happens to people when they get an important job, like becoming a manager at work or a politician: they start talking differently. Weirdly. Less like a human. It’s so common there’s even phrases for it: “corporate lingo”, “a talking head”, “legalese” and others.</p>
+
+
+
+<p>Not only is this weird, it’s a mistake, for at least a few reasons. The first is that you become a worse communicator - people not only understand less of what you say, you also take longer to say it. You also become less likable, because our ears are especially attuned to this type of verbal communication, and we instantly dislike it.</p>
+
+
+
+<p>Why do humans do this?</p>
+
+
+
+<p>I <em>think</em> it’s because of a lack of confidence. When we worry that we aren’t smart enough for the job, we <em>pretend</em>. And when we pretend, we are less <em>authentic</em>. And when we are less authentic, we speak <em>differently</em>. And when we speak differently we are less <em>clear</em>. And when we are less clear, we are <em>worse</em> at our job. It’s just a downward spiral.</p>
+
+
+
+<p>The antidote, as far as I can tell, is to just speak simply and directly. It is to make your point up front, and then explain it afterwards if needed. It is to speak in declarative, confident statements, rather than uptalking with uncertain half questions. It is to speak loud enough so the person doesn’t have to strain their ears to hear. It is to avoid rambling at all costs, as well as weak filler words like “just” “uhhh” and about 50 others. It is to think through your point before you speak, so you can lead with that point in a clear way. As Jeff Bezos says: “Think complex. Speak simple.”</p>
+
+
+
+<p>I don’t have any way to prove this, but my intuition is that this is a large part of why Donald Trump originally won the presidency over Hillary Clinton. He spoke <em>very </em>differently. He spoke like his voters spoke. This unlocked a secret that no other politician that I have seen unlock - it was almost as though he had hypnotized many of his crowds, to the point where they would repeat his phrases, laugh at every joke, and hang on every word. "He talks like us" was something I heard over a dozen times.</p>
+
+
+
+<p>Speaking plainly is an excellent way to get people to trust you, because if you are willing to speak plainly it means you have nothing to hide and you aren’t trying to mislead. A direct, plain spoken person has no guile. They are not manipulating others with their words, nor trying to signal something about themselves. They are just….speaking.&nbsp;</p>
+
+
+
+<p>A good goal for 2024: speak plainly. Speak like a human. Run away from the nervousness we feel that causes us to ramble and change the words we use to sound different than who we are.&nbsp;The added benefit to speaking plainly and directly is that the right people will be attracted to what we say, the wrong people will be repelled, and because more actual communication will take place (the free-flowing of ideas from one brain to another brain), more real relationships will be built.</p>
+
+
+
+<p></p>
+</div>
+<div class="post-nav"><a href="/blog/different-is-better-than-better/">← Different Is Better Than Better</a>
+<a href="/blog/what-i-learned-from-alfred-lin-of-sequoia/">What I learned from Alfred Lin of Sequoia →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

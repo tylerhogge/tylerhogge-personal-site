@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Why We Invested in Honey Health — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Why We Invested in Honey Health</h1>
+  <div class="post-date">October 28, 2025</div>
+</div>
+<div class="post-body">
+<p><a href="https://www.honeyhealth.ai/">Honey Health</a> announced it has raised $7.8M to build AI Agents for the healthcare back office. Pelion is fired up to lead the round and I could not be more excited to join the board and work with the team, led by Matt Faustman.</p>
+
+
+
+<p>This is my, and Pelion’s, first investment in a startup focused explicitly on building digital workers - also known as AI agents, which is another reason for my excitement.</p>
+
+
+
+<p>So, why did we invest? 3 reasons:&nbsp;</p>
+
+
+
+<ol>
+<li>The current</li>
+
+
+
+<li>The captain</li>
+
+
+
+<li>The customer quotes</li>
+</ol>
+
+
+
+<p>The current here is incredibly strong. A confluence of factors has created a market pull for what Honey Health offers that cannot be ignored. On the product side, the ability of AI to reliably complete tasks that humans currently do is improving daily. On the demand side, one of the main problems facing healthcare providers of all types is their ability to hire the right type of people to manage all the tasks that make up their “back office”: things like patient charting, prescription refills, pre-patient visit preparation, aggregating patient data from an EHR, reading faxes, and reaching out to insurance providers for prior authorization. In addition, non-clinical staff turnover sits at 33-40% annually. All of this stuff is a pain, and all of it means there is less time for that worker to focus directly on patients.&nbsp;</p>
+
+
+
+<p>Some estimates now show that administration costs now account for more spend than even direct patient care. Even if you dispute this data, it would be hard to argue that admin costs shouldn’t be lowered.</p>
+
+
+
+<figure><img src="https://tylerhogge.wordpress.com/wp-content/uploads/2025/10/image.png?w=1024" alt="" class="wp-image-848" /></figure>
+
+
+
+<p>All of this results in one driving force: providers (of all types) are desperate for a way to reduce the cost of completing these administrative tasks, and they are very open to AI doing it for them.</p>
+
+
+
+<p>The captain is also incredibly strong. Matt is a founder’s founder, who has already built and sold one business (UpCounsel) and has now dedicated his life to making healthcare more efficient. He experienced the problem as a Type 1 Diabetic who has seen first-hand how inefficient many of the back office tasks his doctor’s staff have to handle just to get his prescriptions refilled. Matt has built a team that lives at the edge of AI Agents capability, navigating archaic medical software systems with ease.</p>
+
+
+
+<p>Finally - the customer calls. We called several clinics who have adopted Honey Health’s agents, and the feedback was jaw dropping. We heard providers - many of which are in their 50’s or 60’s, express their confidence in this new technology which dramatically changes the efficiency of their practices. They expressed awe at the level of accuracy already outpacing their human employees. One provider shared “Matt is a force of nature. He responds immediately, he builds software fast, and he knows exactly what problems we need to have solved.” He continued; “I get an email every morning that contains all the info I need for all of my patients coming in that day. All their patient data has been downloaded and compiled. I don’t have to spend time interviewing patients. I can just start treating them. My workflow is so much better, my staff is so much happier. I would like to invest personally in Honey Health.” This was shared by several other customers we spoke with. The pattern was clear.</p>
+
+
+
+<p>Hearing these types of customer quotes from a startup that is less than a year old is just wild, and it was all we needed to offer to lead Honey Health’s seed round.</p>
+
+
+
+<p>I believe Honey Health has a real shot of becoming the largest “employer” of digital workers over the next 10 years, saving providers billions of dollars and improving millions of patient lives as a result. In less than a year, thousands of providers are using it, across more than 100 medical groups.&nbsp;</p>
+
+
+
+<p>The future of healthcare is here, thanks in large part to Honey Health.</p>
+</div>
+<div class="post-nav"><a href="/blog/redo-and-the-rise-of-the-profitable-compound-startup/">← Redo and the rise of the profitable compound startup</a>
+<a href="/blog/why-we-invested-in-valinor/">Why we invested in Valinor →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

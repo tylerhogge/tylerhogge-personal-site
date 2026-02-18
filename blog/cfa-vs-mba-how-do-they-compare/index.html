@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CFA vs. MBA - How Do They Compare? — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>CFA vs. MBA - How Do They Compare?</h1>
+  <div class="post-date">May 20, 2015</div>
+</div>
+<div class="post-body">
+<p class="p1">So, you're trying to better compare the CFA exams vs. a top-tier MBA? Some articles argue that the CFA has a chance of <a href="http://www.ft.com/cms/s/2/7cae38c2-e811-11e3-b923-00144feabdc0.html#axzz3WuxySKZs" target="_blank" rel="nofollow">replacing the MBA</a>, and others think that's not likely.</p>
+<p class="p1">The purpose of this post is to provide a unique view in comparing the two from two specific perspectives: <em><strong>curriculum</strong></em> and <em><strong>career path</strong></em> — with the end goal of helping you make a more informed decision.</p>
+<p class="p1">In other words, I'll cover both what you'll learn and where you'll end up.</p>
+<p class="p1">Plenty of other articles already compare the time each takes (CFA takes on average four years of intense part-time study; MBA programs are typically two years of full-time study), the cost of each (CFA costs around $3,000 in total, <a href="https://www.johnson.cornell.edu/Full-Time-MBA/Admissions/Tuition-Expenses" target="_blank" rel="nofollow">a top-tier MBA</a> can cost over $160,000, not including opportunity cost), the opportunity cost (you can work while taking the CFA, which is not true for top MBA programs), and the structure (CFA is a series of three exams you must pass which are administered once or twice a year; the MBA is full-time coursework in classroom which includes group work, homework, and final exams).</p>
+
+<h3 class="p3"><span class="underline"><strong>Curriculum</strong></span></h3>
+<p class="p1">It has been said that the MBA is a "mile wide and a foot deep", while the CFA is a "foot wide and a mile deep". There is some truth to that. When I'm asked to describe the CFA, I typically compare it to a Masters degree in Finance, and you'll see why.</p>
+<p class="p1">The best way to compare the two is to break the MBA into two components: what I'll call "core MBA" and "elective MBA" — with "core" roughly corresponding with the first year of school, and "elective" roughly corresponding with the second year.</p>
+<p class="p1">Most MBA program's core curriculum includes standard business school classes. At Cornell, the 10 <a href="https://www.johnson.cornell.edu/Two-Year-MBA/Curriculum/Core-Courses" target="_blank" rel="nofollow">core classes</a> are:</p>
+<p class="p1"><img class="center" src="https://media.licdn.com/mpr/mpr/shrinknp_750_750/AAEAAQAAAAAAAAJEAAAAJGFhODIwYjQ5LWJiMjMtNDI0OS1hNTg2LWFjOTE0MGE1MGRjMQ.jpg" alt="" width="588" height="177" />
+These core classes are roughly the same among the top 15 business schools, and in general, take place during a student's first year.</p>
+<p class="p1">The CFA, on the other hand, breaks its curriculum into the following 10 categories:</p>
+<p class="p1"><img class="center" src="https://media.licdn.com/mpr/mpr/shrinknp_750_750/AAEAAQAAAAAAAAN6AAAAJGE0ZDBiYmU0LTM2ZWYtNDdlNS1hMjZhLTkzMGU3YjFiMjk1Mg.jpg" alt="" width="588" height="181" /><img class="center" src="https://media.licdn.com/mpr/mpr/shrinknp_750_750/AAEAAQAAAAAAAAKrAAAAJGY1OWU0NjgwLTBmZTgtNDljZi1iZThmLWY0ZDBlNjA2N2UyZg.jpg" alt="" width="588" height="504" /></p>
+<p class="p2"><span class="KonaFilter image-container display-table">Those marked with an * represent classes that are covered at a high level in core finance, but in much further depth in CFA. </span></p>
+<p class="p1">Now we will compare "elective" MBA vs. CFA curriculum. Some MBA programs offer several dozen electives. At Cornell, here are some examples:</p>
+<p class="p1"><img class="center" src="https://media.licdn.com/mpr/mpr/shrinknp_750_750/AAEAAQAAAAAAAAK4AAAAJDY1MzY1ZTdhLWJjZDQtNDkyNy05MzRlLTIzYjAyODNlYjI0Ng.jpg" alt="" width="588" height="220" /></p>
+<p class="p2"> A few things to point out here:</p>
+
+<ul>
+	<li>Almost none of these MBA electives are covered in the CFA curriculum.</li>
+	<li>For every CFA curriculum topic, there is typically an elective MBA class that digs into that topic much deeper than was covered in core MBA – much closer to the depth covered in the CFA.</li>
+	<li>In fact, many MBA programs, including Cornell, have formally integrated the CFA curriculum into many of their elective offerings. For example, there is a structured derivatives class that overlaps with CFA topic of derivatives.</li>
+	<li>In addition to these electives, many MBA programs allow students to take classes from other "schools" on campus. For example, because I am planning a career in tech, I will use many of my elective credits to take computer science courses from the top-ranked school here at Cornell.</li>
+</ul>
+<h3 class="p3"><span class="underline"><strong>Career Path</strong></span></h3>
+<p class="p1">All of this leads to the final question many of you ask during this comparison, which is: What careers does each option lead me to? In general, most <a href="https://www.johnson.cornell.edu/Career-Management/Employment-Report-for-Two-Year-MBAs" target="_blank" rel="nofollow">MBA programs</a> spit out candidates into one of several paths:</p>
+
+<ul>
+	<li>Consulting</li>
+	<li>Investment Banking</li>
+	<li>Corporate Finance</li>
+	<li>Equity Research &amp; Portfolio Management</li>
+	<li>Marketing &amp; Brand Management (often with consumer packaged goods companies)</li>
+	<li>Technology</li>
+	<li>General Management (often in a Fortune 500 company's leadership rotation program)</li>
+</ul>
+<p class="p1">Compared to the CFA path, which according to <a href="http://www.cfainstitute.org/about/research/Pages/index.aspx" target="_blank" rel="nofollow">its website</a> leads candidates to the following:</p>
+
+<ul>
+	<li>Equity Research &amp; Portfolio Management</li>
+	<li>Corporate Financial Analyst</li>
+	<li>Financial Advisor</li>
+</ul>
+<p class="p1">Another way of looking at the same question is to compare the top employers of both. The CFA Institute lists JP Morgan, PWC, HSBC, BAML, UBS, E&amp;Y, Morgan Stanley, Citi, RBC, and Wells Fargo as the most common employers of CFA charter-holders (in addition to many independent/smaller hedge funds and asset managers). All are financial services, as expected.</p>
+<p class="p1">To contrast, common companies that <a href="https://www.johnson.cornell.edu/Career-Management/Who-Recruits-Our-Students" target="_blank" rel="nofollow">recruit at top 15 schools</a>, include, Amazon, Google, Apple, GE, McKinsey &amp; Co. Bain &amp; Co. BCG, Unilever, in addition to each of the companies listed above.</p>
+<p class="p1">A few things should stand out here:</p>
+
+<ul>
+	<li>In general, there is no career that a CFA <em>can</em> get you that an MBA <em>cannot</em> get you. For example, most portfolio management jobs (which is by far the most common CFA job) will ask for either a CFA or MBA. This is because MBA students can learn much of the same material using a combination of core + elective classes during the MBA</li>
+	<li>In general, there are many MBA career paths that a CFA <em>cannot</em> open. For example, in <a href="http://www.bloomberg.com/news/articles/2015-03-18/sorry-cfas-an-mba-will-get-that-investment-banking-job-you-want" target="_blank" rel="nofollow">investment banking</a> and management consulting, an MBA is extremely common (sometimes required), while a CFA has less relevance. Other careers (like tech) require neither.</li>
+	<li>CFA jobs are far more focused to one area (portfolio management) than MBA jobs.</li>
+</ul>
+<p class="p1">So, what's the summary advice?</p>
+
+<ol>
+	<li>Decide what career you want.</li>
+	<li>If it's portfolio management, asset management, or investment research, lean towards the CFA. If you do choose the CFA, go into it eyes wide open: It's incredibly time consuming and difficult on top of full-time work. But the curriculum is great — you'll learn a tremendous amount and be challenged by each level.</li>
+	<li>If it's not those CFA roles, or if you aren't sure, consider the MBA. Many students find tremendous value in taking two years to better learn what it is they want to do — although that's an expensive price to just delay an inevitable decision.</li>
+	<li>Consider doing both. As mentioned above, many MBA programs allow you to complete the CFA tests for credit while you go to school, and many MBA electives cover the CFA curriculum.</li>
+</ol>
+<p class="p8">And, as a final piece of advice, avoid falling into the "<a href="http://cdixon.org/2013/02/13/the-credentials-trap/" target="_blank" rel="nofollow">credential trap"</a> — or the temptation to seek out an MBA or CFA for external validation or as ends to themselves. Some career paths, such as smaller tech firms, can even frown on the "wrong" type of MBA student.</p>
+<p class="p8">As always, employers pay for results, and credentials such as the MBA or CFA are only as good as the results they allow you to achieve.</p>
+</div>
+<div class="post-nav"><a href="/blog/the-least-appreciated-part-of-great-software/">← The least-appreciated part of great software</a>
+<a href="/blog/whiplash-and-greatness/">Whiplash and Extreme Greatness →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

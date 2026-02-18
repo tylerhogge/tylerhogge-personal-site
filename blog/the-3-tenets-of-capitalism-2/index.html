@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The 3 Tenets of Capitalism — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>The 3 Tenets of Capitalism</h1>
+  <div class="post-date">September 14, 2020</div>
+</div>
+<div class="post-body">
+<p>[This story appeared in&nbsp;<a href="https://quillette.com/2019/03/10/the-clear-case-for-capitalism/" target="_blank" rel="noreferrer noopener">Quillette</a>&nbsp;in March 2019]</p>
+
+
+
+<p>At dinner not long ago my daughter and I had a standoff. She refused to eat something — a calzone in this case — because it looked “gwoss”. I failed to convince her what was actually in it until finally, I cut it in half and into a triangle so it looked just like pizza. Once she learned what was in it she loved it.</p>
+
+
+
+<p>I thought of this calzone a few weeks later after a discussion with a friend. He was convinced that capitalism was the source of all of America’s problems. I…..disagreed. And as the discussion progressed, it was clear to me that the source of our disagreement was really definitional: we didn’t have an agreed-upon understanding of what capitalism is — or in other words, what’s “in it”.</p>
+
+
+
+<p><mark>Perhaps these types of disagreements aren’t surprising given that&nbsp;</mark><mark><a href="http://www.councilforeconed.org/wp/wp-content/uploads/2014/02/2014-Survey-of-the-States.pdf" target="_blank" rel="noreferrer noopener">only 20 states require high school students to take a class</a></mark><mark>&nbsp;in economics to graduate,&nbsp;</mark><mark><a href="https://www.minneapolisfed.org/publications/the-region/why-its-important-to-understand-economics" target="_blank" rel="noreferrer noopener">less than 50%</a></mark><mark>&nbsp;of high school students have any exposure to economics, and only&nbsp;</mark><mark><a href="http://www.huffingtonpost.com/2014/10/15/colleges-require-economics-class-acta_n_5993930.html" target="_blank" rel="noreferrer noopener"><strong>3% of colleges require an economics class</strong></a></mark><mark><strong>(!)</strong></mark></p>
+
+
+
+<p>So I thought about it for a while, reread a&nbsp;<a href="https://www.pinterest.com/tylerhogge/economics-books/" target="_blank" rel="noreferrer noopener">few books</a>, and decided to compile my thoughts about what’s really “in” capitalism.</p>
+
+
+
+<p>This is an attempt to turn the calzone into pizza. Everyone loves pizza.</p>
+
+
+
+<p>I came up with 3 mini definitions that I think decomposes capitalism into something more digestible and debatable:</p>
+
+
+
+<ol>
+<li><mark>Capitalism is&nbsp;</mark><mark><strong>trade →&nbsp;</strong></mark><mark>which creates&nbsp;</mark><mark><strong>wealth</strong></mark></li>
+
+
+
+<li><mark>Capitalism is&nbsp;</mark><mark><strong>competition →&nbsp;</strong></mark><mark>which spurs&nbsp;</mark><mark><strong>technology</strong></mark><mark>&nbsp;&amp;&nbsp;</mark><mark><strong>lowers prices</strong></mark></li>
+
+
+
+<li><mark>Capitalism is&nbsp;</mark><mark><strong>unselfish →&nbsp;</strong></mark><mark>which brings&nbsp;</mark><mark><strong>cooperation&nbsp;</strong></mark><mark>&amp;&nbsp;</mark><mark><strong>peace</strong></mark></li>
+</ol>
+
+
+
+<p>Another way of saying this is that capitalism&nbsp;<em>causes</em>&nbsp;wealth, technology, lower prices, and peace. And I don’t think it’s very controversial.</p>
+
+
+
+<p><mark>(I know, you already think #3 is ridiculous. We’ll get there).</mark></p>
+
+
+
+<hr />
+
+
+
+<h1 id="f7af"><strong>Capitalism is trade.</strong></h1>
+
+
+
+<blockquote>
+<p><mark>“When goods do not cross borders, soldiers will.”</mark><mark><strong>― Frederic Bastiat</strong></mark></p>
+</blockquote>
+
+
+
+<h2 id="ff94"><strong>Pop quiz:</strong></h2>
+
+
+
+<p>— I list a used car for sale on Craigslist for $5,000.<br>— A buyer shows up and offers $4,000, but he’ll buy it on the spot if I accept.<br>— After some negotiating, we settle on $4,500</p>
+
+
+
+<p>Who won this trade?</p>
+
+
+
+<h2 id="0759"><strong>Answer:</strong></h2>
+
+
+
+<p>We both did.</p>
+
+
+
+<p>He wanted the car more than $4,500, and I wanted $4,500 more than the car. Behind every fair trade, both parties get what they want.</p>
+
+
+
+<p>As a result of this simple transaction, we’re both&nbsp;<mark>better</mark>&nbsp;off. And by better off, I mean we are both wealthier.</p>
+
+
+
+<p>Yes, wealthier.</p>
+
+
+
+<p>To quote&nbsp;<a href="http://paulgraham.com/wealth.html" target="_blank" rel="noreferrer noopener">Paul Graham</a>:</p>
+
+
+
+<blockquote>
+<p>“<mark>If you want to create wealth, it will help to understand what it is.&nbsp;</mark><mark>Wealth is not the same thing as money.</mark><mark>&nbsp;Wealth is as old as human history. Far older, in fact; ants have wealth. Money is a comparatively recent invention.</mark></p>
+
+
+
+<p><mark>Wealth is the fundamental thing.&nbsp;</mark><mark>Wealth is stuff we want: food, clothes, houses, cars, gadgets, travel to interesting places, and so on. You</mark><mark>&nbsp;can have wealth without having mo</mark><mark>ney.</mark><mark>If you had a magic machine that could on command make you a car or cook you dinner or do your laundry, or do anything else you wanted, you wouldn’t need money.</mark><mark>&nbsp;Whereas if you were in the middle of Antarctica, where there is nothing to buy, it wouldn’t matter how much money you had.</mark></p>
+
+
+
+<p><mark>Wealth is what you want</mark><mark>, not money.</mark><mark>&nbsp;But if wealth is the important thing, why does everyone talk about making money?&nbsp;</mark><mark>It is a kind of shorthand:&nbsp;</mark><mark>money is a way of moving wealth</mark><mark>, and in practice they are usually interchangeable. But they are not the same thing, and unless you plan to get rich by counterfeiting, talking about&nbsp;</mark><mark><em>making money</em></mark><mark>&nbsp;can make it harder to&nbsp;</mark><mark>understand</mark><mark>&nbsp;how to make money.</mark></p>
+
+
+
+<p><mark>Money is a side effect of specializatio</mark><mark>n.</mark><mark>&nbsp;In a specialized society, most of the things you need, you can’t make for yourself.</mark><mark>&nbsp;If you want a potato or a pencil or a place to live,&nbsp;</mark><mark>you have to get it from someone else</mark><mark>.</mark></p>
+
+
+
+<p><mark>How do you get the person who grows the potatoes to give you some? By giving him something he wants in return. But you can’t get very far by trading things directly with the people who need them. If you make violins, and none of the local farmers wants one, how will you eat?</mark></p>
+
+
+
+<p><mark>The solution societies find, as they get more specialized, is to make the trade into a two-step process.&nbsp;</mark><mark>Instead</mark><mark>&nbsp;of trading violins directly for potatoes, you trade violins for, say, silver, which you can then trade again for anything else you need.&nbsp;</mark><mark>The intermediate stuff — the&nbsp;</mark><mark><em>medium of exchange</em></mark><mark>&nbsp;— can be anything that’s rare and portable.</mark><mark>&nbsp;Historically metals have been the most common, but recently we’ve been using a medium of exchange, called the&nbsp;</mark><mark><em>dollar</em></mark><mark>, that doesn’t physically exist. It works as a medium of exchange, however,&nbsp;</mark><mark>because its rarity is guaranteed by the U.S. Government.</mark></p>
+
+
+
+<p><mark>The advantage of a medium of exchange is that it makes trade work. The disadvantage is that it tends to obscure what trade really means.</mark><mark>People think that what a business does is make money. But money is just the intermediate stage — just a shorthand — for whatever people want.&nbsp;</mark><mark><strong>What most businesses really do is make wealth</strong></mark><mark><strong>. They do something people want.</strong></mark></p>
+
+
+
+<p><strong>The Pie Fallacy</strong></p>
+
+
+
+<p><mark>A surprising number of people retain from childhood the idea that there is a fixed amount of wealth in the world.</mark>&nbsp;There is, in any normal family, a fixed amount of&nbsp;<em>money</em>&nbsp;at any moment. But that’s not the same thing.</p>
+
+
+
+<p>When wealth is talked about in this context, it is often described as a pie. “You can’t make the pie larger,” say politicians. When you’re talking about the amount of money in one family’s bank account, or the amount available to a government from one year’s tax revenue, this is true. If one person gets more, someone else has to get less.</p>
+
+
+
+<p>I can remember believing, as a child, that if a few rich people had all the money, it left less for everyone else. Many people seem to continue to believe something like this well into adulthood. This fallacy is usually there in the background when you hear someone talking about how x percent of the population have y percent of the wealth.&nbsp;<mark>If you plan to start a startup, then whether you realize it or not, you’re planning to disprove the Pie Fallacy.</mark></p>
+
+
+
+<p><mark>What leads people astray here is the abstraction of money. Money is not wealth. It’s just something we use to move wealth around.</mark><mark>&nbsp;So although there may be, in certain specific moments (like your family, this month) a fixed amount of money available to trade with other people for things you want,&nbsp;</mark><mark>there is not a fixed amount of wealth in the world.&nbsp;</mark><mark><em>You can make more wealth.</em></mark><mark>&nbsp;Wealth has been getting created and destroyed (but on balance, created) for all of human history</mark><mark>.</mark></p>
+
+
+
+<p>Suppose you own a beat-up old car. Instead of sitting on your butt next summer, you could spend the time restoring your car to pristine condition. In doing so you create wealth. The world is — and you specifically are — one pristine old car the richer. And not just in some metaphorical way. If you sell your car, you’ll get more for it.</p>
+
+
+
+<p>I<mark>n restoring your old car you have made yourself richer. You haven’t made anyone else poorer. S</mark>o&nbsp;<mark>there is obviously not a fixed pie. And in fact, when you look at it this way, you wonder why anyone would think there was.</mark></p>
+</blockquote>
+
+
+
+<p>For another example to drive home the point about trade, you should read about the man who tried to create a sandwich without trading for it:</p>
+
+
+
+<p>This same principle — gains from trade — also applies when&nbsp;<em>countries</em>&nbsp;trade with each other…and this is where massive wealth gets created. Through billions of transactions with other countries, either as a buyer (of imported goods) or a seller (of exported goods), global wealth is maximized. If international trade is restricted, global wealth suffers.</p>
+
+
+
+<p>This is why, when idiotic politicians promise to stop trade with other countries or to tax goods produced by other countries, you should probably get concerned (who do you think ends up paying those “tariffs”?).</p>
+
+
+
+<p>When other countries produce goods at a lower cost (including their&nbsp;<em>opportunity&nbsp;</em>cost<em>)&nbsp;</em>than we can produce ourselves the result is we get to&nbsp;<em>pay lower prices.&nbsp;</em>Lower prices mean consumers are wealthier, and this point often seems to get lost in the debate.</p>
+
+
+
+<p>The debate always focuses on the loss of jobs (i.e. the effect on the producer) not on the gains that come from lower prices (i.e. the effect on the consumer).</p>
+
+
+
+<p>One anti-capitalist aspiring dictator&nbsp;<a href="http://www.theverge.com/2016/1/18/10787050/donald-trump-apple-fantasy" target="_blank" rel="noreferrer noopener">recently promised</a>&nbsp;that he’d force Apple to produce their products in the US — and nowhere else. The reasoning is that we’ve lost jobs to overseas manufacturers and that by forcing companies to produce in America it solves the problem.</p>
+
+
+
+<p>He couldn’t be more wrong.</p>
+
+
+
+<p>Let’s stick with the Apple example. If Apple had to produce the iPhone in the US, what do you think happens to the price of an iPhone?</p>
+
+
+
+<p>Pick one:<br><strong>— Buy a new iPhone (built where costs are lowest) for $650<br>— Buy a new iPhone (manufactured in the US) for, say, $3,000</strong></p>
+
+
+
+<p>And if we must pay higher prices for everything, what does that do to our wealth? Wipes it away. Every iPhone owner becomes poorer than they would have been otherwise.</p>
+
+
+
+<p><mark>The fact is, we’re enormously wealthy as a country because we buy from the lowest-cost producer, which creates tremendous value to the buyer.</mark><mark>&nbsp;Further,&nbsp;</mark><mark>companies that export goods to foreign buyers tend to pay higher salaries than companies that only serve a domestic market.</mark><mark>If you simply focus on the jobs lost to the foreign producer, you miss the other side of the coin</mark><mark>.</mark></p>
+
+
+
+<p>But, you might wonder, which side of the coin is more important? Should we worry more about the loss of jobs to foreign competitors, or should we focus more on gains that come from trading with foreign partners?</p>
+
+
+
+<p>To quote a recent study from&nbsp;<a href="http://www.economist.com/news/leaders/21707926-globalisations-critics-say-it-benefits-only-elite-fact-less-open-world-would-hurt" target="_blank" rel="noreferrer noopener">The Economist</a>:</p>
+
+
+
+<blockquote>
+<p><mark>As it turns out, protectionism (preventing trade with foreign countries) hurts consumers and does little for workers</mark><mark>.</mark><mark><strong>The worst-off benefit far more from trade than the rich.</strong></mark><mark>A study of 40 countries found that the richest consumers would lose 28% of their purchasing power if cross-border trade ended; but those in the bottom tenth&nbsp;</mark><mark><strong>would lose 63% (because they actually buy more imported goods)</strong></mark><mark>.</mark></p>
+</blockquote>
+
+
+
+<p>The same is true for all industries where the US cannot profitably compete. An eternal rule of economics is that countries should focus on production where they have a&nbsp;<a href="https://en.wikipedia.org/wiki/Comparative_advantage" target="_blank" rel="noreferrer noopener">comparative advantage</a>, and outsource everything else.</p>
+
+
+
+<p><mark>Rather than trying to restore jobs that are better done elsewhere, we should be focusing our energy on helping those workers that are displaced by foreign competition.</mark><mark>&nbsp;This is much easier said than done, especially when dealing with people’s livelihoods.</mark></p>
+
+
+
+<h1 id="8904">Capitalism is competition.</h1>
+
+
+
+<p>“But — there are plenty of examples of companies taking advantage of their customers!” you might say. “<mark>Doesn’t that show that capitalism is bad — that greedy executives can get rich on the back of their customers?”</mark></p>
+
+
+
+<p>It’s a great question.</p>
+
+
+
+<p><mark>Look, for example, at&nbsp;</mark><mark><a href="http://www.cnn.com/2016/08/23/health/epipen-price-mylan-prescription-drugs-increase/index.html?iid=EL" target="_blank" rel="noreferrer noopener">Mylan</a></mark><mark>&nbsp;— the pharmaceutical company that sells the Epipen, a lifesaving product for those with severe allergies. They recently made headlines for charging $600 for a product that costs less than $20 to make. Isn’t it outrageous that a company could charge ridiculous prices for a product that literally saves lives and only costs a few dollars to make?</mark></p>
+
+
+
+<p>It is ridiculous.</p>
+
+
+
+<p><mark>And capitalism would fix it, if it were allowed to.</mark></p>
+
+
+
+<p><mark>This brings us to the second tenet of capitalism:&nbsp;</mark><mark>that in true capitalistic economies, competition means companies like Mylan can’t do what they are doing with the Epipen.</mark></p>
+
+
+
+<p>In a normally-functioning free economy, seeing Mylan screw over its customers would inspire an entrepreneur to create an Epipen competitor and sell it for $590. Someone else, seeing they could do it for even cheaper, does the same and sells it for $500. And so on, and so on, until profits in the Epipen industry are eroded away through this magical concept of competition. There are a few reasons&nbsp;<mark>why this doesn’t happen in the pharmaceutical industry. Read&nbsp;</mark><mark><a href="http://slatestarcodex.com/2016/08/29/reverse-voxsplaining-drugs-vs-chairs/" target="_blank" rel="noreferrer noopener">this</a></mark><mark>&nbsp;for a great overview.&nbsp;</mark><mark>The short answer is that capitalism isn’t allowed to work.</mark><mark>&nbsp;Instead, corporate cronyism — a type of fake capitalism — prevails, and monopolies like Mylan form as a result.</mark></p>
+
+
+
+<blockquote>
+<p><mark>“The great danger to the consumer is the monopoly — whether private or governmental. His most effective protection is free competition at home and free trade throughout the world. The consumer is protected from being exploited by one seller by the existence of another seller from whom he can buy and who is eager to sell to him</mark><mark>.”<br></mark><mark><strong>-Milton Friedman</strong></mark></p>
+</blockquote>
+
+
+
+<p>When companies are forced to compete to survive (which is what happens in a capitalistic economy), the consumer wins big.</p>
+
+
+
+<p><mark>— In order to compete, entrepreneurs must innovate.<br>— Innovation usually means newer technology.<br>— Newer technology often means lower prices.<br>— And lower prices means consumers get to capture more of the gains.</mark></p>
+
+
+
+<p>Yes, both parties are better off in a trade, but when capitalism prevails and trades happen at&nbsp;<em>lower</em>&nbsp;prices, consumers get more of the gain than they would otherwise, and&nbsp;<em>total</em>&nbsp;gains (the sum of consumer gains + producer gains) are maximized.</p>
+
+
+
+<p><mark>In short,&nbsp;</mark><mark>competition pushes the world forward, as risk-seeking intelligent inventors and entrepreneurs find ever-ingenious ways to compete with larger, established companies, by bringing the market lower-cost and higher-quality products.</mark></p>
+
+
+
+<p>A few examples:</p>
+
+
+
+<ul>
+<li><mark><strong>WhatsApp vs. SMS.</strong></mark><mark>&nbsp;Before WhatsApp,&nbsp;</mark><mark>AT&amp;T and others would charge customers anywhere from .2-.4 cents for every text message sent.</mark><mark>&nbsp;This was billions in revenue for them each year. In comes a tiny software company&nbsp;</mark><mark>that offers FREE UNLIMITED messaging worldwide</mark><mark>…..and boom:</mark></li>
+</ul>
+
+
+
+<ul>
+<li><strong>Uber vs. Taxis.&nbsp;</strong><mark>I have friends who tell me they used to be unable to reliably call a cab in NYC because they’re black. Not to mention the terrible service and high prices. In comes Uber, and now….well you know. The price is lower, the technology better, and my friends get picked up. The gains to consumers (also known as consumer surplus) is off the charts. Read more&nbsp;</mark><mark><a href="https://www.bloomberg.com/view/articles/2016-09-08/computing-the-social-value-of-uber-it-s-high?cmpid%3D=socialflow-twitter-view&amp;utm_campaign=socialflow-organic&amp;utm_content=view&amp;utm_medium=social&amp;utm_source=twitter" target="_blank" rel="noreferrer noopener">here</a></mark><mark>.</mark></li>
+
+
+
+<li><strong>Spotify vs CDs.&nbsp;</strong>Just one more. My kids will never know this, but I used to collect something called “CDs”. They fit 12 songs on them, and they got scratched all the time, and they cost $20. In comes Spotify / Pandora, and now every song ever created is at my fingertip….for less than the price of a CD.</li>
+</ul>
+
+
+
+<p>Many people equate capitalism with being “good for business”.</p>
+
+
+
+<p>But capitalism, as I’m defining it here is terrible for businesses, but great for the consumer.</p>
+
+
+
+<p>Take a look at the charts below. It outlines how prices have changed in various industries over the past 20 years. W<mark>hat should stand out to you is that&nbsp;</mark><mark>in every market&nbsp;</mark><mark>where sellers must compete fiercely to win,</mark><mark>&nbsp;technology (especially software), has a natural tendency to&nbsp;</mark><mark><strong>lo</strong></mark><mark><strong>wer prices</strong></mark><strong>:</strong></p>
+
+
+
+<figure><img alt="Image for post" /></figure>
+
+
+
+<p>To quote Marc Andreessen:</p>
+
+
+
+<blockquote>
+<p><mark>So you’ve got these sectors of the economy where there’s rapid productivity growth. Prices are falling fast. Those are the industries where everyone is worried that the jobs are going away — or to China or Japan or Mexico. People say there’s too much disruption — too much technological change. The Silicon Valley kids are wreaking havoc on the economy.</mark></p>
+
+
+
+<p><mark>Then you have the sectors in which prices are rapidly rising: health care, education, construction, prescription drugs, elder care and child care. Here there’s very little technological innovation. Those are sectors with insufficient productivity growth, innovation, and disruption.&nbsp;</mark><mark>You’ve got monopolies, oligopolies, cartels, government-run markets, price-</mark><mark>fixing</mark><mark>&nbsp;— all the dysfunctional behaviors that lead to rapid increase in prices</mark><mark>.</mark></p>
+
+
+
+<p><mark>The government injects more subsidies into those markets,&nbsp;</mark><mark>but because those are inelastic markets, the subsidies just cause prices to go up further, which is what is happening with higher education.</mark></p>
+</blockquote>
+
+
+
+<p>And finally…..</p>
+
+
+
+<h1 id="e498">Capitalism is unselfish.</h1>
+
+
+
+<blockquote>
+<p><mark>“If you wish to prosper, let your customer prosper.”</mark><mark><br>-Frederic Bastiat</mark></p>
+</blockquote>
+
+
+
+<p>This is probably the hardest one to swallow. After all, maybe the greatest insight Adam Smith (the author of the Bible of Economics, ‘The Wealth of Nations’) had was the power of self-interest!</p>
+
+
+
+<p>He said:</p>
+
+
+
+<blockquote>
+<p>“It is not from the benevolence of the butcher, the brewer, or the baker that we expect our dinner, but from their regard to their own interest.”</p>
+</blockquote>
+
+
+
+<p>In other words, capitalism understands incentives, or the idea people are naturally very selfish.&nbsp;<mark>A person doesn’t create a business out of the kindness of their heart. They do it to feed themselves and their families. This selfishness is immeasurably strong.</mark></p>
+
+
+
+<p><strong>But there’s a dichotomy here.</strong></p>
+
+
+
+<p>In order to successfully create and sell a product, a business person must actually look&nbsp;<em>outside</em>&nbsp;his or her own needs and seek the needs of a customer.</p>
+
+
+
+<p>A business person has to create value for others before capturing value for themselves.</p>
+
+
+
+<p><mark>As a result,&nbsp;</mark><mark>capitalism is the greatest incentive system in the world for focusing on others and their needs. And the result of that is empathy, understanding, and peace.</mark></p>
+
+
+
+<p><mark>An entrepreneur’s net worth is merely the register of how much she has improved the lives of her fellow human beings</mark><mark>.</mark></p>
+
+
+
+<p>I’ll just summarize this section with two more quotes:</p>
+
+
+
+<blockquote>
+<p><mark>“</mark><mark>The great virtue of a free market system is that it does not care what color people are; it does not care what their religion is; it only cares whether they can produce something you want to buy.</mark><mark>It is the most effective system we have discovered to enable people who hate one another to deal with one another and help one another.</mark><mark>”</mark><mark><strong><br>-Milton Friedman</strong></mark></p>
+</blockquote>
+
+
+
+<p>and:</p>
+
+
+
+<blockquote>
+<p>“Dangerous human proclivities can be canalised into comparatively harmless channels by the existence of opportunities for money-making and private wealth, which, if they cannot be satisfied in this way, may find their outlet in cruelty, the reckless pursuit of personal power and authority, and other forms of self-aggrandizement.&nbsp;<mark>It is better that a man should tyrannise over his bank balance than over his fellow-citizens; and whilst the former is sometimes denounced as being but a means to the latter, sometimes at least it is an alternative.”</mark><br><strong>-John Maynard Keynes</strong></p>
+</blockquote>
+
+
+
+<hr />
+
+
+
+<p>Now, you might say, if all this is true, and capitalism is so great, why is the world doing so poorly? Shouldn’t people be getting wealthier from trade? Shouldn’t technologies be increasing our standard of living?</p>
+
+
+
+<p>It’s not doing poorly. Yes. And yes.</p>
+
+
+
+<p><mark>Global poverty is at its lowest point ever</mark>:</p>
+
+
+
+<p><mark>Life expectancy, largely due to better living conditions and technology, is at its highest point ever</mark>:</p>
+
+
+
+<p>and&nbsp;<mark>people are wealthier (we enjoy a higher standard of living), as a whole, than ever before</mark>:</p>
+
+
+
+<p>Every country that adopts this system of free trade, competition, and entrepreneurship is a rich country:</p>
+
+
+
+<hr />
+
+
+
+<h2 id="b2ef">The Counterarguments</h2>
+
+
+
+<p>OK — I don’t think it would be intellectually honest to present the case for capitalism without acknowledging the arguments others use against it.</p>
+
+
+
+<p>The same economics class that teaches me the irrefutable truth of free trade also teaches me about tradeoffs.</p>
+
+
+
+<p>We’ve already talked about one argument against capitalism: that trading with global partners often means losing jobs to them (and I shared my rebuttal to that above).</p>
+
+
+
+<p>But there are 3 others I’ll list below with my rebuttal:</p>
+
+
+
+<ol>
+<li><strong>Capitalism causes wealth inequality</strong></li>
+</ol>
+
+
+
+<p><strong>Rebuttal</strong>: While inequality is increasing in the US,&nbsp;<mark><em>global</em></mark><mark>&nbsp;wealth inequality is&nbsp;</mark><mark><a href="https://www.washingtonpost.com/posteverything/wp/2015/01/08/stop-obsessing-about-inequality-its-actually-decreasing-around-the-world/?utm_term=.b9fcc13a7d74" target="_blank" rel="noreferrer noopener">actually decreasing</a></mark><mark>&nbsp;(because&nbsp;</mark><mark><em>globally</em></mark><mark>&nbsp;the very, very poor are getting wealthier at a much quicker rate than the rich are getting richer)</mark>.&nbsp;<mark>I do suspect inequality is a real tradeoff of capitalism in the long-run steady state</mark><mark>, however</mark>.</p>
+
+
+
+<p>But as Winston Churchill said:</p>
+
+
+
+<blockquote>
+<p><mark>“The inherent vice of capitalism is the unequal sharing of blessings. The inherent virtue of socialism is the equal sharing of miseries.”</mark></p>
+</blockquote>
+
+
+
+<p><strong>2. Related to #1, capitalism causes wealth to be concentrated in the hands of just a few</strong></p>
+
+
+
+<p><strong>Rebuttal:&nbsp;</strong><mark>“Bad” wealth concentration often results from monopolies,&nbsp;</mark><mark>which capitalism is extremely effective at removing</mark><mark>. “Good” concentrated wealth — earned through truly breakthrough innovation (like Bill Gates for example) — is great and should be celebrated</mark>. He should be rewarded for all the value he created, and society should encourage it. (And by the way, look at all the good he’s done with that wealth!)</p>
+
+
+
+<p><strong>3. Capitalism incentivizes business owners to pay workers as little as possible.</strong></p>
+
+
+
+<p><strong>Rebuttal:&nbsp;</strong>See tenet #1: gains from trade. Any worker who freely accepts a minimum-wage job from, say, Wal-Mart, deems himself better off for doing so, otherwise, he wouldn’t do it. Just like a country must work its way up the opportunity-cost ladder from a manufacturing economy (producing goods like T-Shirts and trinkets) to a services economy (producing goods like consulting and banking), workers must improve their value in the marketplace through education, specialization, and training. Government has a large role to play here. It sounds callous, I know.</p>
+
+
+
+<p>Also, see tenet #2 above: competition. Just as firms compete with each other over consumers, they compete with each other over workers. If Wal-Mart is underpaying a great employee, and Costco believes that by offering $1 per hour more it will steal that employee from Wal-Mart, capitalism says Costco will do it. Look no further than&nbsp;<a href="http://mashable.com/2012/05/28/startup-perks-culture/#fKkYnQtlGkqP" target="_blank" rel="noreferrer noopener">Silicon Valley</a>&nbsp;to see the lengths companies will go to persuade scarce talent to work for them.&nbsp;<mark>Competition actually benefits the scarce worker, as it should. And it pays a commodity price for a commodity worker, as it should.</mark></p>
+
+
+
+<p><mark>The genius of (and challenge for) America is that it should provide a system that allows everyone equality of opportunity to succeed in moving from a commodity worker to a scarce worker.</mark><mark>&nbsp;We have a long way to go here</mark><mark>.</mark></p>
+
+
+
+<hr />
+
+
+
+<p>This is the longest post I’ve written, and everyone on Twitter already knows all this, so it’s for my Facebook friends.&nbsp;<mark>Looking at you, Millennial Bernie Bros™️.</mark></p>
+
+
+
+<p>Like I said, I don’t think this stuff is controversial. You can probably argue at the margin about some things.</p>
+
+
+
+<p>And if you don’t buy my words, take note of hyper-capitalist Barack Obama,&nbsp;<a href="http://www.economist.com/news/briefing/21708216-americas-president-writes-us-about-four-crucial-areas-unfinished-business-economic?fsrc=scn/tw_ec/the_way_ahead" target="_blank" rel="noreferrer noopener">recently quoted in The Economist</a>:</p>
+
+
+
+<blockquote>
+<p><mark>“It is important to remember that capitalism has been the greatest driver of prosperity and opportunity the world has ever known.”</mark></p>
+</blockquote>
+
+
+
+<p>Thanks, Obama. Calzones are pretty tasty after all.</p>
+</div>
+<div class="post-nav"><a href="/blog/improving-products-with-the-wisdom-of-crowds/">← You can't rely on customers to innovate (but you *must* rely on customers to iterate)</a>
+<a href="/blog/what-makes-a-good-operator/">What makes a good "operator"?￼ →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

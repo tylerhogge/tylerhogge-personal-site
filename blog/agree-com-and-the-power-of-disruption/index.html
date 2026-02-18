@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agree.com and the power of disruption — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Agree.com and the power of disruption</h1>
+  <div class="post-date">May 6, 2025</div>
+</div>
+<div class="post-body">
+<p>In December 2024 I was perusing twitter (as I am fond of doing) and came across this company, Agree.com. Not long after I sent a DM to Marty Ringlein, the co-founder and CEO.</p>
+
+
+
+<figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXejP1dZlUvparQqKWSQU_SuuGvLhlKj1Iu_oRv9-3tNxP7v0-Xvw4q7jieHP0Iy5FM5pxBe1t6DAagmELNBOUgdq5dxzBr01wKSNAAIH82gzevRlai7JO5dMDK3kOnEvMrX1d8C?key=ccc2D31f5xSEMq6mUE6zhOQR" alt="" /></figure>
+
+
+
+<p>That night, Marty and I spent an hour or so chatting on twitter. I shared with him how excited I get by free software + payments monetization from my time at Divvy (and even Wealthfront before that). We clicked pretty fast</p>
+
+
+
+<p>. <img width="624" height="532" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd5Z76WBhx3SSpBtMfBwdkje-RXlTcorN7xkpXGQF3VqcYZofyhiBN8dlBTEryHYxWBktRVvbnEJiRo502f1fe4W8D3hIympMH7FAGE1LrvlyuCZYYS5cwnlcpJQKWgopkQJ48I4Q?key=ccc2D31f5xSEMq6mUE6zhOQR"></p>
+
+
+
+<p>So I flew out to NYC before Christmas with my partner Chad, and we met with the Agree.com team in a coffee shop near Wall Street.&nbsp;</p>
+
+
+
+<p>Soon after we agreed 🙂 to lead Agree.com’s seed round.</p>
+
+
+
+<p>Why did we get so excited? Several reason:</p>
+
+
+
+<ul>
+<li>I believe the era of high-priced SaaS is behind us. I just don’t get as excited by it anymore.</li>
+
+
+
+<li>From my time at Divvy, I am primed for excitement when I see an opportunity to give SaaS away for free, and then monetize in a clever way, usually via payments.</li>
+
+
+
+<li>The combination of a product innovation + a business model innovation is a massive tailwind.</li>
+
+
+
+<li>On top of the free software + payments monetization, I have also been fascinated that no one has truly been able to build a big company via accounts receivable / invoicing. </li>
+
+
+
+<li>If you can truly own the e-signature as the free wedge, this gives you a right to win the full contract agreement. And If you win the agreement, you have a right to win the invoice. And if you can truly own the invoice, you can own the payments. It’s clear as day to me.</li>
+
+
+
+<li>In other words, no one had married Docusign + BILL.com together to build the ultimate E-signature to AR </li>
+
+
+
+<li><img width="547" height="332" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfqmlyA334NyaWt3aLBIf9VwOTvN89JAfZ-GHrhlHFSc6_OL8Q8nDOj8fRA2zHD-5-y9z0m6IY5kJEallJc-lKzsyb1-c5ggeo-VIjU1z96xc8E2LlgW0DilXf1RJVoZyGkL_O0Bw?key=ccc2D31f5xSEMq6mUE6zhOQR"></li>
+
+
+
+<li>Combined with these structural advantages, you have an exceptional team. Marty and Will and Evan have clear superpowers that happen to exactly match what this business needs to become enduring.</li>
+</ul>
+
+
+
+<p>It’s also worth also mentioning: Agree benefits from Clayton Christensens’s disruptive innovation. When a startup has a structural advantage that allows them to serve a segment of the market that an incumbent cannot, the incumbent has a very hard time responding. Why? Because it is un-economic for them to do so! How can Docusign compete with free? And if that free product is actually significantly better designed too? Good luck.</p>
+
+
+
+<p>Which is why I strongly believe different is better than better. And Agree.com is different.</p>
+
+
+
+<p>You probably pay for Docusign today. And you should not. In a world where SaaS costs will drop, the first one you should replace is e-signature. If you want to see a demo, just let me know, and I’ll connect you do the founders.</p>
+
+
+
+<p>Sounds pretty great - agree? </p>
+</div>
+<div class="post-nav"><a href="/blog/announcing-the-2025-exceptional-startups-list/">← Announcing the 2025 Exceptional Startups List</a>
+<a href="/blog/pattern-matching-20-habits-of-exceptional-startups/">Pattern Matching 20 Habits of Exceptional Startups →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

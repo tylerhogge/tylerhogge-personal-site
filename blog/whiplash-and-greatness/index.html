@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Whiplash and Extreme Greatness — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Whiplash and Extreme Greatness</h1>
+  <div class="post-date">October 7, 2015</div>
+</div>
+<div class="post-body">
+I recently watched the movie 'Whiplash' after reading that Kobe Bryant <a href="http://www.cbssports.com/nba/eye-on-basketball/25183605/kyrie-irving-writes-whiplash-on-his-shoes-because-of-the-film">called it one if his favorites</a> and Kyrie Irving wrote the movie title on his game shoes. It's an incredible movie about an aspiring drummer.
+
+https://twitter.com/thogge/status/709229719015792640
+
+The whole movie is great, and the scene below is one of many that stands out . The main character, Andrew, is breaking up with his girlfriend in order to focus on drumming.
+
+Here it is:
+
+https://www.youtube.com/watch?v=MsWlktW0kj4
+
+The key line:
+<blockquote>Andrew: "I want to be great."
+
+GF: "And...you're not?"
+
+Andrew corrects himself: <strong>"I want to be....<em>one</em>...of the greats."</strong></blockquote>
+It stood out to me because of the distinction he makes between his first and second answer.
+
+As I've studied individuals of many professions who would fall into the "one of the greats" category, it seems that they've made a deliberate decision to pursue this type of greatness - fully knowing the price tag. Whether musicians, athletes, business leaders, investors, or chess players, there seem to be common elements that drive an individual to <em>this type </em>of&nbsp;greatness.
+
+Kobe may say it best:
+
+<img class="aligncenter size-full wp-image-109" src="https://tylerhogge.com/wp-content/uploads/2015/01/on-becoming-one-of-the-best-ever.png" alt="on-becoming-one-of-the-best-ever" width="1200" height="720">
+
+<a href="https://tylerhogge.com/wp-content/uploads/2015/01/on-making-sacrifices.png"><img class="aligncenter size-full wp-image-111" src="https://tylerhogge.com/wp-content/uploads/2015/01/on-making-sacrifices.png" alt="on-making-sacrifices" width="1200" height="720"></a>
+
+Kobe clearly differentiates between greatness and being <em>one of the greats. </em>And by most reasonable standards, he is both.
+
+But how?
+
+The first answer is that Kobe is maniacal in his work ethic. Very few dispute this. He's not a hard worker in the sense that every NBA player is a hard worker. He's maniacal. He's obsessed. There are <a href="http://www.businessinsider.com/17-examples-of-kobe-bryants-insane-work-ethic-2013-8?op=1">many anecdotes</a> to support this - but my favorite is the story from the Team USA trainer who says:
+<blockquote>I was invited to Las Vegas this past Summer to help Team USA with their conditioning before they head off to London, and as we know they would eventually bring home the Gold (USA). I’ve had the opportunity to work with Carmelo Anthony and Dwyane Wade in the past but this would be my first interaction with Kobe.
+
+We first met three days before the first scrimmage, on the day of the first practice, early July. It was a brief conversation where we talked about conditioning, where he would like to be by the end of the Summer, and we talked a little bit about the hustle of the Select Team. Then he got my number and I let him know that if he ever wanted some extra training he could hit me up any time.
+
+The night before the first scrimmage I remember I was just watched “Casablanca” for the first time and it was about 3:30 AM. I lay in bed, slowly fading away when I hear my cell ring. It was Kobe. I nervously picked up.
+
+“Hey, uhh Rob, I hope I’m not disturbing anything right?”
+
+“Uhh no, what’s up Kob?”
+
+“Just wondering if you could just help me out with some conditioning work, that’s all.”
+
+I checked my clock. 4:15 AM.
+
+“Yeah sure, I’ll see you in the facility in a bit.”
+
+It took me about twenty minutes to get my gear and out of the hotel. When I arrived and opened the room to the main practice floor I saw Kobe. Alone. He was drenched in sweat as if he had just taken a swim. It wasn’t even 5AM.
+
+We did some conditioning work for the next hour and fifteen minutes. Then we entered the weight room, where he would do a multitude of strength training exercises for the next 45 minutes. After that we parted ways and he went back to the practice floor to shoot. I went back to the hotel and crashed. Wow.
+
+I was expected to be at the floor again at about 11 AM. I woke up feeling sleepy, drowsy, and almost pretty much every side effect of sleep deprivation. Thanks, Kobe. I had a bagel and headed to the practice facility.
+
+This next part I remember very vividly. All the Team USA players were there, feeling good for the first scrimmage. LeBron was talking to Carmelo if I remember correctly and Coach Krzyzewski was trying to explain something to Kevin Durant. On the right side of the practice facility was Kobe by himself shooting jumpers. And this is how our next conversation went — I went over to him, patted him on the back and said, “Good work this morning.”
+
+“Huh?”
+
+“Like, the conditioning. Good work.”
+
+“Oh. Yeah, thanks Rob. I really appreciate it.”
+
+“So when did you finish?”
+
+“Finish what?”
+
+“Getting your shots up. What time did you leave the facility?”
+
+“Oh just now. I wanted 800 makes so yeah, just now.”</blockquote>
+And one more snippet from a Kobe interview that is telling:
+
+<img class="alignnone size-full wp-image-357" src="https://tylerhogge.com/wp-content/uploads/2015/10/screen-shot-2017-11-10-at-11-51-49-pm.png" alt="Screen Shot 2017-11-10 at 11.51.49 PM" width="1554" height="1360">
+
+But athletes aren't the only ones that say these types of things. Consider <a href="http://qr.ae/RPwscU">this Quora answer</a> from Justine Musk Elon Musk's ex-wife, on what makes him great:
+<blockquote><strong>Extreme success</strong> is different from what I suppose you could just consider '<strong>success</strong>'
+
+If you're extreme, you must be what you are, which means that happiness is more or less beside the point. These people tend to be freaks and misfits who were forced to experience the world in an unusually challenging way. They developed strategies to survive, and as they grow older they find ways to apply these strategies to other things, and create for themselves a distinct and powerful advantage. They don't think the way other people think. They see things from angles that unlock new ideas and insights. Other people consider them to be somewhat insane.
+
+Be obsessed.
+
+Be obsessed.
+
+Be obsessed.
+
+Extreme people combine brilliance and talent with an *insane* work ethic, so if the work itself doesn't drive you, you will burn out or fall by the wayside or your extreme competitors will crush you and make you cry.
+
+They do not fear failure -- or they do, but they move ahead anyway. They will experience heroic, spectacular, humiliating, very public failure but find a way to reframe until it isn't failure at all. When they fail in ways that other people won't, they learn things that other people don't and never will. They have incredible grit and resilience.</blockquote>
+From what I can tell, the formula looks roughly like this:
+<ol>
+ 	<li><strong>Genetics.&nbsp;</strong>Have some amount of God-given talent. (Both Kobe and Musk were child prodigies as their parents recount)</li>
+ 	<li><b>Work.&nbsp;</b>Work like you are possessed with some other-worldly ambition that pushes you to limits most people don't ever see.</li>
+ 	<li><strong>Work.&nbsp;</strong>more.</li>
+</ol>
+https://twitter.com/robertherjavec/status/9571135823
+
+<strong>&nbsp; &nbsp; &nbsp;</strong>4.<strong> &nbsp;Luck.&nbsp;</strong>Of course, there's luck involved. that's another post.
+
+And my final thought is this: the other common thread of these "greats" is that they seem to have made tradeoffs others choose not to make. Extreme tradeoffs, even - sacrificing family obligations as the prime example. If you read all of Justine Musk's post carefully, she warns:
+<blockquote>Extreme success results from an extreme personality and comes at the cost of many other things.</blockquote>
+And so the outstanding question I wonder is this: can one be "one of the greats"&nbsp;<em>and</em> be "one of the greats" as a spouse or parent?
+
+It's an interesting question.
+
+&nbsp;
+</div>
+<div class="post-nav"><a href="/blog/cfa-vs-mba-how-do-they-compare/">← CFA vs. MBA - How Do They Compare?</a>
+<a href="/blog/how-are-companies-valued/">How are companies valued? →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What makes a good "operator"?￼ — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>What makes a good "operator"?￼</h1>
+  <div class="post-date">May 3, 2022</div>
+</div>
+<div class="post-body">
+<p><em>8 steps to operating excellence</em></p>
+
+
+
+<p>The word “operator” is often used to describe someone who works on the business day-to-day (as opposed to, say, an “investor”). But what defines success as an operator? And more importantly, what <em>causes</em> success?</p>
+
+
+
+<p>For the last 3 years, I’ve been fortunate to have a front row seat to the best operators I’ve ever seen: Sterling Snow (Divvy’s CRO), and Blakely Cragun (Divvy’s CFO). The goal of this post is to be the best post you’ve read on what it means to be an excellent operator at a tech company, and I’ll do that by sharing some of the lessons I’ve learned by watching Sterling and Blakely.</p>
+
+
+
+<p>First things first: how can we define success as an operator? I believe a successful operator must meet two criteria:</p>
+
+
+
+<ol>
+<li>You consistently beat your targets…</li>
+
+
+
+<li>…those targets were sufficiently aggressive.</li>
+</ol>
+
+
+
+<p>Both criteria are important. An operator who beats an unambitious target is not successful. And an operator who sets aggressive targets but can’t hit them is also not successful.</p>
+
+
+
+<p>Second question - and the meat of the issue: what actually makes a good operator? What do they actually <em>do well?</em> In other words, what causes #1 and #2 to be accomplished?</p>
+
+
+
+<p>I believe there are 8 things great operators do well, and I’ll discuss each of them in more detail below.</p>
+
+
+
+<p>Great operators:</p>
+
+
+
+<ol>
+<li>First, set the <strong><em>right expectations</em></strong>, which are then embedded into a financial model</li>
+
+
+
+<li>Create a <strong><em>clear plan</em></strong> <strong><em>to beat and raise</em></strong> the expectations in the model</li>
+
+
+
+<li><strong><em>Execute</em></strong> against that plan with obsessive discipline</li>
+
+
+
+<li>Exhibit <strong><em>extreme paranoia </em></strong>(which can often look like pessimism) to detect any problem that might prevent them from outperforming expectations. This paranoia allows them to <strong><em>detect problems early</em></strong></li>
+
+
+
+<li>After detecting the problem, they are able to <strong><em>quickly root cause</em></strong> the problem</li>
+
+
+
+<li>Once a root cause is established, they are <strong><em>extremely creative in generating solutions</em></strong> to solve this problem</li>
+
+
+
+<li>They then pick the best solution and <strong><em>create a sub-plan</em></strong> to solve this sub problem</li>
+
+
+
+<li>And finally, <strong><em>they execute on this sub-plan</em></strong> to solve the sub-problem that is preventing execution of the macro plan</li>
+</ol>
+
+
+
+<p>Whew. There’s a lot there. And you might think “Tyler - that’s not groundbreaking” - and you’d be right. But operating excellence is the best example I know of something that is simple but not easy. It’s anything but easy.&nbsp;</p>
+
+
+
+<p>One way to think of it is that steps 1-3 are the macro system you’re running every month, quarter, and year, and 4-8 is a micro system that you always run in the background in order to enable 1-3.</p>
+
+
+
+<p>There could be a whole post for each step. But I’ll just do a paragraph.</p>
+
+
+
+<h3>Set the right expectations</h3>
+
+
+
+<p>Expectations are the ballgame. If you get the expectations wrong, you’re dead before you start. Sterling is fond of saying: “the worst thing to do is to commit to a number and then miss it - so you better work hard to get that number right. Once it’s locked, the only choice is to beat it.” In order to succeed here, there must be an extremely tight alliance between revenue and finance. I have watched Sterling and Blakely work hand in hand to build an aggressive forecast, and then to beat and raise that forecast consistently for 3 years. The framework we’ve relied on at Divvy is called “Budget, Quota, Goal”. The “budget” is in the financial model, but the teams don’t really know that number. The teams are built to hit “quota” and “goal”.&nbsp;</p>
+
+
+
+<h3>Create a plan</h3>
+
+
+
+<p>Once the right expectations are set (i.e. the “budget”), the plan is all built around the quota and goal. In revenue this is a headcount and quota attainment mathematical exercise. However, these principles apply in product and engineering too. On top of the macro headcount * quota math problem, there are additional plays that get implemented - campaigns, programs, incentives (especially incentives) and processes that all lead to the outcome that we want: beating the quota and raising expectations.</p>
+
+
+
+<h3>Execute obsessively</h3>
+
+
+
+<p>There’s not a lot of secret sauce here. Follow the plan religiously. Let me give you an example. Our revenue teams set a goal a few quarters ago that essentially everyone thought was near impossible. But the team created a plan to do things that they normally wouldn’t do in order to hit a number they normally wouldn’t hit. Part of that plan included meeting as a team 2x a day: once at 8am, and once at 6:30pm, in order to speed up the cycles and make sure everyone was executing well. This pace and accountability is not for everyone (and you can’t keep that pace forever), but during this goal it was necessary. The teams executed this plan beautifully, and the goal was achieved.</p>
+
+
+
+<h3>Exhibit extreme paranoia to detect problems early</h3>
+
+
+
+<p>This is one of the most interesting principles. When Andy Grove famously said “Only the paranoid survive”, I think he was talking about great operators. When I first joined Divvy, I joked that Sterling and Blakely were like Eeyore, constantly thinking everything is broken, and constantly “pessimistic”. But this style of pessimism is actually just excellent operating. The purpose of this paranoia is to detect problems early so you can fix them. It’s to keep your antennae always upright so you are never flat footed when a problem arises. And I’ve seen time and time again that we’ve found and fixed problems much earlier because we are on high alert.</p>
+
+
+
+<h3>Root cause the problem</h3>
+
+
+
+<p>Once a problem is detected, you have to identify the cause. One of the best frameworks Sterling has taught me is “Right people + Right Structure = Right Results”. This is a beautifully simplifying framework. Is there a problem? Well it boils down to either having the wrong structure (incentive structure, reporting structure, training structure, expectation structure, etc) or, alternatively, if you have the right structure, it must mean you have the wrong person. Understanding the root cause quickly allows you to act quickly as a leader to generate solutions.</p>
+
+
+
+<h3>Generate creative solutions</h3>
+
+
+
+<p>Once the problem is root-caused, I have noticed that excellent operators are very creative in thinking through solutions. Let’s say the team isn’t doing well on a particular metric. The “right people + right structure” framework indicates this is a problem with the incentive structure and the ownership structure. There isn’t a single owner, and that single owner isn’t incentivized to hit that number. Part of the solution might be a unique incentive compensation plan to fix this. But I’ve seen Sterling and Blakely come up with many more creative ideas - some very out of the ordinary - in order to solve a particular problem.&nbsp;</p>
+
+
+
+<h3>Pick the best solution and build a sub-plan</h3>
+
+
+
+<p>Once you generate many different options to solve the problem you’ve detected, great operators use their judgment to pick the right solution, create a plan to implement it the same planning principles from above.</p>
+
+
+
+<h3>Execute on the sub-plan</h3>
+
+
+
+<p>And finally, you execute on this sub plan with the same militant discipline.</p>
+
+
+
+<h3>One last thought</h3>
+
+
+
+<p>One essential point: culture is the glue to the whole thing working. If you don’t have a culture of “find a way to win no matter what”, coupled with extreme speed, focus, and fun, I don’t think this playbook works. And culture is a function of the leader. Right people. Right structure.</p>
+
+
+
+<p>While every operator’s personality and approach may be different, I believe all successful operators essentially follow these 8 principles to get the results they and their teams want.&nbsp;</p>
+</div>
+<div class="post-nav"><a href="/blog/the-3-tenets-of-capitalism-2/">← The 3 Tenets of Capitalism</a>
+<a href="/blog/next-play/">Next Play →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

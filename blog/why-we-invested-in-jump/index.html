@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Why We Invested In Jump — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Why We Invested In Jump</h1>
+  <div class="post-date">June 10, 2024</div>
+</div>
+<div class="post-body">
+<p><a href="https://jumpapp.com/">Jump</a> announced today that they’ve raised $4.6m from Sorenson, Pelion, and other angels to bring incredible AI experiences to financial advisors. We are fired up about what Parker, Tim, and Adam are building, and I thought I’d share a few reasons why.</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXd11kU7AP2GyhoIGAyxNZxNzik8B9r_XzFIc-N2SkRiwjlreVuA8IaBjkIprIHWYMed8R6PvZGtIEXPs7qJtgPr0KBJSXxUzHmAIb9iLbvtBfEzUVeBtKmB4uxbCWvdIPwPTn_sy314cIhzrSKDd0K3mvA7?key=ScKSxi0rSF0sHYuu8pPAhQ" alt="Image preview" /></figure>
+
+
+
+<p>Since OpenAI launched in late 2022 it’s clear that the tectonic plates of tech have shifted. But I have struggled to gain conviction in how to navigate this change as an investor. It was like we were walking through a city during an earthquake, but I wasn’t sure whether new buildings were going to benefit most, or if the existing big buildings were just going to get stronger after some shaking.&nbsp;</p>
+
+
+
+<p>I constantly asked myself questions like:&nbsp;</p>
+
+
+
+<ul>
+<li>Will startups benefit from AI, or will it primarily benefit incumbents?</li>
+
+
+
+<li>If startups are going to win, what kind of startups? And why will they win?</li>
+
+
+
+<li>What categories will startups be most likely to win in?</li>
+</ul>
+
+
+
+<p>Over the last several months I’ve finally gained some clarity on what I think about these questions, and when we met Jump in early 2024 they stood out as a perfect fit for the companies that I think can win in this AI-first world.</p>
+
+
+
+<p>Why did I feel this way?</p>
+
+
+
+<p>It’s become clearer to me that <strong>vertical SaaS applications</strong> are one of the areas that will benefit most from AI, particularly in seemingly niche verticals that are ignored by prior waves of software. There are many reasons for this. I’ll talk about 4.</p>
+
+
+
+<p>With the right vertical AI opportunities:</p>
+
+
+
+<ol>
+<li>Foundational model improvements become a tailwind instead of a headwind </li>
+
+
+
+<li>A data advantage emerges over time</li>
+
+
+
+<li>Markets previously thought of as too niche are actually plenty big </li>
+
+
+
+<li>Customers are more desperate because they are historically severely underserved</li>
+</ol>
+
+
+
+<p>Using this as a framework for evaluating vertical AI startups, Jump checks 4 out of 4.</p>
+
+
+
+<h3>OpenAI as a tailwind.</h3>
+
+
+
+<p>When OpenAI launches new features and model improvements, is your startup ecstatic, or devastated? Your answer to this question may largely determine your success in AI. Some currents are not worth swimming against, and I believe OpenAI is one. With Jump, they “jump” for joy at every OpenAI improvement, because their core product workflows and access to data are unique,enabling them to improve the core product to better serve their customers. If you are more horizontal, that is less true—your product might end up competing directly with OpenAI! Vertical applications will find it easier to be <a href="https://tylerhogge.com/2023/12/14/different-is-better-than-better/">different, as opposed to merely better</a>.</p>
+
+
+
+<h3>Data as an accumulating advantage.</h3>
+
+
+
+<p>Another feature of these vertical AI startups is they accumulate a large set of proprietary data over time, which enables product experiences to dramatically improve, and enables a custom model to get trained. With Jump, this is certainly the case. As hundreds and thousands of advisors begin to rely on Jump, they could share insights with their customers on what the best meetings look like, what the best advisors do to retain customers, what clients’ most pressing concerns are, and other adjacent needs an advisors and their clients have. This data augments Jump’s model, which means other, more horizontal solutions are steps behind.</p>
+
+
+
+<h3>These markets are not as niche as we thought.</h3>
+
+
+
+<p>It turns out many of these verticals are bigger than we thought. TAM analysis often assumes a number of historical buyers, without understanding that new technologies enable portions of the market to buy that could or would not before. On top of that, investors often look at “who the biggest company is in this space” and write the space off if there hasn’t been a big outcome. But investors should be betting on future outcomes and market dynamics, not the past. With Jump, the advisor market is sneakily big, and the bottom-up nature of Jump’s adoption will enable exponential, organic growth. Spending on Jump is also net new vs. rip and replace.</p>
+
+
+
+<h3>Underserved, desperate customers.</h3>
+
+
+
+<p>The last dynamic is one of the most important. These “niche” markets aren’t used to having top-tier startups building for them, so they embrace this software with the desperation of a thirsty traveler in a desert. Jump advisors are ecstatic to see a world-class product being built <em>specifically</em> for them, and they are far less enthused about using horizontal products.&nbsp;</p>
+
+
+
+<h3>The final key is the team.</h3>
+
+
+
+<p>All of this is irrelevant without a world-class team. Without an excellent team, the features ship too slow, the customers aren’t fully delighted, and the market is won by someone else. But with the right team, the new market gets created by them and their brute force. <a href="https://www.linkedin.com/in/parkerence/">Parker</a>, <a href="https://www.linkedin.com/in/timchaves/">Tim</a> and <a href="https://www.linkedin.com/in/atomkirk/">Adam</a> are that force at Jump, and seeing them form this market out of nothing has been impressive to watch. We have known Tim for many years from his time leading ZipBooks, and we’ve come to know Parker very well over the last year as they navigated the idea maze for Jump. And both of them are incredible product builders and sellers. They ship fast, and they sell fast.</p>
+
+
+
+<p>As I talked to customers, it was clear: they <em>loved</em> Jump. I heard things like:</p>
+
+
+
+<ul>
+<li> “If they can do what they say they are going to do, this changes my life.” </li>
+
+
+
+<li>“The product is phenomenal.”</li>
+
+
+
+<li>“Every thing Jump does is something I desperately need, every day.”</li>
+</ul>
+
+
+
+<p>When you hear that, it’s clear the dogs are eating the dog food, which is why Jump is seeing tremendous market pull for their product, all inbound, and all organic. Beautiful.</p>
+
+
+
+<p>I’m excited about the next decade with Jump and to see how much they help many thousands of financial advisors.</p>
+</div>
+<div class="post-nav"><a href="/blog/obsession-is-what-it-comes-down-to/">← Obsession Is What It Comes Down To</a>
+<a href="/blog/only-first-class-business-in-a-first-class-way/">Only First-Class Business In a First-Class Way →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

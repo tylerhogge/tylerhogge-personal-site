@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Redo Opportunity — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>The Redo Opportunity</h1>
+  <div class="post-date">August 20, 2024</div>
+</div>
+<div class="post-body">
+<p><a href="https://www.getredo.com/">Redo</a> announced some incredible things today: a $24m dollar series A from great investors, unbelievable revenue growth over the past 18 months, a suite of 4 live products on the Redo platform (so far), over 1,500 delighted <a href="https://www.getredo.com/customers">customers</a> (growing rapidly every month) with some of the most impressive brands on earth, and a vision that will dramatically improve the lives of every online retailer and will reshape e-commerce.&nbsp;</p>
+
+
+
+<p>Oh, and that they did this all while being profitable nearly every month. Wild.&nbsp;&nbsp;</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2024/08/redo-gif.gif?w=800" alt="" class="wp-image-740" style="width:476px;height:auto" /></figure>
+
+
+
+<p>But this post is to take a step back and examine the Redo opportunity: the market that is forming around them, and what it might look like if they can win.</p>
+
+
+
+<p>I’m going to cover the history of this market, the redo insight and original wedge, the power of a product innovation tied to a business-model innovation, a case study of Redo vs Divvy, the path to becoming a platform, and whether or not execution moats exist.&nbsp;</p>
+
+
+
+<p>It will be one of my longest posts, so buckle up. This is only for the hardcore.&nbsp;</p>
+
+
+
+<h3>The Returns Market Today</h3>
+
+
+
+<p>Many of us are so used to shopping on Amazon Prime we have come to expect unlimited, hassle-free returns whenever we have an issue. But hundreds of thousands of merchants choose not to sell on Amazon. And if you put yourself in the shoes of a non-Amazon merchant, you quickly realize that handling returns is a nightmare for them. They don’t have the resources to create an Amazon-like return experience, and so they are left with few great options.&nbsp;</p>
+
+
+
+<ul>
+<li><strong>Larger merchants</strong> handle returns by simply purchasing a returns SaaS solution, which builds workflows for the customer and company that make returns less of a pain. The problem is that software is not cheap, and it’s also not aligned with the merchant. What do I mean by this? Well, the return software gets more valuable the more returns a customer does, but the merchant wants fewer returns. Lack of alignment.</li>
+
+
+
+<li><strong>Smaller merchants</strong> don’t have the money to pay for return software, so they are left with no good option. They either don’t offer returns, or they do it themselves. This is a poor customer experience and makes it very hard for these merchants to compete with brands on Amazon.</li>
+</ul>
+
+
+
+<p>Enter Redo.</p>
+
+
+
+<p>Redo offers a completely innovative software solution that enables customers to offer an Amazon-quality return’s experience, completely free to the merchant.</p>
+
+
+
+<p>This Redo customer says it best:</p>
+
+
+
+<ul>
+<li>“The gold standard is Amazon’s return process, and that is what we strive to provide for our customers. Redo gives our users this seamless experience, reducing the hassle of returns through their easy-to-use UI.” ($250K annual sales).</li>
+</ul>
+
+
+
+<p>So, how do they do this?&nbsp;&nbsp;</p>
+
+
+
+<h3>Returns: The Redo Wedge</h3>
+
+
+
+<p>Every great startup comes from a unique insight that the founder earned, and that is certainly true with Redo.</p>
+
+
+
+<p>Taylor Brown had built several online brands and had experienced the pain of returns first-hand. As a result, Taylor’s insight was killer:</p>
+
+
+
+<p>What if he gave every e-commerce brand a return software they loved……for free?</p>
+
+
+
+<p>With Redo, Taylor thought: “if we asked the customer to pay a minimal fee while they check out, say $1.99, in order to get unlimited free returns, would they pay for that?” - that simple idea has proven to be very disruptive, and an even better idea than he might have guessed at the time.</p>
+
+
+
+<p>Why was it even better than expected?</p>
+
+
+
+<p>It not only saved the brand a bunch of <strong><em>money</em></strong> (because they don’t pay for return software anymore), and <strong><em>time</em></strong> (because they’ve now outsourced their return headaches to Redo), but it also had<strong><em> an extremely high opt-in rate</em></strong>, and it <strong><em>can dramatically improve conversion.</em></strong></p>
+
+
+
+<p>You read that right.&nbsp;</p>
+
+
+
+<p>Customers who have the option to purchase redo’s return coverage while checking out opt-into it at a very high rate, and as a result, their conversion (completing the purchase), <strong><em>actually goes up</em></strong>, on average.</p>
+
+
+
+<p>Why is this?</p>
+
+
+
+<p>The answer is actually very simple: one of the main concerns a buyer has when purchasing online is how big of a pain it will be if they have to do a return. That concern is friction to buying. And friction to buying lowers conversion.</p>
+
+
+
+<p>Redo completely removes that friction for a very small fee that the customer views as neglibible. And as a result, more things get bought.</p>
+
+
+
+<p>This is a game changer for merchants and for consumers. Merchants turn one of the worst parts of running a brand (returns) into one of the easiest, and they also earn more revenue! And consumers no longer have to worry about what happens if they have to return their item.</p>
+
+
+
+<p>This powerful insight that Taylor had, and that the Pelion team saw early on, is why Pelion led a seed round in Redo with $2m in 2022, and then doubled down by leading the Series A last year (kudos to Suz Duke for seeing the vision so early).</p>
+
+
+
+<p>Hear it directly from customers:</p>
+
+
+
+<ul>
+<li>“Conversions increased meaningfully after we got Redo – almost 2x – it was clear it made a difference in weekly sales revenue so we stuck with it”</li>
+
+
+
+<li>“By offering customers free exchanges and store credit for a small fee, our refund rate has <strong>decreased from 40-50% to 10%</strong> and our exchanges have increased dramatically. This has helped us retain more revenue.” – ($1m annual sales)</li>
+
+
+
+<li>“Before using Redo our return rate was 7-10% and I never in my life thought this could go down ... but with Redo <strong>we now have a return rate of 4%</strong>. Our customers are exchanging so much more with Redo, we really can't believe it.” – ($5M annual sales)</li>
+</ul>
+
+
+
+<p>Returns not only proved to be the desperate problem that customers wanted solved, but it was also an incredible opportunity to offer something disruptive.</p>
+
+
+
+<h3>Product Innovation + Business Model Innovation</h3>
+
+
+
+<p>One of the most overused cliches in technology is “disruption”. But the term has a specific meaning.</p>
+
+
+
+<p>According to Clayton Christensen, a disruptive innovation gives new consumers access to products historically only available to consumers with a lot of money or skill. The key attribute of disruptive innovation is a new product for a previously underserved market - typically because it is cheaper than an existing product (and often free). The reason disruption is so powerful is that it makes it <em>uneconomic for the incumbent to respond</em>, and therefore, presents an innovator’s dilemma, which is the following: “If I (the incumbent) respond to this disruptor, I will harm my business because they are so much cheaper, but if I do <em>not</em> respond to this disruptor, they will continue to disrupt me.” A dilemma, indeed.</p>
+
+
+
+<p>Redo is completely disruptive, in the Christensen sense.</p>
+
+
+
+<p>Not only does Redo offer a radical <em>product</em> innovation (make returns software for free, which enables even long-tail merchants to adopt it), they also offer a <em>business-model </em>innovation by earning revenue in a completely clever way (by charging the consumer a de-minimis fee for unlimited returns). The combination of these two innovations means Redo is gaining market share at a rapid pace, and incumbent software providers have basically no good response.</p>
+
+
+
+<p>This dynamic is partly why Sterling (and Pelion more broadly) were so excited by the Redo opportunity originally. We saw some incredible parallels to the prior business we helped build together, Divvy:</p>
+
+
+
+<ul>
+<li>Divvy’s software was completely free and completely replaced expense reports (a product innovation)</li>
+
+
+
+<li>Divvy made money in a very clever way, on a usage based model called interchange (a business model innovation)</li>
+
+
+
+<li>Divvy was able to serve millions of long-tail businesses who were otherwise not adopters of software (a classic low-end disruptive innovation)</li>
+
+
+
+<li>Divvy was able to move upmarket and eat away at incumbent softwares precisely because this disruption created a dilemma for incumbents (e.g. Expensify, Concur, etc).</li>
+</ul>
+
+
+
+<p>Because of these similarities, Redo has seen tremendous adoption from a segment of the e-commerce market that is not using software today, and has already started to move up market to rip and replace incumbents who are struggling to reply.&nbsp;</p>
+
+
+
+<p>As a result, Redo’s revenue growth has actually outpaced Divvy’s at the same stage, except Redo has done it with about 1/3rd the headcount that Divvy had. That’s because of the execution, which I’ll talk about below.</p>
+
+
+
+<p>Let’s take a look at a few customer quotes here too:</p>
+
+
+
+<ul>
+<li>“Their pricing model is unbelievable. We couldn’t imagine return management costing us nothing, but Redo has made that possible.” – ($5M annual sales)</li>
+
+
+
+<li>“Redo has saved us $40-45k on platform fees, $60-100k on shipping labels, and $40k on package protection. It’s an absolute no brainer.” – ($10M annual sales)&nbsp;</li>
+
+
+
+<li>“We told Loop about Redo’s offering, and they were freaked out. Loop tried to win us back with an aggressive discount. We told them not unless you give us free access to the platform, free returns, and also pay us money back [$50k like Redo is making us for package protection]...it's just as good as Loop software and way, way cheaper.” – (Large Brand)</li>
+</ul>
+
+
+
+<p>The last thing I’ll mention here is that Redo is actually better than free. With the release of their “Package Protection” product (where consumers pay a small fee to insure their package against damage or theft), Redo actually gives the merchant all of the revenue from that product back. As a result, merchants are now earning over $8m in run rate revenue in aggregate that Redo gives to them 100%.</p>
+
+
+
+<h3>The Path To Platform</h3>
+
+
+
+<p>It was very clear to Sterling and the board that the right path for Redo was to become a compound startup. That is, to create a platform.</p>
+
+
+
+<p>But compound startups require a compounding advantage over time. It’s not enough to simply say you want to offer a platform and then stitch together a bunch of point solutions. Your products must interact in such a way that the combination of those products enables a better customer experience overall. In other words, there must be a product flywheel. If a product flywheel does not exist, then the rationale for bundling them does not exist. It would be too easy to sell against. Competitors would simply say: “you don’t want to use Redo for all 6 things - they aren’t the best at any one of them, so come and sign up with us so you actually get the best of breed.” A product flywheel prevents anyone from making that sale.</p>
+
+
+
+<p>Redo has a very clear flywheel.</p>
+
+
+
+<p>Here’s an example of one of the strongest flywheels: did you know that often over 50% of support tickets for brands are related to returns?&nbsp;</p>
+
+
+
+<p>If you own the returns, you now have a clear path to providing a superior support solution because often over 50% of all support tickets are returns related. Your support product and your returns product can interact seamlessly and feed off of each other, making both of them more valuable together.</p>
+
+
+
+<p>This is what I mean by a flywheel, and Redo is full of them.</p>
+
+
+
+<p>This is why Redo has already launched 4 products as a part of the platform, with many more to come:</p>
+
+
+
+<figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcWLaQvQk3AC9wEcWuRE6QqIjj6i4eZq5W-1vkoSIo1UrsM1nrafj6_CJvQ52wM6Q4hs1aDbNn8-IIJ2PedxhaL2KXQwnwzI2BHOAXzWzJ1Z1ui9klI_qLVOS5qK00xY7FaK5f7kKxbAAEHZ-NjUPfRmF9Z?key=u63rfq1SZr6UKkceKwA0dw" alt="" /></figure>
+
+
+
+<h3>Execution Moats</h3>
+
+
+
+<p>There is a debate among students of strategy around what constitutes an actual moat in business, and whether execution can be one. The traditional thinking is that execution is not a moat. In a sense, I agree. After all, a moat is meant to <em>prevent</em> others from capturing your castle once it is built, so moats are essentially non-existent for early stage startups - there’s not even a castle to protect yet. If moats are relevant at all during the startup phase, it’s for an investor to try and see what the moat will eventually become, and for a founder to have a strategy to build one along the way.</p>
+
+
+
+<p>Because the castle is not yet built, startups are a race for who can build the best castle first. Execution allows you to win the race. So in that sense, excellent execution is the most important thing a startup has, which is often why it’s referred to as a moat.&nbsp;</p>
+
+
+
+<p>Why do I bring this up? Because Redo is the best executing startup I have ever seen.</p>
+
+
+
+<p>It’s probably best to tell a story to explain why.</p>
+
+
+
+<p>One of the unique things Redo does is called "Budget --&gt; Quota --&gt; Stretch." They run the entire business on this model. Budget is a board number (the team doesn't even know it). Quota is the actual goal for the month. And stretch is the crazy goal they should usually not be able to hit, becauses it's too aggressive. This is unique on its own, but Redo goes further: they set a budget, quota, and stretch goal for both revenue teams <em>and</em> engineering teams. At the beginning of every month, the engineering teams commit to what they will deliver that month, just like a revenue team commits to what they will deliver that month. And the race is on to beat the quota and hit the stretch goal before the month ends.&nbsp;</p>
+
+
+
+<p>A few months ago, Redo had passed both its budget and quota revenue and engineering goals on the last day of the month. As those in startups know, this is something most startups cannot consistently do (beat their number). But neither team had hit their <em>stretch</em> goal for the month. Most startups, in this position, call it good. They start to plan out the next month to make sure they begin the month ahead of pace to hit the next month’s goal. But Redo is always dead set on hitting the stretch goal.</p>
+
+
+
+<p>First came the revenue stretch. Aaron Evett, the Head of Revenue at Redo, closed the company’s largest deal in history, and booked it in that month to put them over the stretch goal on the last day of the month.&nbsp;</p>
+
+
+
+<p>That left engineering. I had the privilege of watching the entire engineering team race towards their stretch goal to deliver some key functionality before the clock struck midnight. Several engineers were at the office up until midnight, doing all they could to get it out. The energy was 10/10, with revenue cheering them on. Finally, with a half hour to spare, they shipped it. Both teams hit the stretch.</p>
+
+
+
+<p>Without a pretty absurd level of intensity and commitment to always hitting goals, I just don’t know how startups can work.&nbsp;</p>
+
+
+
+<p>On top of this commitment to hitting stretch goals, Redo is doing a few other things pretty differently.</p>
+
+
+
+<p>There are no Product Managers. Redo hires GMs. What’s the difference? GMs own outcomes. GMs sell. GMs market. GMs ship. But above all, GMs own outcomes.</p>
+
+
+
+<p>In order to justify which new products to build, the GM will run a <a href="https://tylerhogge.com/2024/07/23/sell-%e2%86%92-design-%e2%86%92-build/">sell→ design → build</a> process. This forces the team to hone in on the exact product they need to build, and the exact way to speak about it and sell it. If the team can successfully “close” over 55% of their sales calls, they then continue by building and shipping the product. The GM is essentially ensuring that adoption is high once the product is shipped, which is crucial if Redo is going to successfully bundle their way to a platform.</p>
+
+
+
+<p>See below for the examples of this process for Order Tracking and Customer Support:</p>
+
+
+
+<figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdjPQS5NuRoUK24xHC_dpRdZqGmMlNHkWLN5395F71lUNVitWm-lcqKXgkZEpj7MQLn34zc4ENr4PMToZEcdVqvnAM2vXJvARszd62nZZ9MnUJrruxvXkM46PxIvVLe1P2Y8-CJlxUC14rr_HWH08p9u9nA?key=u63rfq1SZr6UKkceKwA0dw" alt="" /></figure>
+
+
+
+<p>I believe the right way to judge a software company is by <a href="https://www.wealthfront.com/blog/software-based-companies-judged-rate-innovation/">its rate of innovation</a>. Companies that innovate faster than their competitors, win.</p>
+
+
+
+<p>As Marc Andreessen says:</p>
+
+
+
+<figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe46md_XjKTkZh_Zh-TIrAeXbO76RT32FZOTrTWb4VUnDYazAl4ZgIJYM8-liMsPk8vsEIpbyfzSRH-UGf3gsKihdKxEH6fTYMJW95q5XWv5cvFBFqxZpnJQrad0zLzlQKTfbXBSMpD-I_77VaT0xCQCcuI?key=u63rfq1SZr6UKkceKwA0dw" alt="" /></figure>
+
+
+
+<p>And if there’s one thing that Redo has not stopped doing, it’s innovating on their customer’s behalf. There are 4 products live now, but you better believe there are more coming.</p>
+
+
+
+<p>I have written about what I believe the most important ingredient is in startups: <a href="https://tylerhogge.com/2024/01/29/a-few-thoughts-on-intensity/">intensity</a>.</p>
+
+
+
+<p>And in one line, that is what I have seen at Redo. An off-the-charts level of intensity in everything they do.</p>
+
+
+
+<ul>
+<li>New products that take competitors 12 months to ship get shipped in 12 days</li>
+
+
+
+<li>Revenue goals that seem impossible get surpassed by teams led by inspiring leaders</li>
+
+
+
+<li>An unusual company-wide work ethic that includes not just working significantly harder than any company I’ve studied, but significantly smarter</li>
+
+
+
+<li>An radically different operating model in product and engineering I’ve never seen implemented so well</li>
+
+
+
+<li>A team that is thinking about the next 6 ways they will innovate and delight customers when competitors are struggling to keep up with the first thing they did a year ago</li>
+
+
+
+<li>A level of positive energy on the floor that is impossible not to notice or feel</li>
+
+
+
+<li>A total commitment to building an enduring business that serves merchants better than any company has before, with complete alignment of incentives (a lower return rate helps both Redo and the merchant!)</li>
+</ul>
+
+
+
+<h3>What is up for grabs?</h3>
+
+
+
+<p>If Redo can successfully bundle their product and ensure the flywheel between each product remains strong, they have a clear shot to create a true <em>customer experience platform</em> and to own the entire customer account. This fundamentally changes how a brand can interact with their customers.&nbsp;</p>
+
+
+
+<p>Becoming the customer experience for over 1 million online merchants will result in a massive enduring business. Redo plans to differentiate with the bundling of many products, and disrupt with the monetization of those products. The end result is a software platform that merchants rely on to offer an incredible experience to their customers, which should drive up conversion and retention, and ultimately result in far more revenue and profit for every merchant that adopts it.<br></p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2024/08/image-1.png?w=1024" alt="" class="wp-image-746" /></figure>
+
+
+
+<p>Startups are dead by default. In many ways we are all playing an impossible game. But every once in a while, a group of people comes together and creates magic by focusing maniacally on helping customers and innovating on their behalf.</p>
+
+
+
+<p>That’s what Redo has done for the last 12 months.&nbsp;</p>
+
+
+
+<p>Can you imagine what they’ll do over the next 12 years?</p>
+
+
+
+<p>If this type of culture and opportunity causes you to lean in and nod, Redo is hiring for some key roles as they race towards some big milestones. <a href="https://www.getredo.com/careers">Apply here.</a></p>
+</div>
+<div class="post-nav"><a href="/blog/why-we-invested-in-remi/">← Why We Invested In Remi</a>
+<a href="/blog/pelions-seed-investment-program/">Pelion’s Seed Investment Program →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

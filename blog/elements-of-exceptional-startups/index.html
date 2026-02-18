@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elements of Exceptional Startups — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Elements of Exceptional Startups</h1>
+  <div class="post-date">September 7, 2023</div>
+</div>
+<div class="post-body">
+<p>A few months ago I posted this on LinkedIn:</p>
+
+
+
+<figure><img src="https://lh4.googleusercontent.com/KVfsUsyKitC98cLpEApRxS1GDwrcoJanboFIqO9xe8VDInDLdzlhdO0MB4KjDrgTwZx_hp6mqIeZ_L8FKYJckg5oXVYR7oz13nc37mRAOuQr5a5mbLop2LFyqZpqfP-Cen8gta0AK3IEwwvPPIYwAfs" alt="" /></figure>
+
+
+
+<p></p>
+
+
+
+<p>Several people wanted to know what I meant by “exceptional startups”:</p>
+
+
+
+<figure><img src="https://lh5.googleusercontent.com/3iJH_jUMD7MMssjWhKprxOAcoAMyCzuIeyFWs9oMTU4jq_oyroMsEj3eQZNq_h6rL9BKditmsG_rNUogRE-iv4t6EW_znpYEpZUSh4yZuUxy0y2lZHg23lbrGxTNV8p75V-SfdWx-_loSUJamvkeUDQ" alt="" /></figure>
+
+
+
+<p>I have been a part of 3 exceptional startups worth around $9b in aggregate. Clearwater (publicly traded, worth ~$5b), Wealthfront (still private, $1.4b), and Divvy (acquired for $2.5b).&nbsp;</p>
+
+
+
+<p>The patterns across the three are clear, so I thought I’d write a post about it.</p>
+
+
+
+<p>Exceptional startups have:</p>
+
+
+
+<ol>
+<li>Exceptional CEO</li>
+
+
+
+<li>Exceptional executive team</li>
+
+
+
+<li>Exceptional investors</li>
+
+
+
+<li>Exceptional high talent bar which leads to exceptional talent density</li>
+
+
+
+<li>Exceptional product with exceptionally happy customers</li>
+</ol>
+
+
+
+<h4><strong>Exceptional Founder/CEO</strong></h4>
+
+
+
+<p>Startups are an extension of the founder. As a result, the first thing I look for when deciding if a startup is exceptional is the founder/CEO. Jason Lemkin said it best:</p>
+
+
+
+<figure><img src="https://lh3.googleusercontent.com/1Ua-HAEjsjAOj_ZD51d4z38kbASNfELjXtDniL1QD_Wi85LrSoMWFfzjZUjKdec6STscbBmZWgWTFL3xJN8c_41W8FG99J91wNd_6974_QHb0-YpI-IA3OpdmvaTGsqEtAjzZnToH8i23G_tuZNUFFo" alt="" /></figure>
+
+
+
+<p>By joining a startup, you should think like an investor does. And great investors care most about the CEO.</p>
+
+
+
+<p>So, what makes a founder/CEO exceptional?</p>
+
+
+
+<p>I look for a number of things. But let’s use a few examples.</p>
+
+
+
+<p>At Clearwater, Dave and Mike Boren had a clear track record of outlier success. They had built a successful hedge fund, and they discovered the insight for Clearwater while running this firm. So I knew the insight was real. I knew they had a reputation for brilliance. But if I’m being totally honest, I got lucky by joining Clearwater. It was the middle of the recession, and I cold called them til they gave me a job. And I was lucky that the founders were as amazing as they were.</p>
+
+
+
+<p>At Wealthfront, Andy Rachleff is obviously exceptional. He’s the co-founder of one of the best VC firms of all time. His track record is superb. I had also read everything Andy had ever written, and his clarity of thought was literally the best I had ever studied. He had an incredible reputation. We got to know each other over a year or so after meeting on Twitter. And every interaction affirmed to me that he was truly, truly impressive.</p>
+
+
+
+<p>When I joined Divvy, Blake Murray was the least known - a very different situation than Andy and the Borens. He was younger and new in his career. First time founder. So how did I determine if he was any good? Well, we met. We talked. I asked some hard questions, and he asked me some hard questions. We “dated” for around 6 months as we got to know each other on twitter, linkedin, and email. But I’ll tell you when it clicked. I listened to Blake’s vision for what Divvy could become and I <em>knew</em> he was exceptional. He had exceptional vision. He was an exceptional storyteller. I knew he had a secret that Divvy was built upon. And I knew he was going to be relentlessly aggressive. His ambition was off the charts. Because of what I had seen from Andy and the Borens, I knew how excellent CEOs sounded and acted. And Blake was doing it. I read every article written about Divvy. How he talked. How he acted. And it was just clear: Blake was on a mission, and I had to be involved. I became <a href="https://tylerhogge.com/2023/06/30/startup-spiritual-conversion/">spiritually converted</a> by Blake.</p>
+
+
+
+<h4><strong>Exceptional Executives</strong></h4>
+
+
+
+<p>You want to know what <em>actually</em> makes a CEO exceptional?</p>
+
+
+
+<p>Simple: their ability to recruit an exceptional executive team.</p>
+
+
+
+<p>So the real answer to “how do I know if this CEO is exceptional?” is to judge them by their team.</p>
+
+
+
+<p>At Divvy, Blake had recruited Blakely Cragun, Sterling Snow, Casey Bailey, and Greg Larson. I got to know Blakely and Sterling the best during the process. And wow. They were amazing. I knew their slope was steep. I knew they were smart. And I knew I wanted to work with them.</p>
+
+
+
+<p>How can you tell if an executive is exceptional? Well, look at their track record. Have they ever been a part of a winner? Blakely had: he was at Instructure. Sterling had: he was at Jive. Casey had: she was at Uber. These were winners. And secondly, were they a key part of that win? You can also do reference checks. Talk to who they’ve worked with. How good are they?&nbsp;</p>
+
+
+
+<p>Most people don’t do any due diligence on the executive team when they’re joining a startup. But they should. Because it’s actually due diligence on the CEO.</p>
+
+
+
+<h4><strong>Exceptional Investors</strong></h4>
+
+
+
+<p>The third thing you should look for is the quality of the investor base.</p>
+
+
+
+<p>The hard truth about tech startups is that there are really only about 30 firms that are good at what they do. And the biggest winners usually touch one of these 30 firms along the way in at least one of their rounds.</p>
+
+
+
+<p>Think of any exceptional startup. The odds are that one point they raised from one of these 30 firms. And it might be more like 20 or 15.</p>
+
+
+
+<p>So you should always ask: which VC funded this?</p>
+
+
+
+<p>At Divvy, that was clear. Pelion did the series A (the best regional fund in the country, with Ben Lambert joining our board). Insight did the series B like 90 days after the series A (one of the best growth funds on earth, with Jeff Lieberman, a Midas List investor joining the board). And NEA did the series C, with Scott Sandell joining the board (one of the top 15 VC funds on earth, and Scott Sandell a Midas list investor as well).</p>
+
+
+
+<p>At Clearwater, Summit was an investor. They are excellent. At Wealthfront it was a who’s who of VC: Benchmark, Greylock, Ribbit, Index, etc.</p>
+
+
+
+<p>The VC market is not perfectly efficient by any means. But the pattern is clear: exceptional startups raise from exceptional VCs. Water finds its own level.</p>
+
+
+
+<p>Oh, and guess what. The quality of the VC is a reflection of….what? That’s right. The CEO. See the theme?</p>
+
+
+
+<h4><strong>Exceptional Talent Density</strong></h4>
+
+
+
+<p>Have you ever seen a startup that just seems to attract your most talented, ambitious, smartest friends? That startup is likely exceptional.</p>
+
+
+
+<p>Exceptional people want to win. And so they are very, very picky about which startups to join. They want to join a startup that has the best chance to win, and they want to make it a bigger winner. So you should pay attention to the quality of the people that work for the startup. Are they slow? Weird? Not impressive? Really concerned with work life balance? Then you should probably not work there.</p>
+
+
+
+<p>Another way to tell whether the talent is high is how hard the interview process is. If the bar is extremely high, you can have a good sense that they are weeding out the mediocre.&nbsp;</p>
+
+
+
+<p>Clearwater was a master at this. It was famous for having the hardest interview process in all of Boise, which was where it was based. It was grueling. Incredibly hard questions. Projects. Homework. Founders who were pushing you to see how you’d respond.</p>
+
+
+
+<p>Is the interview process vanilla and easy? Then the startup is likely not exceptional. You want to join the Navy Seals, not get automatically accepted by the Boy Scouts.</p>
+
+
+
+<h4><strong>Exceptional Product</strong></h4>
+
+
+
+<p>Almost every exceptional startup has an exceptional product. And so you should spend time using the product and interviewing customers to understand why they use it.&nbsp;</p>
+
+
+
+<p>You are looking for desperation. Are they in love with the product? Does it solve a desperate need, or is it a nice to have? How good is the engineering team? How good is the website copy? Are there typos? Is the design trash?</p>
+
+
+
+<p>These are 5 of the elements to startup exceptionalism: the founder, the executives, the investors, the talent, and the product. There are likely more, but I think these are the top 5. I’ve tried to share some practical examples and ideas to look for in each of those buckets.</p>
+
+
+
+<p>There’s a 6th element that I’ll talk about in the next post. And that is intensity. More later.&nbsp;</p>
+
+
+
+<p>The overall lesson here is obvious: if you want to join a startup, look for an exceptional one.&nbsp;</p>
+
+
+
+<p>But the second lesson is this: if you’re at a startup already, <em>make it</em> exceptional. After all, we get to decide whether to be exceptional or not. Many people can ride waves, but far fewer can make waves. So if your startup isn’t quite as exceptional as you want it to be, change it. After all, that’s what an exceptional person would do.</p>
+</div>
+<div class="post-nav"><a href="/blog/startup-spiritual-conversion/">← Startup Spiritual Conversion </a>
+<a href="/blog/sardines-and-a-magic-box/">Sardines and the Magic Box →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Startup Spiritual Conversion  — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Startup Spiritual Conversion </h1>
+  <div class="post-date">June 30, 2023</div>
+</div>
+<div class="post-body">
+<p>There’s a common question that many founders often obsess over and ask of VCs: “What metrics do I need to hit for you to invest?”</p>
+
+
+
+<p>It’s a logical question. After all, if I can get an investor to tell me their bar, all I have to do is jump over it. You want 10 customers? I’ll go get them. 20? Fine. $50k in MRR? 10% monthly growth? Ok. Ok. Just tell me!</p>
+
+
+
+<p>For seed stage founders at least, I think it’s a bad question. Not because investors hate the question (which they do, but that’s not why it’s bad).</p>
+
+
+
+<p>It’s a bad question primarily because it’s not <em>really</em> how early-stage investors decide. They don’t have some secret numeric rubric you must hit in order to get funding. That is more true the later stage you go, but it’s certainly not true early on. So, if you are going to sell something like your company’s equity, you should really understand the buyer’s criteria.</p>
+
+
+
+<p>So, what’s the buyer’s criteria? Why do VCs invest in seed-stage companies?</p>
+
+
+
+<p><strong><em>Investors invest in a seed-stage company if they have been spiritually converted.</em></strong></p>
+
+
+
+<p>What do I mean by spiritual conversion? Let me explain.</p>
+
+
+
+<p class="has-text-align-center"><br><img width="220" height="166" src="https://lh4.googleusercontent.com/vNVdF3CtNBBrEAbTXXdtFrQWQ_wCQj7YfKfo6aoFujmSvEP0MMgvr9wf5z153KKvcyDA33YLpQpxh_LsWhrmlgwZuBmBR02RS28mjmvs2UqembYgSOdf9H2ehkzR-sAN7j_iV9oMks7m7u35QOOitj4"></p>
+
+
+
+<p>Have you ever seen those guys wearing white shirts and black name tags knocking doors in your neighborhood? That was me for two years in Cleveland, Ohio, selling Jesus and the Mormon church. If you do that for 80 hours a week you quickly learn that there are two ways to convert people to a new belief system: spiritually, or intellectually. But there’s only one way that actually works. Spiritually.</p>
+
+
+
+<p>You convert someone spiritually by persuading them that joining this church will put them on a path of happiness, that their family can be stronger, their marriage can improve, that the doctrines of the church are inspired, and that their relationship with God can improve. The alternative - trying to convince someone intellectually and logically through evidence about the existence of God or other matters of faith is a path to nowhere. It's a shallow conversion, and it can erode whenever something hard comes. And something hard always comes. Do not misunderstand me here - I am not saying you should ignore reason or logic. I am saying they are insufficient in producing enduring conversion. I’m saying true conversion is spiritual conversion.</p>
+
+
+
+<p>I believe startups and religion have quite a bit in common. In many ways startups seem irrational. There are many better ways to make money, especially risk adjusted. Investing in startups also seems irrational. They almost all fail. Everything is always broken; every day is a mess.&nbsp;</p>
+
+
+
+<p>Despite this, I still help build startups, and I still invest in startups. Why? Because every once in a while I become spiritually converted. Every once in a while I find a founder who has the truth. And every once in a while, a startup gets so big that it makes up for all the failure. In other words, it wasn’t irrational after all.</p>
+
+
+
+<p>I was spiritually converted by Andy Rachleff and Wealthfront before I joined. I was spiritually converted by Blake Murray and Divvy before I joined. My wife makes fun of me because I become obsessed - I fall in love with the startup. And when I get converted, I become a missionary.</p>
+
+
+
+<p>I think Peter Fenton explains startup spiritual conversion incredibly well:</p>
+
+
+
+<figure><img src="https://lh6.googleusercontent.com/R-RLeEvktAVtc6Zf-ZquKwRkK747bnvQKHndNVtJ3rD3nv7-JVU9OKzmnfW1JlW0zdico8Vku6I9DJAihkEPptI8dj9jos-hUeCGPI6vfdCROP8RCt6nlu80R3Lv8UzfGtR-GxdZuuSGF9SN3i-XXWU" alt="" /></figure>
+
+
+
+<p>So, what’s the actual advice? Let me tell you what I am <em>not</em> saying. I am not saying you should focus <em>less</em> on improving your startup and more on a powerpoint narrative. In fact, the opposite is more true. If you want to elicit emotion, create a startup worthy of emotion. The path to a “yes” is through emotion. But traction alone is intellectual conversion - it cannot replace spiritual conversion. You must spiritually convert. Your job as a founder is to create a spiritual experience. It is to convince me that you are going to take over the world - that I have to join the movement. You are a prophet on a mission. After all, we are on a long 10-year journey together, so unless we find something like a spiritual bond, I don’t think it will last.</p>
+
+
+
+<p>So how do you create that spiritual experience? I've already mentioned the most important thing - build an incredible startup and show evidence of exceptionalism. You must become "so good they can't ignore you". Often a breathtaking demo converts. Often undeniable market pull (traction) with delighted customers converts. Often a world-class team converts. Often an emotional narrative vision told by a talented storyteller converts. Some founders can even convert without a demo, a team, or any traction (but these prophets have usually done it before). But almost no one can convert without the right story.</p>
+
+
+
+<p>As Andy Rachleff says:</p>
+
+
+
+<p>“People think data is a way to compel people, but it’s the story that compels people, and that has never changed, whether you’re talking about political campaigns or business presentations."</p>
+
+
+
+<p>If you want to earn an investment, build a business so good that it’s too hard to ignore it, then tell a story that elicits emotion, and watch the conversions come. And if you’re great at this, you’ll end up with thousands or even millions of converts along the way. Kind of like a true religion.&nbsp;</p>
+</div>
+<div class="post-nav"><a href="/blog/what-is-a-friend/">← What is a friend?</a>
+<a href="/blog/elements-of-exceptional-startups/">Elements of Exceptional Startups →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

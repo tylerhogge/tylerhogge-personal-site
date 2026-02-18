@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How are companies valued? — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>How are companies valued?</h1>
+  <div class="post-date">November 8, 2015</div>
+</div>
+<div class="post-body">
+<strong>[Disclaimer: This post represents my personal learnings on the subject of valuing companies through various sources like twitter and the CFA curriculum, and is in no way representative of any firm's opinion on the subject.]</strong>
+
+It's extremely common to see people debate what a company is worth. Phrases like: "Amazon is so overvalued!", or "Apple seems cheap at that price!" get thrown around constantly, especially in finance and startup twitter conversations.
+
+I've found most people don't really have a good definition for what they mean when they talk about valuation. When you say Amazon is expensive, what's that based on? Most don't have an answer. Or they have a bad answer, like: "their P/E multiple!"
+
+So: this is a short post to define what "valuation" is and share a few examples.
+
+The simple answer is this: the value of&nbsp;<em>any</em> asset - <b>any asset -&nbsp;</b>is the present value of its future cash flows.
+
+Now, since that phrase may be meaningless to some, it simply means you find all of the cash that a company (or any other thing) will&nbsp;<em>ever</em> generate, sum it all up, and then translate&nbsp;that cash back into a value today using an interest rate you choose (since cash today is worth more than cash tomorrow).
+
+And that definition should make sense intuitively, since investing is simply&nbsp;putting cash&nbsp;into something now with the hope that it will return&nbsp;<em>more</em> cash later. Cash -- not earnings, or profit, are what ultimately&nbsp;drive valuations.
+
+With that behind us, you're probably now wondering: "Ok - but how in the world can you ever know how much cash a company will generate next quarter, let alone next year or throughout its entire existence?"
+
+And that is the challenge of valuation.
+
+Accurately forecasting cash flow can range from extremely easy (bonds, for example, have guaranteed "fixed income" cash flows which make them much easier to value), to extremely difficult (public and private companies do not have guaranteed cash flows, as an example).
+
+In the absence of well-defined cash flows, an investor is left with two options: try to "model" (guess) at what those cash flows will be, or use proxies.&nbsp;Modeling is more sophisticated and the preferred option if you're a professional investor, although it sometimes gets passed over due to difficulty. Admittedly, modeling certain assets (like tech startups) is nearly impossible. Many&nbsp;investors use only proxies.
+
+As a rule: the <em>best</em> investors will use&nbsp;the <em>best</em> proxies for cash flow and will therefore have the&nbsp;<em>best</em> valution and will therefore make the <em>best</em> investment decisions.
+
+The most common proxy that investors in public companies use are called "multiples". Things like Price/Earnings, Price/Sales, EV/EBITDA, etc. allow an investor to quickly get a snapshot of a company's "valuation" and compare it to other companies.
+
+But, remember, proxies for cash flow aren't really cash flow. Therefore, multiples aren't really valuation. They are a guess; a heuristic. And they have major drawbacks. The best resource on this topic (like almost all investing topics) are two articles&nbsp;written by Michael Mauboussin. <a href="http://www.expectationsinvesting.com/pdf/earnings.pdf">Here</a> and <a href="http://www3.nd.edu/~scorwin/fin70610/Common%20DCF%20Errors_LeggMason.pdf">here</a> if you are curious.
+
+As he says: "Multiples are not valuation; they represent shorthand for the valuation process. Like most forms of shorthand, multiples come with blind spots and biases that few investors take the time and care to understand."
+
+But what about investments that have no cash flow at all? For example, how in the world does a venture capitalist value a company before they even have a product to sell? Or even after a product is built, how can they accurately model how much cash that new product will create?
+
+Turns out, VCs use proxies as well. The best venture capitalists in the world have created a system which 1) attracts the top .01% of worldwide entrepreneurs to choose them as a VC and 2) then allows them to identify the entrepreneur and "pick a winner" from among all other options.
+
+For example, here is a list of the proxies Sequoia uses: <a href="https://www.sequoiacap.com/article/elements-of-enduring-companies/">Elements of Enduring Companies</a>
+
+Andreessen Horowitz has talked about how they look for some <a href="http://www.businessinsider.com/how-andreessen-horowitz-chooses-investments-2013-2#more-specifically-28">magic combination</a> of brilliant entrepreneurs with a "secret" who have a business that on the surface looks like a really bad idea.
+
+As best as I can tell, the best VCs use proxies like founder-market fit, entrepreneurial brilliance, product traction, and others to best predict the future cash flows of a firm. For example:
+
+https://twitter.com/jasonlk/status/623229447848787968
+
+As you can imagine, this can lead to wild swings on estimates of company value depending on who you ask. A recent of example of this is Uber: a highly-intelligent professor at NYU - <em>who specializes in company valuation -</em>&nbsp;was critical of Uber's value, saying it was only worth 5.9 billion. Bill Gurley responded with a <a href="http://abovethecrowd.com/2014/07/11/how-to-miss-by-a-mile-an-alternative-look-at-ubers-potential-market-size/">well-reasoned rebuttal</a> saying that Uber was actually worth at least 25x what the professor guessed....so roughly 150 billion!
+
+How in the world can two smart investors be off by a factor of 25x?
+
+The answer is the assumptions they made about Uber's future cash flow potential. I'll let you read the post if you are interested, but suffice it to say that valuation estimations can vary widely - and that is only exacerbated when companies are pre-revenue or growing so quickly there's no way to understand their ceiling.
+
+My last favorite example comes from Marc Andreessen. He <a href="http://fortune.com/2015/06/18/marc-andreessen-talks-about-that-time-facebook-almost-lost-80-of-its-value/" target="_blank">tells of a time </a>when Facebook was raising at a valuation of 3 billion after previously raising at a 15 billion dollar valuation. That's when they meet a Russian investor named Yuri Milner:
+<blockquote>Yuri came through Silicon Valley in 2008 or 2009 for the first time, and he basically said ‘I’m in business and I want to invest.’
+
+His first big deal was the Facebook deal. As you may recall what was happening in this timeframe: Facebook had printed an investment from Microsoft at a $15 billion valuation. Then the stuff hit the fan and there was a serious downdraft in valuations. After the financial crisis, Facebook almost raised their next private financing round at $3 billion. Then there was a reset of the process, the economy started to recover a little bit and the process was re-run.
+
+Top American investors were bidding at the $5, $6 and $8 billion level for Facebook and Yuri came in at $10 billion. I was on the Facebook side of this and I had friends who were bidding on and I’d call them up to say ‘You guys are missing the boat, Yuri is bidding 10. You are going to lose this’
+
+They basically said: ‘Crazy Russian. Dumb money. The world is coming to an end, this is insane.’
+
+What Yuri had the advantage of at the time, which I got to see, was that Yuri and his team had done an <strong>incredibly sophisticated analysis.</strong> What they’d basically done is watch the development of consumer Internet busines models since 2000 outside of the U.S., <strong>so they had these spreadsheets</strong> that were literally across 40 countries — like Hungary and Israel and Czechoslovakia and China — and then they had all of these social Internet companies and e-commerce companies that had turned into real businesses over the course of the decade but completely ignored by U.S. investors. What Yuri always said was that U.S. companies are soft because they can rely on venture capital, whereas if you go to Hungary you can’t rely on venture capital so the companies have to make money. So he had a complete matrix of all the business models across all of these countries and then came all of the monetization levels by user and then all adjusted for GDP.
+
+<strong>Then, out at the bottom came: Therefore, Facebook will monetize at X. And his evaluation of what Facebook would monetize for was like four times higher than anybody else’s evaluation of what Facebook would monetize for. So he got the deal and has now made, now 24x on his $1 billion of capital in five years on the basis of superior analysis. To this day, I still greatly enjoy teasing my friends who missed that deal. He had the secret spreadsheet and you didn’t.</strong></blockquote>
+Yuri Milner is now worth over 3 billion dollars thanks in large part to Facebook. Why? Because he modeled future cash flows better than the next guy. And that's the key.
+
+&nbsp;
+
+As a post script, here's a short discussion Marc Andreessen has on the topic:
+
+https://twitter.com/pmarca/status/456677299669045250
+
+https://twitter.com/pmarca/status/456678276883156992
+
+https://twitter.com/pmarca/status/456678535726252032
+
+https://twitter.com/pmarca/status/456679207477592064
+
+https://twitter.com/pmarca/status/456680196901330945
+
+https://twitter.com/pmarca/status/456680681515413504
+
+https://twitter.com/pmarca/status/456681637531496448
+
+https://twitter.com/pmarca/status/456682161920172032
+
+<hr>
+
+&nbsp;
+
+&nbsp;
+
+https://twitter.com/pmarca/status/456686476018077696
+</div>
+<div class="post-nav"><a href="/blog/whiplash-and-greatness/">← Whiplash and Extreme Greatness</a>
+<a href="/blog/my-list-of-mental-models/">My List of Mental Models →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

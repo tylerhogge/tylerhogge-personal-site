@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Writing — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/" style="color:#1a1a1a;font-weight:600">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="blog-header"><h1>Writing</h1></div>
+<ul class="post-list">
+
+<li>
+  <div class="post-title"><a href="/blog/a-few-thoughts-on-conviction/">A few thoughts on conviction.</a></div>
+  <div class="post-meta">December 11, 2025</div>
+  <div class="post-excerpt">“One man with conviction will overwhelm a hundred who have only opinions.”-Winston Churchill.”
+
+
+
+Have I ever told you my favorite venture capitalist joke? (h/t Kristy M)
+
+
+
+Why…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/why-we-invested-in-valinor/">Why we invested in Valinor</a></div>
+  <div class="post-meta">December 10, 2025</div>
+  <div class="post-excerpt">Today Valinor announced it has raised $13m in funding from Pelion, Harpoon, CRV, and others. We could not be more thrilled to co-lead this round with several incredible investors.…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/why-we-invested-in-honey-health/">Why We Invested in Honey Health</a></div>
+  <div class="post-meta">October 28, 2025</div>
+  <div class="post-excerpt">Honey Health announced it has raised $7.8M to build AI Agents for the healthcare back office. Pelion is fired up to lead the round and I could not be more excited to join the…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/redo-and-the-rise-of-the-profitable-compound-startup/">Redo and the rise of the profitable compound startup</a></div>
+  <div class="post-meta">September 3, 2025</div>
+  <div class="post-excerpt">Redo announced it has been named as a Forbes / Bessemer Rising Star - one of the top 20 startups best positioned to join their famous Cloud 100 list. It’s an incredible list with…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/why-we-invested-in-vector/">Why We Invested In Vector</a></div>
+  <div class="post-meta">September 3, 2025</div>
+  <div class="post-excerpt">Today Vector announced it has raised over $61m, with a vision to build the next great modern defense tech company. We at Pelion are very proud to have led Vector’s series A, and I…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/what-i-learned-from-my-dad/">What I Learned From My Dad.</a></div>
+  <div class="post-meta">June 15, 2025</div>
+  <div class="post-excerpt">For the past year I have tried to compile the top lessons I have learned from my Dad. There are so many. Everyone who knows him will agree that he is a uniquely amazing person.…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/pattern-matching-20-habits-of-exceptional-startups/">Pattern Matching 20 Habits of Exceptional Startups</a></div>
+  <div class="post-meta">May 29, 2025</div>
+  <div class="post-excerpt">I have been fortunate enough to work for 3 exceptional startups, invest in a few more, interview several on our podcast, and over the last 3 weeks, attend the board meetings of…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/agree-com-and-the-power-of-disruption/">Agree.com and the power of disruption</a></div>
+  <div class="post-meta">May 6, 2025</div>
+  <div class="post-excerpt">In December 2024 I was perusing twitter (as I am fond of doing) and came across this company, Agree.com. Not long after I sent a DM to Marty Ringlein, the co-founder and…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/announcing-the-2025-exceptional-startups-list/">Announcing the 2025 Exceptional Startups List</a></div>
+  <div class="post-meta">February 11, 2025</div>
+  <div class="post-excerpt">I’m excited to share the 2025 Exceptional Startups List today. You can see the list here.
+
+
+
+A few quick highlights to share:
+
+
+
+
+240 startups made this year’s list - up from…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/the-captain-and-the-current/">The Captain and The Current</a></div>
+  <div class="post-meta">December 18, 2024</div>
+  <div class="post-excerpt">Everyone who invests in startups has their own set of criteria. This is mine. I call it the captain and the current. It goes without saying, but the goal of this framework is to…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/prom-queens-and-rough-diamonds-vc-as-a-dating-pool/">Prom Queens And Rough Diamonds: VC As A Dating Pool</a></div>
+  <div class="post-meta">December 13, 2024</div>
+  <div class="post-excerpt">Venture capital is like a dating pool, and I believe there are two ways to “win” the dating pool. 
+
+
+
+Buckle up. This post is going to piss a lot of people off. But I think it’s…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/the-empty-suit-executive/">The Empty Suit Executive</a></div>
+  <div class="post-meta">October 16, 2024</div>
+  <div class="post-excerpt">There is a certain type of startup executive that I’ve developed an allergy to.
+
+
+
+It is what I call the empty suit executive. 
+
+
+
+These are the types of leaders who are above the…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/you-probably-shouldnt-raise-venture-capital/">You probably shouldn’t raise venture capital</a></div>
+  <div class="post-meta">September 27, 2024</div>
+  <div class="post-excerpt">It might surprise you to hear that the most common advice I share with founders - by far - is that they should avoid venture capital altogether. 
+
+
+
+And it’s not some test, or a…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/pelions-seed-investment-program/">Pelion’s Seed Investment Program</a></div>
+  <div class="post-meta">August 27, 2024</div>
+  <div class="post-excerpt">We’re excited to share a few announcements about our plans to invest at the seed stage at Pelion. 
+
+
+
+But first, some quick context.
+
+
+
+Pelion has been around for over 30 years…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/the-redo-opportunity/">The Redo Opportunity</a></div>
+  <div class="post-meta">August 20, 2024</div>
+  <div class="post-excerpt">Redo announced some incredible things today: a $24m dollar series A from great investors, unbelievable revenue growth over the past 18 months, a suite of 4 live products on the…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/why-we-invested-in-remi/">Why We Invested In Remi</a></div>
+  <div class="post-meta">August 6, 2024</div>
+  <div class="post-excerpt">Remi announced a $21m Series A today, led by Pelion, after an incredible year of 650% growth and strong profitability. I am extremely excited to join the board along with Todd…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/sell-%e2%86%92-design-%e2%86%92-build/">Sell → Design → Build</a></div>
+  <div class="post-meta">July 23, 2024</div>
+  <div class="post-excerpt">“Victorious warriors win first and then go to war, while defeated warriors go to war first and then seek to win.” –Sun Tzu
+
+
+
+
+I have come to believe that one framework is more…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/only-first-class-business-in-a-first-class-way/">Only First-Class Business In a First-Class Way</a></div>
+  <div class="post-meta">June 13, 2024</div>
+  <div class="post-excerpt">Over the past several years I’ve learned a valuable lesson over and over again: world-class is just the best we’ve seen. 
+
+
+
+What do I mean? Let me give you a few examples.
+
+
+
+
+I…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/why-we-invested-in-jump/">Why We Invested In Jump</a></div>
+  <div class="post-meta">June 10, 2024</div>
+  <div class="post-excerpt">Jump announced today that they’ve raised $4.6m from Sorenson, Pelion, and other angels to bring incredible AI experiences to financial advisors. We are fired up about what Parker,…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/obsession-is-what-it-comes-down-to/">Obsession Is What It Comes Down To</a></div>
+  <div class="post-meta">May 21, 2024</div>
+  <div class="post-excerpt">“I can carry on playing at this level because I like hitting the tennis ball.” -Novak Djokivic
+
+
+
+
+Have you ever watched the show ‘Alone’?
+
+
+
+It’s wild. They put a bunch of…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/my-new-favorite-product/">My New Favorite Product</a></div>
+  <div class="post-meta">April 16, 2024</div>
+  <div class="post-excerpt">I’ve seen the future and it is electric.
+
+
+
+In 2021 I hopped on a zoom to catch up with my friend, Nate Walkingshaw. I had followed Nate’s career for many years - he is one of the…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/what-i-learned-from-peter-fenton/">What I Learned From Peter Fenton</a></div>
+  <div class="post-meta">March 20, 2024</div>
+  <div class="post-excerpt">My next “what I learned from…” series is from one of the best venture capitalists of the last 20 years, Peter Fenton.
+
+
+
+My learnings come from two sources. I watched his…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/a-few-thoughts-on-intensity/">A few thoughts on intensity.</a></div>
+  <div class="post-meta">January 29, 2024</div>
+  <div class="post-excerpt">I have written about the elements of exceptional startups. This post is slightly different. I want to share what I think is the most important trait of a successful startup. By…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/what-i-learned-from-alfred-lin-of-sequoia/">What I learned from Alfred Lin of Sequoia</a></div>
+  <div class="post-meta">January 18, 2024</div>
+  <div class="post-excerpt">A few weeks ago I listened to a podcast with Alfred Lin on Turpentine VC with Erik Torenberg. It was excellent.
+
+
+
+Here are the top 17 things I learned, with a few sentences of my…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/speak-plainly/">Speak Plainly.</a></div>
+  <div class="post-meta">January 4, 2024</div>
+  <div class="post-excerpt">Something weird happens to people when they get an important job, like becoming a manager at work or a politician: they start talking differently. Weirdly. Less like a human. It’s…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/different-is-better-than-better/">Different Is Better Than Better</a></div>
+  <div class="post-meta">December 14, 2023</div>
+  <div class="post-excerpt">One of the most common venture capitalist beliefs is that a product must be 10x better than the alternative to be an interesting investment. I have spent many hours thinking about…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/the-awful-arithmetic-of-valuation/">The Awful Arithmetic Of Valuation</a></div>
+  <div class="post-meta">December 6, 2023</div>
+  <div class="post-excerpt">Why does someone invest their cash into a tech company? Or into anything, for that matter?
+
+
+
+The answer, of course, is so that they can get more cash back, later.
+
+
+
+Funny…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/27-things-i-learned-from-don-valentine/">27 Things I Learned From Don Valentine</a></div>
+  <div class="post-meta">November 29, 2023</div>
+  <div class="post-excerpt">I’m going to start a new series of posts where I share my learnings from the most interesting people I study. This will help me retain what I learn, and I hope it’s also fun to…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/sardines-and-a-magic-box/">Sardines and the Magic Box</a></div>
+  <div class="post-meta">October 2, 2023</div>
+  <div class="post-excerpt">In his excellent book “Margin of Safety”, Seth Klarman tells a story of a famous bubble you probably haven’t heard of: the sardine bubble in Southern California.
+
+
+
+
+There is an…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/elements-of-exceptional-startups/">Elements of Exceptional Startups</a></div>
+  <div class="post-meta">September 7, 2023</div>
+  <div class="post-excerpt">A few months ago I posted this on LinkedIn:
+
+
+
+
+
+
+
+
+
+
+
+Several people wanted to know what I meant by “exceptional startups”:
+
+
+
+
+
+
+
+I have been a part of 3 exceptional startups…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/startup-spiritual-conversion/">Startup Spiritual Conversion </a></div>
+  <div class="post-meta">June 30, 2023</div>
+  <div class="post-excerpt">There’s a common question that many founders often obsess over and ask of VCs: “What metrics do I need to hit for you to invest?”
+
+
+
+It’s a logical question. After all, if I can…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/what-is-a-friend/">What is a friend?</a></div>
+  <div class="post-meta">May 19, 2023</div>
+  <div class="post-excerpt">“Greater love hath no man than this, that a man lay down his life for his friends.” -Jesus (John 15:13)
+
+
+
+
+I have been thinking a lot about what it means to be a friend. This…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/the-scariest-thing-in-the-world/">The Scariest Thing in the World</a></div>
+  <div class="post-meta">March 15, 2023</div>
+  <div class="post-excerpt">There is a good scene in Men in Black where Will Smith and Tommy Lee Jones talk about aliens living among the humans. The full clip is here, but the notable part is this:
+
+
+
+
+Will…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/next-play/">Next Play</a></div>
+  <div class="post-meta">January 12, 2023</div>
+  <div class="post-excerpt">One of my favorite leaders is Mike Krzyzewski, the former head coach of Duke basketball. He consistently yells the same phrase at his team, after nearly every possession in a game…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/what-makes-a-good-operator/">What makes a good "operator"?￼</a></div>
+  <div class="post-meta">May 3, 2022</div>
+  <div class="post-excerpt">8 steps to operating excellence
+
+
+
+The word “operator” is often used to describe someone who works on the business day-to-day (as opposed to, say, an “investor”). But what defines…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/the-3-tenets-of-capitalism-2/">The 3 Tenets of Capitalism</a></div>
+  <div class="post-meta">September 14, 2020</div>
+  <div class="post-excerpt">[This story appeared in Quillette in March 2019]
+
+
+
+At dinner not long ago my daughter and I had a standoff. She refused to eat something — a calzone in this case — because it…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/improving-products-with-the-wisdom-of-crowds/">You can't rely on customers to innovate (but you *must* rely on customers to iterate)</a></div>
+  <div class="post-meta">January 11, 2019</div>
+  <div class="post-excerpt">Be careful about the customer
+An interesting question any product person faces is “when should I rely on my customers for product feedback, and when should I not?”
+
+After all,…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/a-linkedin-message-an-email-and-a-tweet/">A LinkedIn message, an email, and a tweet</a></div>
+  <div class="post-meta">April 13, 2018</div>
+  <div class="post-excerpt">The lucky story of how I wound up at my dream job(s) in Silicon Valley
+In June it will be 2 years since my wife and I moved to Silicon Valley with our 2 kids. We absolutely love…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/the-most-important-framework-for-product-leaders/">The Most Important Framework For Product Leaders</a></div>
+  <div class="post-meta">April 11, 2018</div>
+  <div class="post-excerpt">This is the second post in a series about Product Management. Click here to read the first
+In a 1997 developer conference Steve Jobs was confronted by an upset attendee. Steve’s…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/to-build-a-great-product-people-have-to-hate-it/">To build a great product, people have to hate it</a></div>
+  <div class="post-meta">November 11, 2017</div>
+  <div class="post-excerpt">My learnings as a PM, part 1
+In many ways product management is counterintuitive. For example, your product is more likely to succeed if it strongly appeals to a small segment of…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/the-problem-with-politics-and-useful-idiots/">The problem with politics (and useful idiots)</a></div>
+  <div class="post-meta">March 13, 2017</div>
+  <div class="post-excerpt">“I drove by the fork in the road and went straight.”
+-Jay-Z
+Why do humans gravitate to and obsess over politics?
+
+Simple: our brains are wired this way. It’s…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/humans-worst-cognitive-flaw-how-to-fix-it/">Humans'  Worst Cognitive Flaw &amp; How to Fix It</a></div>
+  <div class="post-meta">July 29, 2016</div>
+  <div class="post-excerpt">When I played baseball and we had team conditioning, there was one workout that many of us dreaded the most: wall sits. For those who aren't…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/lemons-peaches-understanding-adverse-selection/">Lemons and Peaches: Understanding Adverse Selection</a></div>
+  <div class="post-meta">May 7, 2016</div>
+  <div class="post-excerpt">Last month I wrote about my list of favorite mental models. Perhaps my very favorite, and most commonly used, is adverse selection.
+There’s a reason for this: adverse selection…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/my-list-of-mental-models/">My List of Mental Models</a></div>
+  <div class="post-meta">January 9, 2016</div>
+  <div class="post-excerpt">One of my favorite thinkers and investors, Charlie Munger, said this:
+
+"Worldly wisdom is mostly very, very simple. There are a relatively small number of disciplines and a…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/how-are-companies-valued/">How are companies valued?</a></div>
+  <div class="post-meta">November 8, 2015</div>
+  <div class="post-excerpt">[Disclaimer: This post represents my personal learnings on the subject of valuing companies through various sources like twitter and the CFA curriculum, and is in no way…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/whiplash-and-greatness/">Whiplash and Extreme Greatness</a></div>
+  <div class="post-meta">October 7, 2015</div>
+  <div class="post-excerpt">I recently watched the movie 'Whiplash' after reading that Kobe Bryant called it one if his favorites and Kyrie Irving wrote the movie title on his game shoes. It's an incredible…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/cfa-vs-mba-how-do-they-compare/">CFA vs. MBA - How Do They Compare?</a></div>
+  <div class="post-meta">May 20, 2015</div>
+  <div class="post-excerpt">So, you're trying to better compare the CFA exams vs. a top-tier MBA? Some articles argue that the CFA has a chance of replacing the MBA, and others think that's not likely.
+The…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/the-least-appreciated-part-of-great-software/">The least-appreciated part of great software</a></div>
+  <div class="post-meta">March 25, 2015</div>
+  <div class="post-excerpt">A few months ago I read a tweet from Elon Musk, CEO of Tesla, that had me shaking my head:
+
+
+
+The guy was going to push a button to release some new software code and have it…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/what-i-learned-about-leadership-from-a-4-star-general/">What I learned about leadership from a 4-star general</a></div>
+  <div class="post-meta">January 10, 2015</div>
+  <div class="post-excerpt">It's not every day you get a chance to learn from a four-star general.
+So when I received an email from the MBA registrar at Cornell University's Johnson Graduate School of…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/stock-market-investing-for-the-know-nothing-investor/">Investing in the stock market: my advice to friends</a></div>
+  <div class="post-meta">January 10, 2015</div>
+  <div class="post-excerpt">I’m not an investing guru, but I love learning about investments and was crazy enough to take the CFA exams.
+
+Among my friends, several of whom don’t share my passion for finance,…</div>
+</li>
+</ul>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

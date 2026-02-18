@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Why We Invested In Remi — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Why We Invested In Remi</h1>
+  <div class="post-date">August 6, 2024</div>
+</div>
+<div class="post-body">
+<p><a href="https://www.remihq.com/">Remi</a> announced a $21m Series A today, led by Pelion, after an incredible year of 650% growth and strong profitability. I am extremely excited to join the board along with Todd Pederson, who is one of Utah’s best-ever entrepreneurs, and who is making one of his largest personal investments. Remi now has an incredible set of investors, including our friends at Cervin, Y Combinator (who doubled down in this round), and some of the top founders and executives in Utah, including Blake Murray, Adam Edmunds, Todd Santiago, and others.&nbsp;</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2024/08/image.png?w=1024" alt="" class="wp-image-732" /></figure>
+
+
+
+<p>I thought I’d share a few thoughts about why Pelion chose to lead this round and why we are so excited about Remi’s future.</p>
+
+
+
+<p>Several months ago, I got a call from my long-time friend Reno Mendenhall. He told me he and his co-founders were doing something pretty interesting: building a roofing marketplace. I was skeptical but excited to catch up with an old friend, so Reno came by Pelion and introduced me to Doug Barnett and Brant Choate, the CEO and CTO of Remi.</p>
+
+
+
+<p>Fifteen minutes into that meeting, my skepticism left.</p>
+
+
+
+<p>I knew in that first meeting that Remi was an exceptional startup led by three exceptional founders. Doug, Reno, and Brant walked me through their journey to Remi and the white-hot demand they were seeing. After the meeting, I walked over to Ben Lambert and Sterling Snow and told them we may have found something special.</p>
+
+
+
+<p>So what was the insight?</p>
+
+
+
+<p>Reno has spent his career in solar as one of the top sales leaders in the history of the industry. Over many years, he concluded that one of the biggest problems faced by solar companies was the following: in 10-20% of new solar purchases, the homeowner also needs a new roof before the solar panels can be installed. This means nationwide solar providers must coordinate with hundreds of roofers across the country to scope, price, bid, and complete a new roofing job, just to get the actual product they sold (solar) installed. It’s a nightmare. Such a large nightmare that solar providers hire dozens of people to coordinate the work, and even then, the customer experience is challenging, and millions of dollars in sales are lost or frozen due to this roofing hurdle.</p>
+
+
+
+<p>So the Remi team decided to fix it by building the world’s first roofing marketplace, connecting homeowners who need a roof with a local roofer who wants the work. Just like Uber prices a ride, finds a driver who wants the work, and ensures the ride is completed, Remi’s technology accurately prices a roofing job in any geo using satellite imaging and a highly sophisticated pricing algorithm, finds a local roofer who wants the job, and guarantees quality workmanship.&nbsp;</p>
+
+
+
+<p>There are a couple of things that make Remi’s business model special. One is that they do not need to find the homeowners directly. Rather, Remi aggregates the demand side of the marketplace by partnering with large corporations that have customers who need new roofs, the first of which is the number one solar provider in the country, SunRun.</p>
+
+
+
+<p>But as it turns out, solar companies are not the only companies that face problems with roofing. Insurance companies, REIT’s, retailers, hotels, among many others face similar dilemmas. Over time, we believe Remi has a special opportunity to become the place that every homeowner in America uses when a new roof is needed.&nbsp;</p>
+
+
+
+<p>The marketplace is such a clear win for all parties involved:</p>
+
+
+
+<ol>
+<li><strong>Roofers</strong> get a steady stream of work dropped in their lap, priced fairly, with an intermediary they trust. They can now focus on doing great work rather than finding new customers.</li>
+
+
+
+<li><strong>Homeowners</strong> get a white-glove Remi experience, where all the communication, organization, and paperwork are all handled in beautiful software.&nbsp;</li>
+
+
+
+<li><strong>Large enterprises</strong> with customers who need new roofs no longer need to be in the roofing business, which saves them millions of dollars and thousands of hours.&nbsp;</li>
+
+
+
+<li><strong>And Remi</strong> can charge a fair fee for every roof they facilitate.&nbsp;</li>
+</ol>
+
+
+
+<p>It’s a beautiful model.</p>
+
+
+
+<p>And, it’s working.&nbsp;</p>
+
+
+
+<p>In the last year Remi has grown faster than almost any company we’ve seen not just in Utah, but in the country. Generally when you see such extreme growth, the company also is burning a lot of cash. But that’s not true with Remi. They have been profitable essentially every month since starting operations about 18 months ago. Exceptional, by definition. They’ve built a <a href="https://tylerhogge.com/2023/10/02/sardines-and-a-magic-box/">magic box</a>.</p>
+
+
+
+<p>But the last and most important reason we got so excited about Remi is the team of 3 co-founders. Doug was the CMO at Vivint before starting Remi, so he knows this industry as well as anyone. He is an aggressive, impressive leader with an impeccable reputation. Reno is one of the top sales leaders in solar industry history, an incredible recruiter, and an even better person. Brant is one of the top technical leaders we’ve met, who led Podium’s product organization originally and has created a top-tier engineering and product culture at Remi that ships excellent software experiences.&nbsp;</p>
+
+
+
+<p>An amazing team. A unique insight. Desperate customers. A world-class product experience. A business model innovation with a compounding advantage as it scales. These are the raw ingredients of most exceptional startups, and that’s exactly what Remi has.</p>
+
+
+
+<p>We believe in 10 years Remi will capture a meaningful % of all roofing jobs across the country. They already do thousands of roofs a year, and are planning another year of incredible growth. As a result, they are hiring for many roles, and plan to scale fast while remaining profitable. If you want to be a part of this, please apply to <a href="https://www.remihq.com/careers">one of the roles listed here</a>.&nbsp;</p>
+
+
+
+<p>Don’t worry: no roofing experience necessary 😀.</p>
+</div>
+<div class="post-nav"><a href="/blog/sell-%e2%86%92-design-%e2%86%92-build/">← Sell → Design → Build</a>
+<a href="/blog/the-redo-opportunity/">The Redo Opportunity →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

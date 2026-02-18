@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Next Play — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Next Play</h1>
+  <div class="post-date">January 12, 2023</div>
+</div>
+<div class="post-body">
+<p>One of my favorite leaders is Mike Krzyzewski, the former head coach of Duke basketball. He consistently yells the same phrase at his team, after nearly every possession in a game or practice. That phrase is “next play.” No matter how good (or bad) the last play was, Coach K wants his team focused on what’s next. I’ve been thinking a lot about that phrase.</p>
+
+
+
+<p>I was lucky to spend the holidays with my family, which meant a trip (not a vacation) to Disneyland, changing a bunch of diapers, and lots of time to think about the next play. I’m excited to share that I’ve joined <a href="https://pelionvp.com/" rel="noreferrer noopener" target="_blank">Pelion</a> as a full-time Venture Partner. I’ll be on the investment team looking for outlier early-stage software companies in any geography or sector, and I’ll be rolling up my sleeves to help incubate and build some very early ideas with some exceptional teams with whom Pelion is partnering.</p>
+
+
+
+<p>My primary goal for the next 30 years is to help build and invest in dozens of massive, generational software businesses. If you’re interested in that journey with me, reach out 🙂.</p>
+
+
+
+<h3>The Journey</h3>
+
+
+
+<p>My entire career I’ve been obsessed with the intersection of startups and investing. But I originally stumbled into tech accidentally in 2010. Back then, I didn’t really know what it was.</p>
+
+
+
+<p>I went to a small state school in Southern Utah — mainly to play D1 baseball. Graduating in 2010, in the thick of the great recession, I lost a lot of sleep trying to find the right job. Actually, <em>any</em> job. I got a tip to cold call the founders of this company in Idaho named Clearwater. So I did, and it worked. As it turned out, Clearwater was one of the best early SaaS companies in the world. Once I got a taste of software, I knew I’d spend my whole career building software companies. After leading Clearwater’s sales and customer success teams for a few years, I left for graduate school, which then led to a product role at Wealthfront and a move to the Bay Area, which eventually led to Divvy, and a move back to Utah.</p>
+
+
+
+<p>Fortunately, those three companies have proven to be top tier. Clearwater IPO’d in 2021, and now has a $4b market cap. Wealthfront is now valued at $1.4b. Divvy, where I led the product and risk organization as the SVP of Product, was acquired by BILL in 2021 for $2.5b. Some will look at that track record and think it’s luck. They would be right. But I’ve also learned a few things along the way, especially what great companies look like. Who they attract. How they build products. How they act. There’s a pattern.</p>
+
+
+
+<p>During these 12 years in tech I’ve led sales, customer success, product, and risk teams. I’ve seen many highs, and many lows. I’ve been in that seat. I know a little of what founders go through. And I’ve loved it. But from the beginning of my career, I have also been fascinated by how these rocket ships are financed.</p>
+
+
+
+<p>When it comes to the investing side, I’ve had 4 formative experiences:</p>
+
+
+
+<ol>
+<li>My first introduction was an internship at Andreessen Horowitz in 2015. I joined after some persistent <a href="https://medium.com/@thogge/a-linkedin-message-an-email-and-a-tweet-a466ad8938de" target="_blank" rel="noreferrer noopener">cold emails</a> (there’s a pattern here). I learned how they source new opportunities, convince founders to take their money, and help their investments win (and win big).</li>
+
+
+
+<li>Soon after, I started helping Jason Lemkin on several projects, including doing diligence on startups for his <a href="https://coda.io/@jasonmlemkin/saastrfund/" rel="noreferrer noopener" target="_blank">SaaStr Fund</a>. Learning from one of the best SaaS investors in the world was a privilege.</li>
+
+
+
+<li>At Wealthfront, I spent countless hours learning from Andy Rachleff (the only VC I’m aware of who co-founded a top-tier venture firm and <em>then</em> a startup, in that order!) — even taking his class at Stanford. Andy has taught me more about investing than anyone. I’ve learned how to identify great startups, how to identify product market fit, how to think like an investor, and how to love the craft.</li>
+
+
+
+<li>Most recently, I was lucky enough to go through <a href="https://angeltrack.firstround.com/" rel="noreferrer noopener" target="_blank">First Round’s Angel Track</a>, the very best angel investing curriculum on earth. Brett Berson of First Round has put together an exceptional program for aspiring investors.</li>
+</ol>
+
+
+
+<p>With all of this background, it was finally time to start investing myself. After Divvy was acquired, I started actively angel investing out of a $500k fund called <a href="https://kindlingcapital.notion.site/Kindling-Capital-a1da3c6d0a6d47e6b1cca9e1cad185cb" rel="noreferrer noopener" target="_blank">Kindling Capital</a>. Over the last 18 months, I’ve invested in 25+ companies all over the world and have formed deep friendships with these founders. There’s some good news: while it’s still very early, several of the companies look like they’ll become very big (knock on wood). After a year of angel investing, I started to wonder how I would take the next step of learning. That’s where Pelion comes in.</p>
+
+
+
+<h3>Pelion</h3>
+
+
+
+<p>I joined Pelion for 3 reasons: they’re great investors, great people, with a great opportunity.</p>
+
+
+
+<ol>
+<li>In a world of endless self promotion, Pelion has been a quiet monster. For over 20 years and 7 funds they’ve produced exceptional returns by investing in some of the best companies in tech. From Riverbed Technologies many years ago to Cloudflare and Divvy more recently, Pelion has a track record few firms can match. And the current portfolio has <em>multiple</em> behemoths in the making.</li>
+
+
+
+<li>Pelion is not just full of great investors, they are also great people. I got to know Pelion because they led Divvy’s series A. You really find out who someone is during the tough times, and during Divvy’s toughest times — especially during the refiner’s fire of COVID — our board member from Pelion, Ben Lambert, showed us who he was. He was helpful, steady, loyal, and <em>all in</em>. And as a result, Divvy’s executive team developed a bond with Ben, and together we created an incredibly valuable business.</li>
+
+
+
+<li>Lastly, Pelion’s opportunity is massive and unique. We are based in SLC, Utah, but we are not bound by geography. We invest anywhere and in any sector, and the partners are generalists with no prescribed swim lanes. If you believe — as I do — that Utah is on the precipice of tech greatness, then Pelion — as the state’s premiere fund — has a huge opportunity in front of it, with the flexibility to invest anywhere great founders lead us.</li>
+</ol>
+
+
+
+<p>After the turmoil of 2022, markets are pessimistic about tech’s ability to create real businesses, solve real problems, and generate real cash flow. I have never been more optimistic and fired up. Something special is happening in Utah and across all of tech. The excess has been wiped out, and now only the hardcore will thrive. I believe that venture capital will go back to its purest form, which looks much more like company building than throwing darts. More conviction. More urgency. Less sloppiness. I’ve seen great investors work. They are hustlers with insatiable hunger, and they earn the sacred trust of founders so together they can bend the impossibly low odds of success into something inevitable. 2023 and 2024 will prove to be one of the best times in history to both build and invest in tech, and I am excited to be doing that at Pelion. LFG.</p>
+</div>
+<div class="post-nav"><a href="/blog/what-makes-a-good-operator/">← What makes a good "operator"?￼</a>
+<a href="/blog/the-scariest-thing-in-the-world/">The Scariest Thing in the World →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

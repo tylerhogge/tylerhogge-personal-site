@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What is a friend? — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>What is a friend?</h1>
+  <div class="post-date">May 19, 2023</div>
+</div>
+<div class="post-body">
+<blockquote>
+<p>“Greater love hath no man than this, that a man lay down his life for his friends.” -Jesus (John 15:13)</p>
+</blockquote>
+
+
+
+<p>I have been thinking a lot about what it means to be a friend. This topic seems both important and under-explored, which usually means it’s worth some time. Why is it important? Because each of us wants to have good friends and also wants to be a good friend to others.&nbsp;</p>
+
+
+
+<p>There is also a great deal of research on other benefits to friendship:</p>
+
+
+
+<ul>
+<li>In terms of the effect on happiness, a friend you see regularly is worth $100,000 a year. <a href="https://www.theatlantic.com/health/archive/2013/10/social-connection-makes-a-better-brain/280934/">Source</a>.</li>
+
+
+
+<li>"By far the biggest medical surprise of the past decade has been the extraordinary number of studies showing that the single best predictor of health and wellbeing is simply the number and quality of close friendships you have." <a href="https://twitter.com/robkhenderson/status/1628766477330403332?s=20">Source</a>.</li>
+
+
+
+<li>"The number and quality of friendships you have has a bigger effect on your health than any of the factors your doctor usually worries about: your weight, how much exercise you take, what you eat, what pills you are prescribed, or the quality of air". <a href="https://twitter.com/robkhenderson/status/1634332079302270977?s=20">Source</a>.</li>
+</ul>
+
+
+
+<p>Read those statements again. Even if they are even directionally true, this is one of the most important concepts we should all deeply understand. But how much time have you spent thinking about this? For me, the answer was not enough.&nbsp;</p>
+
+
+
+<p>The next realization I had was that the term “friend” is too broad. It’s clear to me that there are degrees of friendship. But what are those degrees? What makes the strongest type of friend?</p>
+
+
+
+<p>I think friendship has 10 increasing levels of strength, and the best friends - true friends - live near the top of this pyramid, around 8-10.</p>
+
+
+
+<p>A friend:</p>
+
+
+
+<ol>
+<li>Is kind to you to your face (when you are in the room)</li>
+
+
+
+<li>Is kind to you behind your back (when you are not in the room)</li>
+
+
+
+<li>Will genuinely celebrate when good things happen to you</li>
+
+
+
+<li>Will genuinely console when bad things happen to you</li>
+
+
+
+<li>Can be trusted with vulnerable or confidential information&nbsp;</li>
+
+
+
+<li>Will do things to try and make you happy</li>
+
+
+
+<li>Shows up - volunteers to help when needed&nbsp;</li>
+
+
+
+<li>Will fight for you&nbsp;</li>
+
+
+
+<li>Will push you to your potential, often by telling you hard truths</li>
+
+
+
+<li>Will die for you&nbsp;</li>
+</ol>
+
+
+
+<p>As the scale increases, the acts of friendship go from simply <em>talking</em> to <em>doing</em> and <em>sacrificing</em>. For example, the lowest form of friendship is to just be nice to someone to their face. Certainly it’s hard to be a friend if you can’t even do that. But I’m nice to the grocery worker’s face too, and I wouldn’t call us friends. That’s just friendly behavior - a necessary but insufficient condition to friendship. Much more is needed to be a good friend.&nbsp;</p>
+
+
+
+<p>Well, what about when you aren’t face to face - are you still nice? If yes, you might be more than just friendly now. This is an act of friendship.</p>
+
+
+
+<p>Can you feel joy or pain on behalf of someone else? Now you are outside yourself - which is another sign of friendship. And finding someone who truly wants you to succeed is rare. As Adam Smith said: "The man who, by some sudden revolution of fortune, is lifted up all at once into a condition of life, greatly above what he had formerly lived in, may be assured that the congratulations of his best friends are not all of them perfectly sincere."&nbsp;</p>
+
+
+
+<p>Can you be trusted to keep information to yourself, and not use it to harm someone else? This is also an act of friendship. Showing restraint; refraining from slander, keeping a secret, are, again, signs that you are thinking of someone else besides yourself. But we aren’t yet to the level of action or sacrifice.</p>
+
+
+
+<p>Now we get into actions. Will you go out of your way to <em>do</em> something to make someone else happy? Will you make a call? Will you deliver a gift? Will you say the kind word? Will you plan the party? Will you help them move heavy furniture on a saturday? Will you pick them up from the airport? We are now at the level where people are likely to consider someone a “good friend”. But we aren’t at the pinnacle of friendship.</p>
+
+
+
+<p>The pinnacle of friendship are the last 3 levels:&nbsp;</p>
+
+
+
+<ul>
+<li>A true friend will fight for you, risking their own safety and reputation to protect yours.</li>
+
+
+
+<li>A true friend will not allow you to live below your potential, and as a result, they will sacrifice their comfort by telling you truths you do not want to hear. This is a very difficult sacrifice. This friend is willing to sacrifice peace in the relationship for something greater - the maximization of potential. As the Proverb says: “Iron sharpeneth iron; so a man sharpeneth the countenance of his <a href="https://www.churchofjesuschrist.org/study/scriptures/ot/prov/27?lang=eng#note17a">friend</a>.”</li>
+
+
+
+<li>And finally, the best of friends will sacrifice their own life. If you have reached this level of friendship, you are now family. Those in a marriage or who have kids know that they’d give their life for their family without a moment’s hesitation. And there are some friendships where this is true as well.</li>
+</ul>
+
+
+
+<p>There is an Oxford psychologist Robin Dunbar who is famous for his research around the number of relationships any one person can cognitively maintain. This is known as Dunbar’s number, and it states that we can maintain about 150 stable relationships. But Dunbar also found that there are several concentric circles that build up to that 150.&nbsp;</p>
+
+
+
+<p>These circles generally follow this pattern:</p>
+
+
+
+<ul>
+<li>5 people who would drop everything and come to your aid (they live at the top of the friendship pyramid)</li>
+
+
+
+<li>15 friends whose death tomorrow would be deeply upsetting</li>
+
+
+
+<li>50 people from whom regular social companionship is drawn</li>
+
+
+
+<li>150 people who might attend your wedding or funeral</li>
+</ul>
+
+
+
+<p>According to Dunbar, we devote around 40% of our time to those innermost 5 people, and another 20% to the next 10 people, which means over 60% of our time are with those first 15 friends. And so there is a power law in time spent with our friends. There appears to be infinite wisdom in the phrases “choose your friends wisely” and “you are the average of the 10 people you spend the most time with”.</p>
+
+
+
+<p>A poem captures the friendship pyramid well:</p>
+
+
+
+<p><strong>I had a friend</strong></p>
+
+
+
+<p>A group of folks I thought I knew<br>Spoke poorly of my name&nbsp;<br>I wasn’t there to say a word&nbsp;<br>Or stop the group’s defame.&nbsp;</p>
+
+
+
+<p>And though I wasn’t present&nbsp;<br>My own name to defend<br>The group was left corrected&nbsp;<br>Because I had a friend.&nbsp;</p>
+
+
+
+<p>I then experienced tragedy&nbsp;<br>A deep infinite loss&nbsp;<br>Darkness seemed to cover me<br>My life had turned to dross.&nbsp;</p>
+
+
+
+<p>And though my sorrow deepened&nbsp;<br>Impossible to mend&nbsp;<br>I pulled myself out of the pit&nbsp;<br>Because I had a friend.&nbsp;</p>
+
+
+
+<p>I then experienced untold joy<br>A victory was won&nbsp;<br>I celebrated, happily&nbsp;<br>And basked in winning sun.&nbsp;</p>
+
+
+
+<p>And just like sorrow, joy was there<br>To seemingly no end<br>I shared the good news happily&nbsp;<br>Because I had a friend.</p>
+
+
+
+<p>And finally, as life progressed&nbsp;<br>I reached a major goal&nbsp;<br>Relieved, I took a breath to rest&nbsp;<br>My life at last felt whole.</p>
+
+
+
+<p>Concerned to see me take a break&nbsp;&nbsp;<br>And risk much more to mend&nbsp;<br>I was pushed to stay the course&nbsp;<br>Because I had a friend.&nbsp;</p>
+
+
+
+<p>When faced with trial, sorrow, fear&nbsp;<br>With gladness, joy to blend&nbsp;<br>A man only becomes his best&nbsp;<br>Because he has a friend.&nbsp;</p>
+
+
+
+<p>I suspect that the best way to make true friends - friends who live at the top of the friend pyramid - is to be a true friend yourself. Water finds its own level. If I want a friend who would sacrifice for me, push me to greatness, fight for me, or die for me, then I must be that friend first. That is the main takeaway I have. I am extremely grateful for the true friends in my life, and am committed to being a better friend to them. They are truly the best part of life.</p>
+</div>
+<div class="post-nav"><a href="/blog/the-scariest-thing-in-the-world/">← The Scariest Thing in the World</a>
+<a href="/blog/startup-spiritual-conversion/">Startup Spiritual Conversion  →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

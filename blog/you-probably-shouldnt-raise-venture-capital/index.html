@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>You probably shouldn’t raise venture capital — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>You probably shouldn’t raise venture capital</h1>
+  <div class="post-date">September 27, 2024</div>
+</div>
+<div class="post-body">
+<p>It might surprise you to hear that the most common advice I share with founders - by far - is that they should avoid venture capital altogether.&nbsp;</p>
+
+
+
+<p>And it’s not some test, or a joke - I’m being completely serious. Taking venture capital is just plain wrong - even dumb - for <em>almost all</em> businesses.</p>
+
+
+
+<p>I realized this a few years ago in a conversation with my friend who leads one of the top 5 firms. He basically told me: “Look, venture capital is rocket fuel, and it’s only meant for rockets. If you put rocket fuel in a car, it ruins it. If you put it in a jet, it ruins it. You have to be a rocket, and you have to <em>want</em> the fuel, or it just doesn’t work. All the friction in venture comes from when you’ve taken the fuel but aren’t acting like a rocket.”</p>
+
+
+
+<p>So, why do so many startups seek VC funding who shouldn’t?</p>
+
+
+
+<p>That’s easy. There’s so much appeal.</p>
+
+
+
+<ol>
+<li><strong>Ability to burn. </strong>Venture capital dollars allow you to get rid of the biggest constraint on business (earn a profit in the near term) - which is very appealing to founders. Why operate profitably when you don’t have to? Unfortunately this one is less appealing in reality - the ability to burn can lead to some really bad outcomes.</li>
+
+
+
+<li><strong>Risk without ruin. </strong>Venture capital is other people’s money - not your own - so you get to take real risks without making your family bankrupt.</li>
+
+
+
+<li><strong>High status. </strong>Unfortunately, venture capital is considered “high status” so you can say you are “VC funded” as a way to signal that you are special. The phrase “we’re VC backed” is now common in startup vernacular as a way to signal.&nbsp;</li>
+
+
+
+<li><strong>Move faster.</strong> This is probably the best reason to take venture capital - which is that you can speed up the company-building process by building and hiring quickly to win a market.</li>
+</ol>
+
+
+
+<p>So the upsides are very clear.</p>
+
+
+
+<p>But what isn’t really discussed is the many downsides of VC funding.</p>
+
+
+
+<ol>
+<li><strong>It’s nearly impossible to succeed</strong>. When you take venture funding, you are signing up to do the near impossible, and unless you become a true outlier, your investors are not <em>really</em> <em>totally</em> happy. Sure, they may be nice, and totally fine, etc, but a real win for your investor is if you reach $100m in revenue, build something that can endure, usually resulting in at least 10x on the money they invested. Less than .1% of startups ever get to this.</li>
+
+
+
+<li><strong>The growth expectations are brutally high</strong>. Do you really want to sign up to go from $1-10m in revenue in less than 2 years? And then once you pull that off, do you really want to double again to 20, then again to 40, then <em>again</em> to 80? Really? Do you know how hard that is?</li>
+
+
+
+<li><strong>Because this is so hard and rare, it requires unnatural sacrifice</strong>. Doing this properly is all consuming. Work life balance is essentially gone for founders who want a shot of success. Family life is definitely affected. Health is often affected. This is probably the assumption that people forgot about during ZIRP - startup culture became glamorous. And because things were deceptively easy during the good times, many of us forgot just how much must be sacrificed at the altar of outlier startup success. Perhaps others can figure out how to create a unicorn without unusual sacrifice, and more power to them, but I’ve been a part of 3 startups worth over a billion dollars, and extreme sacrifice by at least a small group of people has been true in each of them.</li>
+
+
+
+<li><strong>It is a decade long road and the end goal - becoming a public company - is even more painful! </strong>Even if you do grow like a rocketship, do you really want to do it for a decade until you IPO? Venture capital is for building enduring, public businesses, full stop. This path to a public company is <em>not</em> the right path for almost all startups and all founders. The right path for almost all founders is to sell your business for life-changing amounts of money: $50m, $100m, even $500m, so you secure you and your family’s future. Selling is of course the rational thing to do in almost all cases, and that’s why founders should do it! Of course you should sell! But….in venture capital…if you sell, generally speaking….. the math doesn’t work for your investors. This is more true the larger the fund, but it’s true generally speaking regardless of fund size that public, enduring companies are what make this ecosystem work. So, do you really want to build a company to go public?</li>
+</ol>
+
+
+
+<p>I think Nikita and Chris summarize it well here:</p>
+
+
+
+<figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeppakSC21wc5HS608k-mUk1CEE1NrQkPB2Vg_pVKYhBLzEUlCAftk4Sdbs4Wwi5fO1RkHFg6w_zgTDvfTIqT7Tht8wfNdUfcAIsXkRHQovlFgCkvY8oZ3Av6kcr3LFNEfeMedoDCOaL0csAtQOfocxUV4?key=igS9Yua5sJSAnFDiNfPbqw" alt="" /></figure>
+
+
+
+<figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe25jfR8h9Alt10idKHQOZeDRzhnKL11955cSCZ880awOaWJlJoNCktSNadZ_br0i8eIdsPDcqlA0hkkj99UDXlirE9d2VQ-eOu-lmJV_ir4Y8Jl73qWpKWr9FCHwRzyMaY6A3KQ8G5NwUObPPHqOhI86o?key=igS9Yua5sJSAnFDiNfPbqw" alt="" /></figure>
+
+
+
+<p>I should mention there’s another path, which is to wait a long time to raise venture capital after bootstrapping for many years (Qualtrics, Atlassian, etc), or to raise very little venture capital (take some fuel, but avoid the never-ending VC treadmill), which arguably is the best of both worlds. I won’t discuss that path here, but it’s worth mentioning as a path many enduring businesses take.</p>
+
+
+
+<p>So, before you decide to pitch an investor, know what path you really want, and know that for the vast majority of startups, taking venture capital is sincerely the wrong, dumber, less rational move. It’s much, much better to just build your company naturally, steadily over time, and eventually sell for life-changing amounts of money.</p>
+
+
+
+<p>But for those who want a shot at making a dent, who want to compete under the brightest lights on the biggest stage, and who want the glory that comes with shooting for enduring greatness, the venture capital path is unbeatable. </p>
+
+
+
+<p>If that’s you, I’d love to talk 🙂.&nbsp;</p>
+
+
+
+<p></p>
+</div>
+<div class="post-nav"><a href="/blog/pelions-seed-investment-program/">← Pelion’s Seed Investment Program</a>
+<a href="/blog/the-empty-suit-executive/">The Empty Suit Executive →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

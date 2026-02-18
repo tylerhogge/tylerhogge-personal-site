@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What I learned from Alfred Lin of Sequoia — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>What I learned from Alfred Lin of Sequoia</h1>
+  <div class="post-date">January 18, 2024</div>
+</div>
+<div class="post-body">
+<p>A few weeks ago I listened to <a href="https://www.youtube.com/watch?v=jv4cwqO87eI">a podcast with Alfred Lin on Turpentine VC with Erik Torenberg</a>. It was excellent.</p>
+
+
+
+<p>Here are the top 17 things I learned, with a few sentences of my thoughts in <strong>bold</strong>.</p>
+
+
+
+<ol>
+<li>"My leadership style is not complicated. Many people share the same style. You are tasked with leaving it better than you found it. My job is to make other people successful. I want others to have the best track record that they can. I fundamentally believe in servant leadership." 
+<ul>
+<li><strong>One thing that has always stood out to me about Sequoia is that they call the leader of the firm the "steward". I love this idea. A steward, fundamentally, leaves something better than they found it. And if each steward of Sequoia (first Don Valentine, then Doug Leone and Mike Moritz, and now Roelof Botha) does this well, it necessarily means Sequoia endures.</strong> <strong>Alfred fits this same mold. </strong></li>
+</ul>
+</li>
+
+
+
+<li>"You're going to have to constantly re-create yourself as a founder. You are under no obligation to remain the same person." 
+<ul>
+<li><strong>I have felt this deeply as a leader, most recently when I led product and risk at Divvy. If you don't grow personally faster than the company grows, you get swallowed up as a leader. So you must reinvent yourself as a leader, or risk being swallowed. The best founders do this extremely well - they are a new founder every year.</strong></li>
+</ul>
+</li>
+
+
+
+<li>"A key part of our culture is to be extremely obsessed with the long term. What do we think we can get accomplished in a decade? When Don Valentine started Sequoia it was a very deliberate decision to call it Sequoia Capital and not Valentine Capital - and I think it speaks to our obsession with the long term."
+<ul>
+<li><strong>In studying where alpha comes from in venture capital, I do think a large source of alpha is in the time horizon, meaning the willingness to let something work for 10+ years. There are are just very few people willing to make money slowly, and so if a VC firm can attract LPs who are willing to do that, there's a much higher chance of outperformance. Great things take time to build, and ultimately enduring businesses are what drive returns.</strong></li>
+</ul>
+</li>
+
+
+
+<li>"A key part of our culture is to hold ideas in tension. Individual performance and teamwork. Innovation vs process repetition. Supporting and demanding. All at the same time"
+<ul>
+<li><strong>Jocko talks about the dichotomy of leadership, which is what I think Alfred is talking about here. So many attributes must be held in tension for highly successful people. A golden mean of two seemingly opposite traits is often what's needed.</strong></li>
+</ul>
+</li>
+
+
+
+<li>"The pre-mortem we have is always around complacency. That’s our biggest risk. To counter that, you cant rest on your laurels, and you must innovate. An example of innovation is going earlier with Arc, and going later, with the Sequoia capital fund."
+<ul>
+<li><strong>I loved this quote. Here's why. If you think about the fundamental nature of a venture capital firm, it has a few unique characteristics that, if left unchecked, lead to complaceny and death. For example, you make very few decisions per year, and you don't know if those decisions were 'right' for many years. The delayed element of this lends itself towards complacency. It can attract the wrong type of person - someone who can hide their bad performance behind the reality of delayed reality. So how do you counteract this? I think all the great firms have a relentless, driving leader who injects a huge sense of urgency into the firm. The archetype of this person is clearly Doug Leone. Doug has said many times that Sequoia always lives in fear of being replaced. That type of urgency must be injected by a relentless leader or VC will attract the worst type of people.</strong></li>
+</ul>
+</li>
+
+
+
+<li>"We don't track AUM. We only care about the fund size we are investing out of. We have a $200m seed fund. A $700-800 venture fund. a $1.5b growth fund. Our Expansion Fund. And finally the Sequoia Capital Fund."
+<ul>
+<li><strong>Just a good reminder that these big firms are really an aggregate of multiple products.</strong></li>
+</ul>
+</li>
+
+
+
+<li>"After 5-10 years you have a scorecard of how much you invested vs the distributed value. Before that, what od you do? Markups? We look at them, but not really closely because they can be so wrong. What we do look at is: how is the company doing? Every 6 months we do a portfolio review of all the companies that haven’t exited. We look back at what the company told us they would do, and thats how we track."
+<ul>
+<li><strong>One topic I'm fascinated with is how you measure the performance of a venture capitalist. It's one of the few careers that you have a scoreboard. But, the trick is that this is a delayed scoreboard. So what do you do along the way? Alfred's insight here was that the best way to measure the performance of a VC is how well their companies are performing. More specifically, are your companies beating and raising? If yes, you can predict success. If no, you are on a track to failure. I LOVE this insight, because it focuses back on the actual building of tech companies, not just idly sitting back and waiting to see how they turn out. A great investor, I think, drastically improves the odds of success - they bend the curve. They are active. </strong></li>
+</ul>
+</li>
+
+
+
+<li>"There are so many parts to this business. Sourcing. You can measure this. How many great companies did you see? Picking. Which one did you pick and why? How good are your memos and due diligence? Then you have to win it. This is very easy to measure. If we decide we want to do an investment, we see did we win or or not. Usually we win it. The last is what we talked about: company building. Portfolio review. Hows the company progression. Are you taking a lead role on the board to bend the ark. We judge ourselves by whether we are the first call of the founder."
+<ul>
+<li><strong>This is more of the same as quote 7. This is the inputs necessary to deliver great outputs as a VC. Measure the inputs, and the score will take care of itself.</strong> </li>
+</ul>
+</li>
+
+
+
+<li>"We like to give people frameworks and show it might have done at another company, but they can apply it to their own company."
+<ul>
+<li><strong>This is how the best people give advice. In frameworks and principles, not in specifics.</strong></li>
+</ul>
+</li>
+
+
+
+<li>"You should expect VC to be bar-belled, because there are truths that aren’t going away."</li>
+
+
+
+<li>"You must be customer obsessed. Listen to your customers, and they will tell you what they want. But that is only half the job. The other half is to invent on behalf of your customers."
+<ul>
+<li><strong>Huge insight here. Andy Rachleff taught me that the best companies are ambidextrous: they must both explore and exploit. Exploit means making what you have better, and customers are essential to doing this. But Exploring is innovating on your customers' behalf, and perhaps surprisingly to many, you cannot rely on customers for this. It's the innovator's job to innovate.</strong></li>
+</ul>
+</li>
+
+
+
+<li>"I think a Sequoia partner is highly competitive with a heart of gold. Supporting and demanding. That’s what makes a sequoia partner. Highly competitive means there are 3 seconds on the clock, and you want to take the shot. And will you make it? Get the ball. Take the shot. Make the shot. You wont make it every time, but you have two make it sometimes. Then the second part - a heart of gold. I don’t think you can do this job if you don’t care about founders, the company, the employees, the outcome, in a way that is not about money or the IPO or dollars. But it’s about the fact that you’re helping build something that didn’t exist before."
+<ul>
+<li><strong>I loved this description of what makes a sequoia partner special. A good person, who is highly confident and competitive too.</strong></li>
+</ul>
+</li>
+
+
+
+<li>"You’re going take 30-60 shots in a career if you do this for 20-30 years. What are those slots? What are the names of the founders and the companies that you fill those slots with? How much do you care about each of them?"
+<ul>
+<li><strong>Warren Buffet has a famous quote on investing like you only have a 20-hole punch card. Every investment you make takes one hole of the punchcard. And when you get to 20, you run out. VC is a lot like that. <em>“I could improve your ultimate financial welfare by giving you a ticket with only 20 slots in it so that you had 20 punches—representing all the investments that you got to make in a lifetime. And once you’d punched through the card, you couldn’t make any more investments at all.”</em> <em>He says, “Under those rules, you’d really think carefully about what you did and you’d be forced to load up on what you’d really thought about. So you’d do so much better.”</em></strong> </li>
+</ul>
+</li>
+
+
+
+<li>"We don’t like the EIR phrase, because we don’t like the word residence. We think of it as a EIA. Entrepreneur in Action."
+<ul>
+<li><strong>Love this. Another example of injecting urgency into a role that otherwise tends to complacency. </strong></li>
+</ul>
+</li>
+
+
+
+<li>"There are two types of incubation. The first is where it's partly your idea, partly some founder idea. We like that one. The other idea is we come up with the idea, and then we go find someone. We don’t like that one."
+<ul>
+<li><strong>I think the insight here is that it's not just an idea that matters, it's an idea maze. And so its not really smart to think you can come up with some idea and simply hand it off to another founder, and that they'll execute on it. A good incubation is shared idea maze between founders, building together.</strong></li>
+</ul>
+</li>
+
+
+
+<li>"We weren’t talking about a trillion dollar company a decade ago. Now it’s expected. Many people will do it. All the 100b companies think they can do it. Roelof likes to talk about the scale of your ambition. Are you happy when you're a billion dollar company or a 10b company? Or do you broaden your ambition once you hit that milestone? Nvidia started with a game card. Then GPU. And it keeps reinventing itself to a $1t company. Same is true for apple, Microsoft, google." 
+<ul>
+<li><strong>Thing bigger. Now there are many trillion dollar companies. Startups should shoot for it. </strong></li>
+</ul>
+</li>
+
+
+
+<li>"When I was growing up, companies only had act 1. Shareholders would tell people to not worry about act 2. And management teams would listen. But we decided that wasn’t going to be true in technology."
+<ul>
+<li><strong>There are still only a few tech companies who have earned the right (and the right investor base) to take big swings on act 2, act 3, and act 4. But the best tech companies have done just that. My favorite examples: Netflix, Amazon, Hubspot, Shopify. There aren't many. </strong></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="post-nav"><a href="/blog/speak-plainly/">← Speak Plainly.</a>
+<a href="/blog/a-few-thoughts-on-intensity/">A few thoughts on intensity. →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

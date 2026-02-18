@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A LinkedIn message, an email, and a tweet — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>A LinkedIn message, an email, and a tweet</h1>
+  <div class="post-date">April 13, 2018</div>
+</div>
+<div class="post-body">
+<h2>The lucky story of how I wound up at my dream job(s) in Silicon&nbsp;Valley</h2>
+<p id="4bfe" class="graf graf--p graf-after--h4">In June it will be 2 years since my wife and I moved to Silicon Valley with our 2 kids. We absolutely love it here. She loves the weather, the diversity, and the beaches, and I love the ambitious and brilliant people I get to work with and meet all around.</p>
+<p id="f90a" class="graf graf--p graf-after--p">For a while I’ve been meaning to share what led us here and what I think makes SV unique.</p>
+
+<h3 id="b40d" class="graf graf--h3 graf-after--p">A LinkedIn&nbsp;Message</h3>
+<p id="50fe" class="graf graf--p graf-after--h3">In 2014 I was sitting in my living room in Boise reading Ben Horowitz’ book “The Hard Thing About Hard Things” when I came across the story of how Ben hired his VP of Sales at Opsware:</p>
+
+<blockquote id="9223" class="graf graf--blockquote graf--startsWithDoubleQuote graf-after--p">“After interviewing about two dozen candidates — none of whom had the strengths I sought — I interviewed Mark Cranney. He wasn’t what I expected; he didn’t fit the stereotype of a hard-charging sales executive. For starters, Mark was average height, whereas most sales executives tend to be rather tall. Next, he was a square guy — that is, he was as wide as he was tall. Not fat, just square. His square body seemed to fit rather uncomfortably into what must have been a custom-tailored suit — there is no way an off-the-rack business suit would fit a square guy like Mark.
+And then I looked at his résumé. The first thing I noticed was that he went to a school that I’d never heard of, Southern Utah University. I asked him what kind of school it was. He replied, “It was the MIT of southern Utah.” That was the last joke he told. Mark’s seriousness was so intense that it seemed to make him uncomfortable in his own skin. He made me uncomfortable, too.”</blockquote>
+<p id="6be2" class="graf graf--p graf-after--blockquote">I put down the book and started to laugh. My wife asked me what was funny, and I told her that the book I&nbsp;<span class="markup--quote markup--p-quote is-other">was</span>&nbsp;reading just talked about a guy from Southern Utah University (where we both went to school) and how interesting he sounded.</p>
+<p id="142f" class="graf graf--p graf-after--p">Then I kept reading:</p>
+
+<blockquote id="e0b8" class="graf graf--blockquote graf--startsWithDoubleQuote graf-after--p">“When I asked Mark for his references, he surprised me again. He gave me a list of seventy-five references. He said he had more if I needed them. I called every reference on the list, and every one called me back within one hour. Mark ran a tight network. Maybe these references were the sales FBI. Then, just as I was getting ready to make the hire, another executive on my team called to say that a friend of hers knew Mark Cranney and wanted to give a negative reference.
+I called the friend — I’ll call him Joe — and proceeded to have the most unusual reference call of my career:
+Ben: “Thanks very much for reaching out.”
+Joe: “My pleasure.”
+Ben: “How do you know Mark Cranney?”
+Joe: “Mark was an area vice president when I taught sales training at my previous employer. I want to tell you that under no circumstances should you hire Mark Cranney.”
+Ben: “Wow, that’s a strong statement. Is he a criminal?”
+Joe: “No, I’ve never known Mark to do anything unethical.”
+Ben: “Is he bad at hiring?”
+Joe: “No, he brought some of the best salespeople into the company.”
+“Ben: “Can he do big deals?”
+Joe: “Yes, definitely. Mark did some of the largest deals we had.”
+Ben: “Is he a bad manager?”
+Joe: “No, he was very effective at running his team.”
+Ben: “Well, then why shouldn’t I hire him?”
+Joe: “He’ll be a terrible cultural fit.”
+Ben: “Please explain.”
+Joe: “Well, when I was teaching new-hire sales training at Parametric Technology Corporation, I brought in Mark as a guest speaker to fire up the troops. We had fifty new hires and I had them all excited about selling and enthusiastic about working for the company. Mark Cranney walks up to the podium, looks at the crowd of fresh new recruits, and says, ‘I don’t give a fuck how well trained you are. If you don’t bring me five hundred thousand dollars a quarter, I’m putting a bullet in your head.’ ”
+Ben: “Thank you very much.”</blockquote>
+<p id="2c63" class="graf graf--p graf-after--blockquote">Now I was laughing hard.</p>
+<p id="4558" class="graf graf--p graf-after--p">And I had already concluded I had to meet Mark Cranney, this mythological sales leader who played football at the same school I played baseball.</p>
+<p id="157d" class="graf graf--p graf-after--p">So, I did what I always do, and I cold-emailed him.</p>
+<p id="f40a" class="graf graf--p graf-after--p">Except this time I used LinkedIn invite (not something I typically do)</p>
+<p class="graf graf--p graf-after--p">
+<img class="progressiveMedia-image js-progressiveMedia-image" src="https://tylerhogge.com/wp-content/uploads/2018/04/e1865-12m5fzfuhmija5as7h_r6kq.png"></p>
+<p id="eaa4" class="graf graf--p graf-after--figure">Not my best effort…..but ok.</p>
+<p id="8707" class="graf graf--p graf-after--p">And in an hour or two, he replied:</p>
+
+<figure id="bfc7" class="graf graf--figure graf-after--p">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded"><img class="progressiveMedia-image js-progressiveMedia-image" src="https://tylerhogge.com/wp-content/uploads/2018/04/8489f-1ih8hqq1gqmtbcnllhcaypg.png"></div>
+</div></figure>
+<p id="311f" class="graf graf--p graf-after--figure">Go t-birds. Awesome.</p>
+<p id="9c7c" class="graf graf--p graf-after--p">I still remember reading that reply.</p>
+<p id="078e" class="graf graf--p graf-after--p">Over the next few days I decided two things: 1) I wanted to work for Mark Cranney at Andreessen Horowitz, and 2) I was going to run a sales process to convince him to hire me.</p>
+<p id="6d63" class="graf graf--p graf-after--p">The only issue: I was just getting ready to start business school in 3 months, and there wasn’t a natural way to continue our conversation. Fortunately I had one last business trip in SF before starting school, and I emailed Mark again to see if he’d let me come by Sand Hill road to meet him in person for 15 minutes. This is where I told him I was going to business school, but that I wanted to keep in touch.</p>
+
+<blockquote id="179a" class="graf graf--blockquote graf-after--p"><span class="markup--quote markup--blockquote-quote is-other">Mark: “Why the f*** would you go get an MBA? Those idiots don’t know anything. They all think they are above being in sales. And they’re all wrong.</span>&nbsp;You can pay me $<span class="markup--quote markup--blockquote-quote is-other">200</span>&nbsp;grand and I’ll give you a network 10x better than any dumbass MBA program”</blockquote>
+<p id="a38d" class="graf graf--p graf-after--blockquote">I laughed. Hard.</p>
+<p id="282c" class="graf graf--p graf-after--p">Yes, I had to work for Mark Cranney at a16z.</p>
+<p id="5078" class="graf graf--p graf-after--p">Over the next semester I kept in touch, and finally decided to go for the kill. I put together a packet of all the companies I believed I could introduce to a16z to&nbsp;<a class="markup--anchor markup--p-anchor" href="https://a16z.com/briefings/" target="_blank" rel="nofollow noopener">help their market development efforts</a>&nbsp;and I sent it to Mark. The day the package was delivered, I called Mark and asked if he’d seen what I sent. Then I asked if I could intern there the following summer. Fortunately he gave me a chance at an interview that went well, and I spent the summer of 2015 on Mark’s team.</p>
+<p id="85c0" class="graf graf--p graf-after--p">For a 27-year old obsessed with startups, venture capital, and sales, it was a dream come true.</p>
+
+<h3 id="48ae" class="graf graf--h3 graf-after--p">An email</h3>
+<p id="203b" class="graf graf--p graf-after--h3">During my time at Andreessen Horowitz I also tried to meet as many interesting people as possible. One of the people I admired most was Jason Lemkin, mainly because of his success building EchoSign and the straightforward advice he’d give on Twitter and Quora. So I emailed him.</p>
+<p id="c06c" class="graf graf--p graf-after--p">It turns out most people are within a few miles on Sand Hill Road, so the cold email I sent had a pretty good&nbsp;<span class="markup--quote markup--p-quote is-other">subject</span>&nbsp;line (and the whole email was much better than the Cranney one):</p>
+
+<figure id="2dd5" class="graf graf--figure graf-after--p">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded"><img class="progressiveMedia-image js-progressiveMedia-image" src="https://tylerhogge.com/wp-content/uploads/2018/04/1b501-1bqerpepwsiquryjkwdms9g.png"></div>
+</div></figure>
+<p id="b656" class="graf graf--p graf-after--figure">He replied. And after I followed up 4x, we finally met for 30 minutes one day while I was in SF.</p>
+<p id="8f97" class="graf graf--p graf-after--p">First thing he says in our meeting: “Well, you’re persistent.”</p>
+<p id="1562" class="graf graf--p graf-after--p">OK!</p>
+<p id="5804" class="graf graf--p graf-after--p">I told Jason I wanted to work for him during my second year of business school on any projects he needed, and I floated the idea of me helping review potential investments (pitch deck review, competitor analysis, customer interviews, etc) and fortunately he gave me a shot. I dug in. And then I got a few more projects.</p>
+<p id="a9b9" class="graf graf--p graf-after--p">As a result, the second year of business school was a blast: I was able to help Jason review several deals and plan the VC portion of the SaaStr Annual in SF, instead of going to class.</p>
+<p id="bac0" class="graf graf--p graf-after--p">2 year later and I’m still&nbsp;<a class="markup--anchor markup--p-anchor" href="http://www.saastrpro.com/" target="_blank" rel="nofollow noopener">helping Jason with several projects</a>&nbsp;as he grows SaaStr into a global $10 million+ business.</p>
+<p id="219b" class="graf graf--p graf-after--p">All thanks to a lucky cold email. And some follow up. And a crisp 10-minute pitch.</p>
+
+<h3 id="3220" class="graf graf--h3 graf-after--p">A Tweet</h3>
+<p id="1944" class="graf graf--p graf-after--h3">The final experience is a little bit of a rewind. During my first semester of business school I became enamored with this startup named Wealthfront. I had been a client for a while, loved the product, and was already somewhat of a finance nerd. I had just completed the CFA exams and had a long-held belief that some startup was going to be able to automate most of financial planning, and Wealthfront seemed like the leading contender.</p>
+<p id="048a" class="graf graf--p graf-after--p">I wanted to better test my hypothesis, so I often debated with smart people on twitter about Wealthfront’s potential. Most of the arguments I found against Wealthfront were weak. I eventually decided Wealthfront was a company worth making a bet on, and I already knew that I preferred joining a startup over trying to get into VC. Perhaps it was the a16z kool-aid, but I became convinced I needed to be an operator if I wanted to have a standout career.</p>
+<p id="dc1e" class="graf graf--p graf-after--p">One day, while sitting on Cornell’s campus during a break, I sent a tweet to Andy Rachleff and Adam Nash asking if I could talk to them (at this point I hadn’t yet received an offer from Cranney to go to a16z):</p>
+
+<figure id="e7d0" class="graf graf--figure graf-after--p">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded"><img class="progressiveMedia-image js-progressiveMedia-image" src="https://tylerhogge.com/wp-content/uploads/2018/04/f3f19-1goqgroi3etu53al3hse6sq.png"></div>
+</div></figure>
+<p id="d58b" class="graf graf--p graf-after--figure">Two minutes later, Andy replied:</p>
+
+<figure id="2f63" class="graf graf--figure graf-after--p">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded"><img class="progressiveMedia-image js-progressiveMedia-image" src="https://tylerhogge.com/wp-content/uploads/2018/04/f982a-1fiuaznlgcbhxjybmdt3wpg.png"></div>
+</div></figure>
+<p id="9185" class="graf graf--p graf-after--figure">I couldn’t believe it.</p>
+<p id="858b" class="graf graf--p graf-after--p">So I emailed him that night. Always the professor, Andy put me through his first test<span class="markup--quote markup--p-quote is-other">:</span></p>
+
+<figure id="bc1d" class="graf graf--figure graf-after--p">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded"><img class="progressiveMedia-image js-progressiveMedia-image" src="https://tylerhogge.com/wp-content/uploads/2018/04/fb185-1dmkvswwhbjd6lhiqww4btq.png"></div>
+</div></figure>
+<p id="784f" class="graf graf--p graf-after--figure">When I read this, I knew immediately how I’d reply.</p>
+<p id="cabd" class="graf graf--p graf-after--p">How?</p>
+<p id="c94d" class="graf graf--p graf-after--p">Not long before, I read Andy’s “<a class="markup--anchor markup--p-anchor" href="http://info.wealthfront.com/rs/wealthfront/images/2013_Silicon_Valley_Career_Guide.pdf" target="_blank" rel="nofollow noopener">Career Guide to Silicon Valley”</a> — the very best content ever written for people who want to have a successful tech career — and one of the principles states:</p>
+
+<blockquote id="1c19" class="graf graf--blockquote graf-after--p"><span class="markup--quote markup--blockquote-quote is-other">All our advice on Silicon Valley careers is based on a simple idea: that&nbsp;</span><span class="markup--quote markup--blockquote-quote is-other">your choice of company trumps everything else. It’s more important than your job title, your pay or your responsibilities</span></blockquote>
+<p id="8bf2" class="graf graf--p graf-after--blockquote">So I replied:</p>
+
+<figure id="2667" class="graf graf--figure graf-after--p">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded"><img class="progressiveMedia-image js-progressiveMedia-image" src="https://tylerhogge.com/wp-content/uploads/2018/04/29358-1f0k1ryoh98-etb77rljddq.png"></div>
+</div></figure>
+<figure id="f733" class="graf graf--figure graf-after--figure">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded"><img class="progressiveMedia-image js-progressiveMedia-image" src="https://tylerhogge.com/wp-content/uploads/2018/04/85cf8-1gsyvmcobdaskxjmvkg1-a.png"></div>
+</div></figure>
+<p id="7e7f" class="graf graf--p graf-after--figure">Passed the test. Best email I ever sent. And now I’m a Product Manager at Wealthfront.</p>
+<p id="f1f4" class="graf graf--p graf-after--p">So here we are. Two years in, with hopefully many more years to come.</p>
+<p id="6ff3" class="graf graf--p graf-after--p"><span class="markup--quote markup--p-quote is-other">I’m extremely grateful for the type of culture of giving and mentorship that exists here. Because almost no one is “native” Silicon Valley, you’re surrounded by people who at one point also wanted to break into the community, who received help, and who now pay it forward. It’s really a special place.</span></p>
+<p id="8ac0" class="graf graf--p graf-after--p">To that end: if I can be helpful, reach out.</p>
+<p id="24de" class="graf graf--p graf-after--p graf--trailing">You can reach me on twitter. Or, if you’re good, a cold email&nbsp;:)</p>
+&nbsp;
+</div>
+<div class="post-nav"><a href="/blog/the-most-important-framework-for-product-leaders/">← The Most Important Framework For Product Leaders</a>
+<a href="/blog/improving-products-with-the-wisdom-of-crowds/">You can't rely on customers to innovate (but you *must* rely on customers to iterate) →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

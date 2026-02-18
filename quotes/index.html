@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quotes — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="page-header"><h1>Quotes</h1></div>
+<div class="page-body">
+<h3>“The most important decision you make is to be in a good mood.” <br /><strong>-Voltaire</strong></h3>
+<h3>"Trust only movement. Life happens at the level of events, not of words. Trust movement."<br /><strong>-Alfred Adler</strong></h3>
+<h3>“Winning does not tempt that man. This is how he grows: by being defeated, decisively, by constantly greater beings.”<br /><strong>-Rainer Maria Rilke in </strong><strong>‘The Man Watching’</strong></h3>
+<h3>“The most common form of despair is not being who you are.” <br /><strong>-Søren Kierkegaard<br /></strong><br />“Now with God’s help, I shall become myself.”<strong><br />-Soren Kierkegaard</strong></h3>
+<h3>“I was unable to enter into ordinary relationships. I therefore concluded that it was my task to be extraordinary.”<strong><br /></strong><strong>-Søren Kierkegaard</strong></h3>
+<h3>“The noble nature is inspired only by the difficult.”<br /><strong>-Søren Kierkegaard</strong></h3>
+<h3>"If you knew how quickly people will forget you when you die, you would not seek to please anyone but God." <br /><strong>-St John Chrysostom</strong></h3>
+<h3>"The key is not the 'will to win'... everybody has that. It is the will to prepare to win that is important." <br /><strong>-Bob Knight</strong></h3>
+<h3>"Excellence is never an accident. It is always a result of high intention, sincere effort , and intelligent execution; it represents the wise choice of many alternatives - choice, not chance, determines your destiny." <br /><strong>-Aristotle</strong></h3>
+<h3>"The reasonable man adapts himself to the world: the unreasonable one persists in trying to adapt the world to himself. Therefore all progress depends on the unreasonable man.” <br /><strong>-George Bernad Shaw</strong></h3>
+<h3>"Ability can be assessed fairly accurately by a person’s academic record and achievement in work. Character is not so easily measured. After some successes but too many failures, I concluded that it was more important, though more difficult, to assess a person’s character."<br /><strong>-Lee Kuan Yew</strong></h3>
+<h3>"You either have the talent or you do not. My job is to find out, quickly." <br /><strong>-Lee Kuan Yew</strong></h3>
+<h3>"Impress by the clarity of your ideas…I speak as a practitioner. If I had not been able to reduce complex ideas into simple words and project them vividly for mass understanding, I would not be here today" <br /><strong>-Lee Kuan Yew</strong></h3>
+<h3 class="p1">“My life is not guided by philosophy or theories. I get things done and leave others to extract the principles from my successful solutions. I do not work on a theory. Instead, I ask: what will make this work? If, after a series of solutions, I find that a certain approach worked, then I try to find out what was the principle behind the solution.”<br /><strong>-Lee Kuan Yew</strong></h3>
+<h3>"Routine, in an intelligent man, is a sign of ambition.” <br /><strong>-W.H. Auden</strong></h3>
+<h3>“Life shrinks or expands in proportion to one’s courage.” <br /><strong>-Anais Nin</strong></h3>
+<h3>"No matter how isolated you are and how lonely you feel, if you do your work truly and conscientiously, unknown friends will come and seek you."<br /><strong>-Carl Jung</strong></h3>
+<h3>"A man who is not on fire is nothing."<br /><strong>-Carl Jung</strong></h3>
+<h3>“Confidence comes from preparation.” <br /><strong>-Kobe Bryant</strong></h3>
+<h3>“Your job right now is very obvious. You need to build a seamless web of deserved trust with really high-quality people and talk to nobody else.” <br /><strong>-Charlie Munger</strong></h3>
+<h3>"Just run your business as if: (1) You own 100% of it; (2) It is the only asset in the world that you and your family have or will ever have; and (3) You can’t sell it for at least a century.”<br /><strong>-Warren Buffett</strong></h3>
+<h3><span class="mx-2 md:mx-0 inline-block indent-0"><span class="pull-double">“</span>Nothing else in the world…not all the armies…is so powerful as an idea whose time has come.” <br /></span><strong><span class="mx-2 md:mx-0 inline-block indent-0">-</span><span class="mx-2 md:mx-0 inline-block indent-0">Victor Hugo</span></strong></h3>
+<h3 class="p1">“Write it on your heart that every day is the best day in the year. He is rich who owns the day, and no one owns the day who allows it to be invaded with fret and anxiety. Finish every day and be done with it. You have done what you could. Some blunders and absurdities, no doubt crept in. Forget them as soon as you can, tomorrow is a new day; begin it well and serenely, with too high a spirit to be cumbered with your old nonsense. This new day is too dear, with its hopes and invitations, to waste a moment on the yesterdays.”<br /><strong>-Ralph Waldo Emerson</strong></h3>
+<h3>"I know men, and I tell you Jesus Christ was not a man. Superficial minds see a resemblance between Christ and the founders of empires and the gods of other religions. That resemblance does not exist. There is between Christianity and other religions the distance of infinity. Alexander, Cæsar, Charlemagne and myself founded empires. But on what did we rest the creations of our genius? Upon sheer force. Jesus Christ alone founded His empire upon love; and at this hour millions of men will die for Him."<br /><strong>-Napoleon</strong></h3>
+<h3>"I have not usurped the crown, I have raised it from the gutter; the people have placed it on my head" <br /><strong>-Napoleon</strong></h3>
+<h3>"There is only one favorable moment in war; talent consists in knowing how to seize it."<br /><strong>-Napoleon</strong></h3>
+<h3>“In war, the moral is to the physical as three to one.” <br /><strong>-Napoleon</strong></h3>
+<h3>"I continued to abandon myself to my star, leaving all the care of precautions" <br /><strong>-Napoleon</strong></h3>
+<h3>“Envy is a declaration of inferiority.” <br /><strong>-Napoleon</strong></h3>
+<h3>"In order not to be astonished at obtaining victories, one ought not to think only of defeats."<br /><strong>-Napoleon</strong></h3>
+<h3>“I worried little about the passing murmurs of people, well assured that the result would inevitably bring them back to me.” <br /><strong>-Napoleon</strong></h3>
+<h3>"Death is nothing; but to live defeated and inglorious is to die daily." <br /><strong>-Napoleon</strong></h3>
+<h3>"I can no longer obey; I have tasted command, and I cannot give it up.”<br /><strong>-Napoleon</strong></h3>
+<h3>"Do you know what fills me most with wonder? The powerlessness of force to establish anything. There are only two powers in the world: the sword and the mind. In the end, the sword is always conquered by the mind." <br /><strong>-Napoleon</strong></h3>
+<h3>"Among so many conflicting ideas and so many different perspectives, the honest man is confused and distressed. Since one must take sides, one might as well choose the side that is victorious, the side which devastates, loots, and burns" <br /><strong>-Napoleon</strong></h3>
+<h3>"To do all that one is able to do, is to be a man; to do all that one would like to do, would be to be a god." <br /><strong>-Napoleon</strong></h3>
+<h3>“Audacity, audacity, always audacity.” <br /><strong>-Napoleon</strong></h3>
+<h3>“Your job, throughout your entire life, is to disappoint as many people as it takes to avoid disappointing yourself.” <br /><strong>-G. Doyle</strong></h3>
+<h3>"Beating the competition is relatively easy. Beating yourself is a never-ending commitment." <br /><strong>-Phil Knight</strong></h3>
+<h3>"The cowards never started and the weak died along the way. That leaves us." <br /><strong>-Phil Knight</strong></h3>
+<h3>"<span style="color: initial">There is no good in anything until it is finished." <br /><strong>-Genghis Khan</strong></span></h3>
+<h3>"Men are not made from easy victories but based on great defeats." <br /><strong>-Ernest Shackleton</strong></h3>
+<h3>"Difficulties are just things to overcome, after all." <br /><strong>-Ernest Shackleton</strong></h3>
+<h3 class="p1">“You would give up your dreams in order to escape your nightmares and I would not. I think it’s a bad bargain.”<br /><strong>-Cormac McCarthy</strong></h3>
+<h3>"Whatever you’re doing, do it well. If you’re writing a thank you note, take an extra minute to mention something beyond the typical thank you. If you’re exercising, do each set as well as you can. If you’re in conversation, really listen and don’t just wait for your turn to talk. Having high standards adds up. You can nearly always find an extra minute to do it better. And most important, you prove to yourself that you’re the type of person who does things well.”<br /><strong>-James Clear</strong></h3>
+<h3>“A maniacal sense of urgency is our operating principle.”<br /><strong>-Elon Musk</strong></h3>
+<h3 class="p1">“The price of anything is the amount of life you exchange for it.”<br /><strong>-Henry David Thoreau</strong></h3>
+<h3 class="p1">“Under conditions of peace, the warlike man attacks himself.”<br /><strong>-Friedrich Nietzsche</strong></h3>
+<h3 class="p1">“Perhaps there is no more important component of character than steadfast resolution. The boy who is going to make a great man, or is going to count in any way in after life, must make up his mind not merely to overcome a thousand obstacles, but to win in spite of a thousand repulses and defeats.”<br /><strong>-Theodore Roosevelt</strong></h3>
+<h3>“Big opportunities in life have to be seized.” <br /><strong>-Warren Buffett</strong></h3>
+<h3><span class="css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3">"The superior man is distinguished from the inferior man by his courage and his willingness to defy misfortune." </span><span class="css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3"> <br /><strong>-Friedrich Nietzsche</strong></span></h3>
+<h3>“Learning from history is a form of leverage.” <br /><strong>-Charlie Munger</strong></h3>
+<h3>“Above all, do not lose your desire to walk: Every day I walk myself into a state of well-being and walk away from every illness; I have walked myself into my best thoughts, and I know of no thought so burdensome that one cannot walk away from it.”<strong><br />-Søren Kierkegaard<br /></strong></h3>
+<h3>"The purpose of knowledge is action, not knowledge.” <br /><strong>-Aristotle</strong></h3>
+<h3>“We sell relationships over transactions. We think the relationship still wins out because the relationship allows you to push people and demand excellence.” <br /><strong>-Kirby Smart</strong></h3>
+<h3>“Wash the plate not because it is dirty, nor because you’re told to wash it, but because you love the person who will use it next.” <br /><strong>-St. Teresa of Calcutta</strong></h3>
+<h3>"What if the president of a bank refused to make me a loan? That was nothing. That made no difference to me; simply meant that I must look elsewhere until I got what I wanted.”<b><br />-Rockefeller</b></h3>
+<h3 class="p1">“My hunger is not for success, it is for excellence, because when you attain excellence, success just naturally follows.”<br /><strong>-Coach K</strong></h3>
+<h3 class="p1">“The greatest sin you can commit against your own life is to know what you want and not to act.”<br /><strong><span style="font-size: revert;color: initial">-Kim Stafford</span></strong></h3>
+<h3>"God will sell you anything at the price of labor."<br /><strong>-Leonardo DaVinci</strong></h3>
+<h3>“Being good in business is the most fascinating kind of art. Making money is art and working is art and good business is the best art.” <br /><strong>-Andy Warhol</strong></h3>
+<h3 class="quoteText">“The one perfectly divine thing, the one glimpse of God's paradise given on earth, is to fight a losing battle - and not lose it.”<br /><strong><span class="authorOrTitle">-G.K. Chesterton</span></strong></h3>
+<p><img src="https://pbs.twimg.com/media/GhgB-FgW8AAdEgZ?format=png&amp;name=medium" alt="Image" /></p>
+<h3><strong>-Lee Kuan Yew</strong></h3>
+<h3>“Human beings are born with different capacities. If they are free, they are not equal. And if they are equal, they are not free.” <br /><strong>-Aleksandr Solzhenitsyn</strong></h3>
+<h3>"The line separating good and evil passes not through states, nor between classes, nor between political parties either, but right through every human heart, and through all human hearts. This line shifts. Inside us, it oscillates with the years. Even within hearts overwhelmed by evil, one small bridgehead of good is retained; and even in the best of all hearts, there remains a small corner of evil.…. If only it were all so simple! If only there were evil people somewhere insidiously committing evil deeds, and it were necessary only to separate them from the rest of us and destroy them. <em><span style="text-decoration: underline">But the line dividing good and evil cuts through the heart of every human being.</span></em> And who is willing to destroy a piece of his own heart?”<br /><strong>-Aleksandr Solzhenitsyn</strong></h3>
+<h3>"A leader is a dealer in hope."<br /><strong>-Napoleon</strong></h3>
+<h3>“Action produces information. Just keep doing stuff.” <br /><strong>-Brian Armstrong</strong></h3>
+<h3>“Interested people watch obsessed people change the world.”<br /><strong>-Tim Grover</strong></h3>
+<h3>“Doubt is not a pleasant condition, but certainty is absurd."<br /><strong>-Voltaire</strong></h3>
+<h3>“The strength of a person’s spirit would then be measured by how much truth he could tolerate, or more precisely, to what extent he needs to have it diluted, disguised, sweetened, muted, falsified.”<br /><strong>-Nietzsche</strong></h3>
+<p><img src="https://pbs.twimg.com/media/GdBJ1bDagAI3Jqs?format=jpg&amp;name=medium" alt="Image" /></p>
+<h3>"In the best establishments, promises are always kept, whatever it may cost in agony or overtime."<br /><strong>-David Ogilvy</strong></h3>
+<h3>"The most valuable of all talents is that of talents is that of never using two words when one will do."<br /><strong>-Thomas Jefferson</strong></h3>
+<h3>"Honesty is the first chapter of the book of wisdom."<br /><strong>-Thomas Jefferson</strong></h3>
+<h3>"I predict future happiness for Americans, if they can prevent the government from wasting the labors of the people under the pretense of taking care of them."<br /><strong>-Thomas Jefferson</strong></h3>
+<h3>"Do you want to know who you are? Don't ask. Act! Action will delineate and define you."<br /><strong>-Thomas Jefferson</strong></h3>
+<h3>"I'm a greater believer in luck, and I find the harder I work the more I have of it."<br /><strong>-Thomas Jefferson</strong></h3>
+<h3>"I have sworn upon the altar of God eternal hostility against every form of tyranny over the mind of man."<br /><strong>-Thomas Jefferson</strong></h3>
+<h3>"We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain inalienable rights, among these are life, liberty, and the pursuit of happiness…"<br /><strong>-Thomas Jefferson</strong></h3>
+<h3>"The History of the world is but the Biography of great men."<br /><strong>-Thomas Carlyle</strong></h3>
+<h3>“I've searched all the parks in all the cities and found no statues of committees.”<br /><strong>-Gilbert K. Chesterton</strong></h3>
+<p><img src="https://pbs.twimg.com/media/GhhCPVJXcAArbmF?format=jpg&amp;name=small" alt="Image" /></p>
+<h3>“Every great institution is the lengthened shadow of a single man. His character determines the character of the organization.”<br /><strong>-Ralph Waldo Emerson</strong></h3>
+<h3>"People do not seem to realize that their opinion of the world is also a confession of character."<br /><strong>-Ralph Waldo Emerson</strong></h3>
+<h3>“If you don't get what you want, it's a sign either that you did not seriously want it, or that you tried to bargain over the price.”<br /><strong>-Rudyard Kipling<br /></strong></h3>
+<div>
+<div class="">
+<h3 class="public-DraftStyleDefault-block public-DraftStyleDefault-ltr">"You can either lower your goals to match your effort, or you can raise your effort to match your goals."<br /><strong><span style="color: revert;font-size: revert">-Coach K</span></strong></h3>
+</div>
+</div>
+<h3><span class="css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3">"It is always our choice whether or not we wish to pay the </span><span class="css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3 r-b88u0q">price</span><span class="css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3"> for life's rewards."<br /><strong>-Epictetus</strong></span></h3>
+<p><img src="https://pbs.twimg.com/media/GSK2LRSakAAD-xB?format=jpg&amp;name=large" alt="Image" /></p>
+<p><img src="https://pbs.twimg.com/media/GbMahHnW0AARbnY?format=png&amp;name=medium" alt="Image" /></p>
+<p><img src="https://pbs.twimg.com/media/GTGYhZvWgAAkas1?format=png&amp;name=900x900" alt="Image" /></p>
+<p><img class="alignnone size-full wp-image-783" src="https://tylerhogge.com/wp-content/uploads/2024/12/image-1.png" alt="image" width="1776" height="666" /></p>
+<h3>-<strong>Nietzsche</strong></h3>
+<h3>“In pleasant peace and security, how suddenly the soul in a man begins to die.”<br /><strong>-Theodore Roosevelt</strong></h3>
+<h3>“What the pupil must learn, if he learns anything, is that the world will do most of the work for you, provided you cooperate with it by identifying how it really works and aligning with those realities.”<br /><strong>-Joseph Tussman</strong></h3>
+<p><img src="https://pbs.twimg.com/media/GgQWyOobgAEYNM3?format=png&amp;name=medium" alt="Image" /></p>
+<h3><strong>-CS Lewis</strong></h3>
+<h3>"To be happy at home is the ultimate result of all ambition, the end to which every enterprise and labour tends, and of which every desire prompts the prosecution." <br /><strong>-Samuel Johnson, 1750</strong></h3>
+<h3>"Hesitation is fatal. Once an action has begun, it must be followed through with utmost exertion of the will."<br /><strong>-Napoleon</strong></h3>
+<h3>“What a man can be, he must be.”<br /><strong>-Maslow</strong></h3>
+<h3>"Man cannot remake himself without suffering, for he is both the marble and the sculptor"<br /><strong>-Alexis Carrel</strong></h3>
+<h3>“Believe me, it is the sign of a great man, and one who is above human error, not to allow his time to be frittered away."<br /><strong>-Seneca, "On the Shortness of Life"</strong></h3>
+<h3>“My observation is that the doers are the major thinkers. The people that really create the things that change this industry are both the thinker and doer in one person. And if we really go back and we examine, you know, did Leonardo have a guy off to the side that was thinking five years out in the future what he would paint or the technology he would use to paint it? Of course not. Leonardo was the artist, but he also mixed all his own paints. He also was a fairly good chemist. He knew about pigments, knew about human anatomy. And combining all of those skills together, the art and the science, the thinking and the doing, was what resulted in the exceptional result. And there is no difference in our industry. The people that have really made the contributions have been the thinkers and the doers.”<br /><strong>-Steve Jobs</strong></h3>
+<h3>"He who cannot obey himself will be commanded. That is the nature of living creatures."<br /><strong>-Nietzsche</strong></h3>
+<h3>"Happiness is the object and design of our existence."<br /><strong>-Joseph Smith</strong></h3>
+<h3>“Envy is a declaration of inferiority.” <br /><strong>-Napoleon Bonaparte</strong></h3>
+<h3>"Sweat more during peace. Bleed less during war."<br /><strong>-Sun Tzu</strong></h3>
+<h3>"By proving contraries, truth is made manifest."<br /><strong>-Joseph Smith</strong></h3>
+<h3>"Think complex. Speak simple."<br /><strong>-Jeff Bezos</strong></h3>
+<h3 class="quoteText">“Until one is committed, there is hesitancy, the chance to draw back, always ineffectiveness. Concerning all acts of initiative and creation, there is one elementary truth the ignorance of which kills countless ideas and splendid plans: that the moment one definitely commits oneself, then providence moves too. All sorts of things occur to help one that would never otherwise have occurred. A whole stream of events issues from the decision, raising in one's favour all manner of unforeseen incidents, meetings and material assistance which no man could have dreamed would have come his way. I have learned a deep respect for one of Goethe's couplets: Whatever you can do or dream you can, begin it. Boldness has genius, power and magic in it. Begin it now.”<br /><strong><span class="authorOrTitle">-William Hutchison Murray</span><span id="quote_book_link_18309607"></span></strong></h3>
+<h3>"The most contrarian thing of all is not to oppose the crowd but to think for yourself."<br /><strong>-Peter Thiel</strong></h3>
+<h3>"Superior sales/distribution by itself can create a monopoly, even w no product differentiation. The converse is not true"<br /><strong>-Peter Thiel</strong></h3>
+<h3>"Either write something worth reading or do something worth writing."<br /><strong>-Benjamin Franklin</strong></h3>
+<h3>"Some men die by shrapnel, and some go down in flames, But most men perish inch by inch, In play at little games."<br /><strong>-Robert Abrahams</strong></h3>
+<h3>"Time is the most precious gift in our possession, for it is the most irrevocable. This is what makes it so disturbing to look back upon the time which we have lost. Time lost is time when we have not lived a full human life, time unenriched by experience, creative endeavor, enjoyment, and suffering."<br /><strong>-Dietrich Bonhoeffer</strong></h3>
+<h3>“I am not smarter than anybody else, but I can outwork you – and my key to success for you, or anybody else is to make sure you are the first one in there every day and the last one to leave."<br /><strong>-Michael Bloomberg</strong></h3>
+<p><img src="https://pbs.twimg.com/media/GOoHm26a8AAVtik?format=jpg&amp;name=medium" alt="Image" /></p>
+<h3>"No other success can compensate for failure in the home."<br /><strong>-David McKay</strong></h3>
+<h3>"People do not seem to realize that their opinion of the world is also a confession of character."<br /><strong>-Ralph Waldo Emerson</strong></h3>
+<h3>“The art of storytelling is incredibly important. And many—maybe even most of the entrepreneurs who come to talk to us can’t tell the story. Learning to tell a story is incredibly important because that’s how the money works. The money flows as a function of the stories.”<br /><strong>-Don Valentine</strong></h3>
+<h3>“For every company, there are a few key investment variables. The rest of the stuff is noise.” “Are things getting better or worse? If they’re getting better, then I want to understand what’s going on.”<br /><strong>-Bill Miller</strong></h3>
+<h3>Find a purpose in life so big it will challenge every capacity to be at your best."<br /><strong>-David McKay</strong></h3>
+<h3>"When you are not practicing, remember, someone somewhere is practicing, and when you meet him he will win."<br /><strong>-Ed Macauley</strong></h3>
+<h3>"What makes for a great culture? Winning."<br /><strong>-Don Valentine, Sequoia Capital</strong></h3>
+<h3>"A culture is not a set of beliefs, it's a set of actions."<br /><strong>-Bushido</strong></h3>
+<h3>"When you think it’s too hard, remember: doing the things that will make you successful is a lot easier than being unsuccessful."<br /><strong>-Ray Dalio</strong></h3>
+<p><img src="https://pbs.twimg.com/media/GOB5uo8bwAAE0gL?format=jpg&amp;name=medium" alt="Image" /></p>
+<p><img src="https://pbs.twimg.com/media/GN5mP7UWoAE3nJf?format=jpg&amp;name=medium" alt="Image" /></p>
+<h3>“Be an independent thinker because you can’t make money agreeing with the consensus view which is already embedded in the price.”<br /><strong>-Ray Dalio</strong></h3>
+<p><img src="https://pbs.twimg.com/media/GSI6XhVXEAA04Op?format=png&amp;name=900x900" alt="Image" /></p>
+<h3>“You can have anything you want in life but not everything “<br /><strong>-Ray Dalio</strong></h3>
+<p><a href="https://tylerhogge.com/wp-content/uploads/2015/01/screen-shot-2016-09-04-at-9-54-25-pm.png"><img class="alignnone size-full wp-image-279" src="https://tylerhogge.com/wp-content/uploads/2015/01/screen-shot-2016-09-04-at-9-54-25-pm.png" alt="Screen Shot 2016-09-04 at 9.54.25 PM" width="740" height="419" /></a></p>
+<h3>"The fundamental output of a technology company is innovation and that's very different than a lot of businesses, right? The fundamental output of a car company is cars. Or the fundamental output of a bank is loans. The fundamental output of a tech company is innovation.....It's when things go wrong internally and they stop innovating, which happens a lot, that the wheels at some point tend to come off.<br /><strong>-Marc Andreessen</strong></h3>
+<h3>"It's incredibly important to have a really vivid, clear idea of where you want to get in the long run that you stick to, and you want ot be very flexible on the tactics."<br /><strong>-Marc Andreessen</strong></h3>
+<h3>“On matters of style, swim with the current, but on matters of principle, stand like a rock.”<br /><strong>-Thomas Jefferson</strong></h3>
+<p>[embed]https://twitter.com/naval/status/759099338291195905[/embed]</p>
+<p>[embed]https://twitter.com/naval/status/792240270548963328[/embed]</p>
+<p>[embed]https://twitter.com/illimitableman/status/814846261618675712[/embed]</p>
+<h3>"What we consistently desire, over time, is what we will eventually become &amp; what we will receive in eternity"<br /><strong>-Neal A Maxwell</strong></h3>
+<h3>"Moral excellence comes about as a result of habit. We become just by doing just acts, temperate by doing temperate acts, brave by doing brave acts. "<br /><strong>-Aristotle</strong></h3>
+<h3><img class="alignnone size-full wp-image-367" src="https://tylerhogge.com/wp-content/uploads/2015/01/screen-shot-2017-11-11-at-8-24-39-pm.png" alt="Screen Shot 2017-11-11 at 8.24.39 PM" width="2002" height="1208" /><br /><strong>-Henri Bergson, French Philosopher</strong></h3>
+<h3 style="text-align: left">"I don't buy the adage that you should start a company when you are very young because that's when you have the energy. Insight, not energy, is the key to success in technology, and insight does not arrive on a particular timetable."<br /><strong>-Andy Rachleff</strong></h3>
+<h3 style="text-align: left">"Is it the horse or the jockey? And the answer is yes."<br /><strong>-Andy Rachleff</strong></h3>
+<h3>“When you expect things to happen - strangely enough - they do happen.”<br /><strong>-J. P. Morgan</strong></h3>
+<p>https://twitter.com/stewart/status/540305227971166208</p>
+<h3>“A hugely profitable investment that doesn’t begin with discomfort is usually an oxymoron.”<br /><strong>-Howard Marks</strong></h3>
+<h3>"It may rain tomorrow, or it may not, but nothing that happens tomorrow will tell you what the probability of rain was as of today"<br /><strong>-Howard Marks</strong></h3>
+<h3>"What has to be remembered is the defining role of price. Regardless of whether the fundamental outlook is positive or negative, the level of investment risk is determined largely by the relationship between the price of an asset and its intrinsic value. There is no asset so good that it can’t become overpriced and thus risky, and few so bad that there’s no price at which they’re a buy (and safe). This is one of the greatest examples of counterintuitiveness. Only those who are able to see its logic can hope to be superior investors."<br /><strong>-Howard Marks</strong></h3>
+<h3>"If you aren’t genuinely pained by the risk involved in your strategic choices, it's not much of a strategy."<br /><strong>-Reed Hastings, CEO, Netflix</strong></h3>
+<h3>"Too often we enjoy the comfort of opinion without the discomfort of thought."<br /><strong>-John F Kennedy</strong></h3>
+<h3><span class="markup--quote markup--blockquote-quote is-other"><span class="markup--strong markup--blockquote-strong"><span class="markup--em markup--blockquote-em">“</span></span></span><span class="markup--quote markup--blockquote-quote is-other"><span class="markup--strong markup--blockquote-strong"><span class="markup--em markup--blockquote-em">The test of a first-rate intelligence is the ability to hold two opposing ideas in mind at the same time and still retain the ability to function</span></span></span><span class="markup--quote markup--blockquote-quote is-other"><span class="markup--strong markup--blockquote-strong"><span class="markup--em markup--blockquote-em">.”<br /></span></span></span><strong>-F. Scott Fitzgerald</strong></h3>
+<h3>"I have offended God and mankind because my work didn't reach the quality it should have."<br /><strong>-Leonardo Da Vinci<br /></strong></h3>
+<h3 class="p1">“It had long since come to my attention that people of accomplishment rarely sat back and let things happen to them. They went out and happened to things.”<br /><strong>-Leonardo da Vinci</strong></h3>
+<h3><strong> </strong></h3>
+<p><img src="https://pbs.twimg.com/media/GNIf9gyWAAEz04B?format=jpg&amp;name=medium" alt="Image" /></p>
+<p><img src="https://pbs.twimg.com/media/GM_wEOYXMAA0bZV?format=jpg&amp;name=medium" alt="Image" /></p>
+<h3>"Every investment requires a leap of faith, an emotional act that’s not pure reason, and that’s got to carry you through in the inevitable many months, sometimes years, of horrific bad stuff that comes with the company. And you’ve got to have that energy, that sustaining belief to carry you through, because if you don’t, then you regret having done it. So when I have regret, it’s when I didn’t have that, and I’d logically talked myself into [the investment] and checked the boxes. So it was really helpful [to have a failed investment] that taught me, ‘don’t invest like that.’ You have to have the love affair, and if you don’t, then you shouldn’t do it."<br /><strong>-Peter Fenton</strong></h3>
+<h3>“The only time to lose fierce optimism is when you're out of money, in all other scenarios greatness is on the horizon.”<br /><strong>-Peter Fenton</strong></h3>
+<h3>"You won't find reasonable men on the tops of tall mountains". <br /><strong>-Hunter S. Thompson</strong></h3>
+<h3>"Truth emerges more readily from error than from confusion."<br /><strong>-Francis Bacon</strong></h3>
+<p><img src="https://pbs.twimg.com/media/G-SYr3nasAAIUiK?format=jpg&amp;name=900x900" alt="Image" /></p>
+<h3>"People who are right a lot of the time are<em> people who often change their minds.</em> I don't think consistency of thought is a particularly positive trait. It’s perfectly healthy — encouraged, even — to have an idea tomorrow that contradicts your idea today. The smartest people are constantly revising their understanding, reconsidering a problem they thought they’d already solved. They’re open to new points of view, new information, new ideas, contradictions, and challenges to their own way of thinking. This doesn’t mean you shouldn’t have a well formed point of view, but it means you should consider your point of view as temporary. What trait signifies someone who is <em>wrong</em> a lot of the time? Someone obsessed with details that only support one point of view. If someone can’t climb out of the details, and see the bigger picture from multiple angles, they’re often wrong most of the time."<br /><strong>-Jeff Bezos</strong></h3>
+<h3>"Stress comes from unaddressed problems - ignoring something that you should be working on. Stress doesn't come from the work itself"<br /><strong>-Jeff Bezos</strong></h3>
+<h3>"Some decisions are consequential and irreversible or nearly irreversible – one-way doors – and these decisions must be made methodically, carefully, slowly, with great deliberation and consultation. If you walk through and don’t like what you see on the other side, you can’t get back to where you were before. We can call these Type 1 decisions. But most decisions aren’t like that – they are changeable, reversible – they’re two-way doors. If you’ve made a suboptimal Type 2 decision, you don’t have to live with the consequences for that long. You can reopen the door and go back through. Type 2 decisions can and should be made quickly by high judgment individuals or small groups.</h3>
+<h3>As organizations get larger, there seems to be a tendency to use the heavy-weight Type 1 decision-making process on most decisions, including many Type 2 decisions. The end result of this is slowness, unthoughtful risk aversion, failure to experiment sufficiently, and consequently diminished invention.1 We’ll have to figure out how to fight that tendency."<br /><strong>-Jeff Bezos</strong></h3>
+<h3>"I have always been of the opinion that unpopularity earned by doing what is right is not unpopularity at all, but glory."<br /><strong>-Cicero</strong></h3>
+<h3> "Any year that passes in which you don’t destroy one of your best loved ideas is a wasted year."<br /><strong>-Charlie Munger</strong></h3>
+<h3>"The first rule of fishing is to fish where the fish are. The 2nd rule is to not forget the first rule. That's what we do."<br /><strong>-Charlie Munger</strong></h3>
+<h3>"Never, ever, think about something else when you should be thinking about the power of incentives. Show me the incentive and I will show you the outcome."<br /><strong>-Charlie Munger</strong></h3>
+<h3>“Warren is scanning the world trying to get his opportunity cost as high as he can so that his individual decisions are better.”<br /><strong>-Charlie Munger<br /></strong><br />“Everything is a function of opportunity cost.”<br /><strong>-Warren Buffett</strong></h3>
+<h3>"Risk is my religion."<br /><strong>-Vinod Khosla</strong></h3>
+<p><img src="https://pbs.twimg.com/media/GMv-EjibkAAPXmY?format=png&amp;name=medium" alt="Image" /></p>
+<h3>"They muddy the water, to make it seem deep.”<br /><strong>-Nietzsche</strong></h3>
+<h3>“People are strange: They are constantly angered by trivial things, but on a major matter like totally wasting their lives, they hardly seem to notice.”<br /><strong>-Charles Bukowski</strong></h3>
+<h3>“When a system is far from equilibrium small islands of coherence in a sea of chaos have the capacity to lift the entire system to a higher order.”<br /><strong>-Chemist and Nobel Laureate, Illya Prigogine</strong></h3>
+<h3>"One should not pursue goals that are easily achieved. One must develop an instinct for what one can just barely achieve through one's greatest efforts."<br /><strong>-Albert Einstein</strong></h3>
+<div>
+<div class="">
+<h3 class="public-DraftStyleDefault-block public-DraftStyleDefault-ltr">"A man's first duty, a young man's at any rate, is to be ambitious."<br /><strong style="color: revert;font-size: revert"><span style="color: initial">-G. H. Hardy (1877-1947)</span></strong></h3>
+</div>
+</div>
+<h3>"Success breeds complacency. Complacency breeds failure. Only the paranoid survive."<br /><strong>-Andy Grove</strong></h3>
+<h3>"Bad companies are destroyed by crisis, good companies survive them, great companies are improved by them."<br /><strong>-Andy Grove</strong></h3>
+<h3>"Always prioritize the substance of what you are doing. Don't get caught up in the status or the prestige games. They're endlessly dazzling and endlessly disappointing."<br /><strong>-Peter Thiel</strong></h3>
+<h3>"If you have a ten-year plan of how to get somewhere, you should ask yourself, 'Why can't I do this in six months?'"<br /><strong>-Peter Thiel</strong></h3>
+<h3>"Once you have found out what you love to do, there is only one goal: to be the best in the world at it."<br /><strong>-Mark Cuban</strong></h3>
+<h3>“Founders, at least the very best of them, are unstoppable, irrepressible forces of nature.”<br /><strong>-Mike Moritz</strong></h3>
+<h3>"Figuring out how to make a great investment never seems to get easier. But deciding which opportunities should be declined is a good place to start. Short-term wonders are immediate candidates for rejection - hence our interest in listening intently to the words people use. Any suggestion of a quick flip or a quest for instant riches is not something that will ever grow into a great company. The better venture capitalists know that it takes considerable patience to organize, develop and build a substantial and lasting business; indeed, some will equal Warren Buffett in the length of time they are prepared to own shares in a company."<br /><strong>-Mike Moritz</strong></h3>
+<p><img src="https://pbs.twimg.com/media/GNtYU0lWQAA-9Yl?format=png&amp;name=medium" alt="Image" /></p>
+<h3>"I shall either find a way or make one."<br /><strong>-Hannibal</strong></h3>
+<h3>"Mediocre people don’t like high achievers, and high achievers don’t like mediocre people."<br /><strong>-Nick Saban</strong></h3>
+<h3>“When you’re in a critical situation in a game, don’t think of plays, think of players.” <br /><strong>-Nick Saban</strong></h3>
+<h3>"No friend ever served me, and no enemy ever wronged me, whom I have not repaid in full."<br /><strong>-Sulla</strong></h3>
+<p><img src="https://pbs.twimg.com/media/GNe1BwJWIAAJT4W?format=png&amp;name=medium" alt="Image" /></p>
+<p><strong>-Carl Jung</strong></p>
+<h3>"There [are] a couple of things that seem to be a pattern match for people who are right a lot. One is that people who are right a lot listen a lot. Another one is that people who are right a lot change their mind a lot.... People say that you should change your mind when the data changes; but I change my mind even when the data doesn't change, because I reanalyze the situation every day and sometimes I just come to a better analysis. And I think actually what I said yesterday I don't believe anymore.... You should not change your mind on your principles or your ideals or your vision. You should be stubborn on those things. But most of what we do every day is very tactical...and you should be very, very focused on the details and on changing your mind very frequently. And then finally--and this is the one that humans are the worst at--is [that] you have to have deep convictions, but then always work to disconfirm them. And you won't usually. Most of your convictions are going to be right for long periods of time, but you should always be saying 'Here's something I really, really believe is true, and then am I wrong about this? Am I wrong about this?'. And then look for ways to disconfirm. The natural human behavior is confirmation bias."<br /><strong>-Jeff Bezos</strong></h3>
+<h3>"Anecdotes have no place at these meetings; numbers alone must demonstrate what is working and what is broken."<br /><strong>-Jeff Bezos</strong></h3>
+<h3><span style="color: initial">"Attack this day with enthusiasm unknown to mankind.”<br /><strong>-Jim Harbaugh</strong></span></h3>
+<p><img src="https://pbs.twimg.com/media/GNQr1HvaEAAI5te?format=jpg&amp;name=medium" alt="Image" /></p>
+<h3>“Be guided by beauty. You might think ‘building a company that’s trading bonds, what’s so aesthetic about that?’ What’s aesthetic about it is doing it right. Getting the right kind of people, approaching the problem, and doing it right…it’s a beautiful thing to do something right.” <br /><strong>- Jim Simons.</strong></h3>
+<h3>"To invent you have to experiment, and if you know in advance that it’s going to work, it’s not an experiment. Most large organizations embrace the idea of invention, but are not willing to suffer the string of failed experiments necessary to get there. <em>Outsized returns often come from betting against conventional wisdom, and conventional wisdom is usually right.</em> Given a ten percent chance of a 100 times payoff, you should take that bet every time."<br /><strong>-Jeff Bezos</strong></h3>
+<h3>“The framework I found, which made the decision [to start Amazon in 1994] incredibly easy, was what I called a regret minimization framework. I wanted to project myself forward to age 80 and say, ‘OK, I’m looking back on my life. I want to minimize the number of regrets I have.’ And I knew that when I was 80, I was not going to regret having tried this. I was not going to regret trying to participate in this thing called the Internet that I thought was going to be a really big deal. I knew that if I failed, I wouldn’t regret that. But I knew the one thing I might regret is not ever having tried. I knew that that would haunt me every day.”<br /><strong>-Jeff Bezos</strong></h3>
+<h3 class="quoteText">“The impediment to action advances action. What stands in the way becomes the way.”<br /><strong>-Marcus Aurelius</strong></h3>
+<h3>"I decided pretty early in life that my favorite employer is myself"<br /><strong>-Warren Buffett</strong></h3>
+<h3>“Investing is just about assigning yourself the right story.”<br /><strong>-Warren Buffett</strong></h3>
+<h3>"Tell me who your heroes are and I'll tell you how you’ll turn out to be."<br /><strong>-Warren Buffett</strong></h3>
+<h3>"What the human being is best at doing is interpreting all new information so that their prior conclusions remain intact”<br /><strong>-Warren Buffett</strong></h3>
+<h3>''Simplicity is complexity resolved.''<br /><strong>-Constantin Brancusi</strong></h3>
+<h3><img class="alignnone size-full wp-image-327" src="https://tylerhogge.com/wp-content/uploads/2015/01/screen-shot-2017-02-20-at-10-59-52-pm.png" alt="screen-shot-2017-02-20-at-10-59-52-pm" width="1140" height="1268" /></h3>
+<h3>"I've never found anyone who's said no or hung up the phone when I called. I just asked. And when people ask me, I try to be as responsive, to pay that debt of gratitude back. Most people never pick up the phone and call, most people never ask. And that's what separates, sometimes, the people that do things from the people that just dream about them. You gotta act. And you've gotta be willing to fail, you gotta be ready to crash and burn, with people on the phone, with starting a company, with whatever. If you're afraid of failing, you won't get very far."<br /><strong>-Steve Jobs</strong></h3>
+<h3>"When I don't see eye to eye with somebody, I just take the time to explain it better, so they understand the way it should be."<br /><strong>-Steve Jobs</strong></h3>
+<h3>"There are lots of ways to be as a person. And some people express their deep appreciation in different ways. But one of the ways that I believe people express their appreciation to the rest of humanity is to make something wonderful and put it out there. And you never meet the people, you never shake their hands, you never hear their story or tell yours, but somehow, in the act of making something with a great deal of care and love, something is transmitted there. And it’s a way of expressing to the rest of our species our deep appreciation. So we need to be true to who we are, and remember what’s really important to us. That’s what is going to keep Apple Apple, if we keep us us."<br /><strong>-Steve Jobs</strong></h3>
+<h3>“There is nothing quite so useless, as doing with great efficiency, something that should not be done at all.”<br /><strong>-Peter F. Drucker</strong></h3>
+<h3>"Teach plainly - not only so they can understand, but teach so plainly that no one can <em>misunderstand."<br /><strong>-</strong></em><strong>Harold B. Lee</strong></h3>
+<h3>“Ambition, I have come to believe, is the most primal and sacred fundament of our being. To feel ambition and to act upon it is to embrace the unique calling of our souls. Not to act upon that ambition is to turn our backs on ourselves and on the reason for our existence.”<br /><strong>-Steven Pressfield</strong></h3>
+<h3>"Pessimists desire the things they fear, to prove they are right."<br /><strong>-Robert Mallet</strong></h3>
+<h3>"After the final no, there comes a yes, and on that yes the future of the world depends."<br /><strong>-Wallace Stevens</strong></h3>
+<h3>"I am a better investor because I am a businessman, and a better businessman because I am an investor."<br /><strong>-Warren Buffett</strong></h3>
+<h3>"You are neither right nor wrong because the crowd disagrees with you. You are right because your data and reasoning are right."<br /><strong>-Warren Buffett</strong></h3>
+<h3>"Much of what you become in life depends on whom you choose to admire and copy."<br /><strong>-Warren Buffett</strong></h3>
+<h3>“Charlie and I welcome change: Fresh ideas, new products, innovative processes and the like cause our country's standard of living to rise, and that's clearly good.  As investors, however, our reaction to a fermenting industry is much like our attitude toward space exploration:  We applaud the endeavor but prefer to skip the ride.”<br /><strong>-Warren Buffett</strong></h3>
+<h3>"Unless you can watch your stock holding decline by 50% without becoming panic-stricken, you should not be in the stock market."<br /><strong>-Warren Buffett</strong></h3>
+<h3> "I could improve your ultimate financial welfare by giving you a ticket with only twenty slots in it so that you had twenty punches - representing all the investments that you got to make in a lifetime. And once you'd punched through the card, you couldn't make any more investments at all. Under those rules, you'd really think carefully about what you did, and you'd be forced to load up on what you'd really thought about. So you'd do so much better."<br /><strong>-Warren Buffett</strong></h3>
+<h3>“Most analysts feel they must choose between two approaches customarily thought to be in opposition: “value” and “growth.” Indeed, many investment professionals see any mixing of the two terms as a form of intellectual cross-dressing. We view that as fuzzy thinking (in which, it must be confessed, I myself engaged some years ago). In our opinion, the two approaches are joined at the hip: Growth is <em>always</em> a component in the calculation of value, constituting a variable whose importance can range from negligible to enormous and whose impact can be negative as well as positive. We think the very term “value investing” is redundant. What is “investing” if it is not the act of seeking value at least sufficient to justify the amount paid? Consciously paying more for a stock than its calculated value – in the hope that it can soon be sold for a still-higher price – should be labeled speculation (which is neither illegal, immoral nor – in our view – financially fattening).</h3>
+<h3>Whether appropriate or not, the term “value investing” is widely used. Typically, it connotes the purchase of stocks having attributes such as a low ratio of price to book value, a low price-earnings ratio, or a high dividend yield. Unfortunately, such characteristics, even if they appear in combination, are far from determinative as to whether an investor is indeed buying something for what it is worth and is therefore truly operating on the principle of obtaining value in his investments. Correspondingly, opposite characteristics – a high ratio of price to book value, a high price-earnings ratio, and a low dividend yield – are in no way<br />inconsistent with a “value” purchase.</h3>
+<h3>Similarly, business growth, per se, tells us little about value. It’s true that growth often has a positive impact on value, sometimes one of spectacular proportions. But such an effect is far from certain. For example, investors have regularly poured money into the domestic airline business to finance profitless (or worse) growth. For these investors, it would have been far better if Orville had failed to get off the ground at Kitty Hawk: The more the industry has grown, the worse the disaster for owners.”<br /><strong>-Warren Buffett</strong></h3>
+<h3>"Intensity is the price of excellence."<br /><strong>-Warren Buffett</strong></h3>
+<h3>“Be so good they can’t ignore you.”<br /><strong>-Steve Martin</strong></h3>
+<h3>“Tolerate genius. There are very few men of genius. But we need all we can find. Almost without exception they are disagreeable. Don’t destroy them. They lay golden eggs.”<br /><strong>-David Ogilvy</strong></h3>
+<h3>"An intense interest in a subject is indispensable if you are really going to excel in it."<br /><strong>-Charlie Munger</strong></h3>
+<h3>“Excellence is the capacity to take pain.”<br /><strong>-Isadore Sharp</strong></h3>
+<h3>"The big question about how people behave is whether they've got an Inner Scorecard or an Outer Scorecard. It helps if you can be satisfied with an Inner Scorecard. "<br /><strong>-Warren Buffett</strong></h3>
+<h3>"The key to investing is not assessing how much an industry is going to affect society, or how much it will grow, but rather determining the competitive advantage of any given company and, above all, the durability of that advantage."<br /><strong>-Warren Buffett</strong></h3>
+<h3>"The single-most important decision in evaluating a business is pricing power. If you’ve got the power to raise prices without losing business to a competitor, you’ve got a very good business. And if you have to have a prayer session before raising the price by a tenth of a cent, then you’ve got a terrible business. I’ve been in both, and I know the difference."<br /><strong>-Warren Buffett</strong></h3>
+<h3>"I came across a quote from Warren Buffett...and he says: 'We pay a high price for certainty.' In other words, when people are confident, asset prices escalate. That's a bad time to invest. The confident times feel like a good time to invest, but people who want to buy bargains should prefer uncertainty."<br /><strong>-Howard Marks </strong></h3>
+<h3>“If you get an opportunity to own a wonderful business being run by an intelligent fanatic &amp; you don't load up, it's a big mistake."<br />-<strong>Charlie Munger</strong></h3>
+<h3>“It’s almost impossible to overpay the truly extraordinary CEO… but the species is rare.”<br /><strong>-Warren Buffett</strong></h3>
+<h3>"At the moment of commitment, the entire universe conspires to assist you."<br /><strong>-Johann Wolfgang van Goethe</strong></h3>
+<h3>"Once you make a decision, the universe conspires to make it happen."<br /><strong>-Ralph Waldo Emerson</strong></h3>
+<h3 class="quote_text">"The history of the world is full of men who rose to leadership, by sheer force of self-confidence, bravery and tenacity."<br /><strong>-Gandhi</strong></h3>
+<h3>"There are 99 men who believe in honesty for every honest man."<br /><strong> -Gandhi</strong></h3>
+<h3>"I believe it is an established maxim in morals that he who makes an assertion without knowing whether it is true or false, is guilty of falsehood; and the accidental truth of the assertion does not justify or excuse him."<b><br /></b><strong>-Abraham Lincoln</strong></h3>
+<h3>"A capacity, and taste, for reading, gives access to whatever has already been discovered by others. It is the key, or one of the keys, to the already solved problems. And not only so. It gives a relish, and facility, for successfully pursuing the [yet] unsolved ones.”<br /><strong>-Abraham Lincoln</strong></h3>
+<h3>"The difference between successful and unsuccessful people is that very successful people say "no" to almost everything."<br /><strong>-Warren Buffett</strong></h3>
+<h3>“If you don't do it this year, you will be one year older when you do.”<br /><strong>-Warren Miller</strong></h3>
+<p>https://twitter.com/robertherjavec/status/9571135823</p>
+<h3>“It is not the critic who counts; not the man who points out how the strong man stumbles, or where the doer of deeds could have done them better. The credit belongs to the man who is actually in the arena, whose face is marred by dust and sweat and blood; who strives valiantly; who errs, who comes short again and again, because there is no effort without error and shortcoming; but who does actually strive to do the deeds; who knows great enthusiasms, the great devotions; who spends himself in a worthy cause; who at the best knows in the end the triumph of high achievement, and who at the worst, if he fails, at least fails while daring greatly, so that his place shall never be with those cold and timid souls who neither know victory nor defeat.”<br /><strong>-Theodore Roosevelt</strong></h3>
+<h3>"The heights of great men won and kept, were not achieved by sudden flight. But they, while their companions slept, were toiling upwards in the night."<br /><strong>-Henry Wadsworth Longfellow</strong></h3>
+<h3><a href="https://tylerhogge.com/wp-content/uploads/2015/01/ty-cobb-sliding.jpg"><img class=" wp-image-63 aligncenter" src="https://tylerhogge.com/wp-content/uploads/2015/01/ty-cobb-sliding.jpg?w=300" alt="ty cobb sliding" width="334" height="262" /></a></h3>
+<h3>"I could never stand losing. Second place didn't interest me. I had a fire in my belly."<br /><strong>-Ty Cobb</strong></h3>
+<h3><a href="https://tylerhogge.com/wp-content/uploads/2015/01/ali-2.jpg"><img class=" size-medium wp-image-65 aligncenter" src="https://tylerhogge.com/wp-content/uploads/2015/01/ali-2.jpg?w=300" alt="ali 2" width="300" height="268" /></a></h3>
+<h3>"The fight is won or lost far away from the witnesses - behind the lines, in the gym, and out there on the road, long before I dance under those lights."<br /><strong>-Muhammad Ali</strong></h3>
+<h3>"It's lack of faith that makes people afraid of meeting challenges. I believed in myself."<br /><strong>-Muhammad Ali</strong></h3>
+<h3>“Earn your leadership every day.”<br /><strong>-Michael Jordan</strong></h3>
+<h3><a href="https://tylerhogge.com/wp-content/uploads/2015/01/mj.png"><img class=" wp-image-62 aligncenter" src="https://tylerhogge.com/wp-content/uploads/2015/01/mj.png?w=188" alt="MJ" width="227" height="362" /></a></h3>
+<h3>"I never doubted myself."<br /><strong>-Michael Jordan</strong></h3>
+<h3>“I know what is within me, even if you can’t see it yet.”<br /><strong>— Michael Jordan</strong></h3>
+<h3>"The world is a very malleable place. if you know what you want, and go for it with maximum energy and drive and passion, the world will often reconfigure itself around you much more quickly than you would think."<br />-<strong>Marc Andreessen</strong></h3>
+<h3>"Life can be much broader once you discover one simple fact: Everything around you that you call life was made up by people that were no smarter than you and you can change it, you can influence it, you can build your own things that other people can use. Once you learn that, you'll never be the same again."<br /><strong>-Steve Jobs</strong></h3>
+<h3>“You can’t connect the dots looking forward; you can only connect them looking backward. So you have to trust that the dots will somehow connect in your future. You have to trust in something — your gut, destiny, life, karma, whatever. This approach has never let me down, and it has made all the difference in my life.”<br />-<strong>Steve Jobs</strong></h3>
+<h3>"In a complex world, intelligence consists in ignoring things that are irrelevant (avoiding false patterns).”<br /><strong>-Nassim Nicholas Taleb</strong></h3>
+<h3>"Success isn't owned. It's leased and the rent is due every day."<br /><strong>-J.J. Watt</strong></h3>
+<h3>"If you're a leader, your whole reason for living is to help human beings develop."<br />-<strong>Tom Peters</strong></h3>
+<h3>“A perfect formulation of a problem is already half its solution.”<br /><strong>-Hilbert</strong></h3>
+<h3>"[...] wealth is evidently not the good we are seeking; for it is merely useful and for the sake of something else."<br /><strong>-Aristotle</strong></h3>
+<h3>"The product of a car company is cars. The product of a bank is loans. But the product of a tech company is innovation."<br />-<strong>Marc Andreessen</strong></h3>
+<h3>“You need to balance arrogance and humility…when you buy anything, it’s an arrogant act. You are saying the markets are gyrating and somebody wants to sell this to me and I know more than everybody else so I am going to stand here and buy it. I am going to pay an 1/8th more than the next guy wants to pay and buy it. That’s arrogant. And you need the humility to say ‘but I might be wrong.’ And you have to do that on everything”<br />-<strong>Seth Klarman</strong></h3>
+<h3>"Well bought is half sold."<br />-<strong>Howard Marks</strong></h3>
+<h3>“The principal question that we focus on before an investment is the quality of the person we’re going to work with."<br />-<strong>Peter Fenton, Benchmark Capital</strong></h3>
+<p>[embed]https://twitter.com/scottbelsky/status/811631779685666816[/embed]</p>
+<h3>"If you measure yourself by career, money, I've got bad news: there's serendipity in the world. The currency of life is the people that you love and that care for you."<br /><strong>-Mitt Romney</strong></h3>
+<h3>"The whole secret of a successful life is to find out what is one's destiny to do, and then do it."<br /><strong>-Henry Ford</strong></h3>
+<h3>"We're less concerned with the quality of companies than with the price we pay. In short, everything is triple-A at the right price.”<br /><strong>-Howard Marks</strong></h3>
+<h3 class="quoteText">“I'm convinced that about half of what separates the successful entrepreneurs from the non-successful ones is pure perseverance.... Unless you have a lot<br />of passion about this, you're not going to survive. You're going to give it up. So you've got to have an idea, or a problem or a wrong that you want to right that you're passionate about; otherwise, you're not going to have the perseverance to stick it through.”<br /><strong>-Steve Jobs</strong></h3>
+<h3>“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully. I’m actually as proud of the things we haven’t done as the things I have done. Innovation is saying ‘no’ to 1,000 things.”<br /><strong>-Steve Jobs</strong></h3>
+<h3 class="quoteText"><a href="https://tylerhogge.com/wp-content/uploads/2015/01/on-success.png"><img class="wp-image-108 aligncenter" src="https://tylerhogge.com/wp-content/uploads/2015/01/on-success.png?w=300" alt="on-success" width="417" height="250" /></a></h3>
+<h3 class="quoteText"><a href="https://tylerhogge.com/wp-content/uploads/2015/01/on-making-sacrifices.png"><img class="wp-image-111 aligncenter" src="https://tylerhogge.com/wp-content/uploads/2015/01/on-making-sacrifices.png?w=300" alt="on-making-sacrifices" width="417" height="250" /></a></h3>
+<h3 class="quoteText"><a href="https://tylerhogge.com/wp-content/uploads/2015/01/on-being-the-best.png"><img class="wp-image-110 aligncenter" src="https://tylerhogge.com/wp-content/uploads/2015/01/on-being-the-best.png?w=300" alt="on-being-the-best" width="415" height="234" /></a></h3>
+<h3 class="quoteText"><a href="https://tylerhogge.com/wp-content/uploads/2015/01/on-becoming-one-of-the-best-ever.png"><img class="wp-image-109 aligncenter" src="https://tylerhogge.com/wp-content/uploads/2015/01/on-becoming-one-of-the-best-ever.png?w=300" alt="on-becoming-one-of-the-best-ever" width="413" height="248" /></a></h3>
+<h3>"At dawn, when you have trouble getting out of bed, tell yourself: “I have to go to work — as a human being. What do I have to complain of, if I’m going to do what I was born for — the things I was brought into the world to do? Or is <em>this</em> what I was created for? To huddle under the blankets and stay warm?</h3>
+<h3>— But it’s nicer in here…</h3>
+<h3>So you were born to feel “nice”? Instead of doing things and experiencing them? Don’t you see the plants, the birds, the ants and spiders and bees going about their individual tasks, putting the world in order, as best they can? And you’re not willing to do your job as a human being? Why aren’t you running to do what your nature demands?</h3>
+<h3>— But we have to sleep sometime…</h3>
+<h3>Agreed. But nature set a limit on that — as it did on eating and drinking. And you’re over the limit. You’ve had more than enough of that. But not of working. There you’re still below your quota.</h3>
+<h3>You don’t love yourself enough. Or you’d love your nature too, and what it demands of you. People who love what they do wear themselves down doing it, they even forget to wash or eat. Do you have less respect for your own nature than the engraver does for engraving, the dancer for the dance, the miser for money or the social climber for status? When they’re really possessed by what they do, they’d rather stop eating and sleeping than give up practicing their arts."<br /><strong>-Marcus Aurelius</strong></h3>
+<h3>"The investment game always involves considering both quality and price, and the trick is to get more quality than you pay for in price. It’s just that simple.”<br />-<strong>Charlie Munger</strong></h3>
+<h3 class="quoteText">“I constantly see people rise in life who are not the smartest, sometimes not even the most diligent, but they are learning machines. They go to bed every night a little wiser than they were when they got up and boy does that help, particularly when you have a long run ahead of you.”<br /><strong>-Charlie Munger</strong></h3>
+<h3>"I just wanted to do the best I could reasonably do with the talent, time and resources I had available. That’s what I was doing then and now. Everything is based on opportunity costs. Academia has done a terrible disservice: they teach in one sentence in first-year economics about opportunity costs, but that’s it. In life, if opportunity A is better than B, and you have only one opportunity, you do A. There’s no one-size-fits-all. If you’re really wise and fortunate, you get to be like Berkshire. We have high opportunity costs. We always have something we like and can buy more of, so that’s what we compare everything to.<br />All of you are in the game of taking the lot you have right now and improving it based on your opportunity costs. Think of how life is simplified if you approach it this way."<br /><strong>-Charlie Munger</strong></h3>
+<h3>“I’m not entitled to have an opinion unless I can state the arguments against my position better than the people who are in opposition. I think that I am qualified to speak only when I’ve reached that state.”<br />-<strong>Charlie Munger</strong></h3>
+<h3>“I like people admitting they were complete stupid horses’ asses. I know I’ll perform better if I rub my nose in my mistakes. This is a wonderful trick to learn.”<br /><strong>– </strong><strong>Charlie Munger</strong></h3>
+<h3>"I think it’s roughly right that the market is efficient, which makes it very hard to beat merely by being an intelligent investor. But I don’t think it’s totally efficient at all. And the difference between being totally efficient and somewhat efficient leaves an enormous opportunity for people like us to get these unusual records. It’s efficient enough, so it’s hard to have a great investment record. But it’s by no means impossible. Nor is it something that only a very few people can do. The top three or four percent of the investment management world will do fine."<br /><strong>-Charlie Munger</strong></h3>
+<h3>"We have to have a business with some inherent characteristics that give it a durable competitive advantage."<br /><strong>-Charlie Munger</strong></h3>
+<h3>"We've really made the money out of high-quality businesses. In some cases, we bought the whole business. And in some cases, we just bought a big block of stock. But when you analyze what happened, the big money's been made in the high-quality businesses. And most of the other people who've made a lot of money have done so in high-quality businesses.<br />Over the long term, it's hard for a stock to earn a much better return than the business which underlies it earns. If the business earns 6% on capital over 40 years and you hold it for that 40 years, you're not going to make much different than a 6% return—even if you originally buy it at a huge discount. Conversely, if a business earns 18% on capital over 20 or 30 years, even if you pay an expensive looking price, you'll end up with a fine result.<br />So the trick is getting into better businesses. And that involves all of these advantages of scale that you could consider momentum effects.<br />How do you get into these great companies? One method is what I'd call the method of finding them small get 'em when they're little. For example, buy Wal-Mart when Sam Walton first goes public and so forth. And a lot of people try to do just that. And it's a very beguiling idea. If I were a young man, I might actually go into it."<br /><strong>-Charlie Munger</strong></h3>
+<h3>"I will say this, I know no wise person who doesn’t read a lot. I suspect that you can read on the computer now and get a lot of benefit out of it, but I doubt it will work as well as reading print worked for me. I think people that multitask pay a huge price. They think they’re being extra productive, and I think they’re (out of their mind). I use the metaphor of the one-legged man in the ass-kicking contest. I think when you multi-task so much, you don’t have time to think about anything deeply. You’re giving the world an advantage you shouldn’t do. Practically everybody is drifting into that mistake. Concentrating hard on something that is important is … I can’t succeed at all without doing it. I did not succeed in life by intelligence. I succeeded because I have a long attention span.<br /><strong>-Charlie Munger</strong></h3>
+<h3>“Whenever you think something or some person is ruining your life, it’s you. A victimization mentality is so debilitating.”<br />-<strong>Charlie Munger</strong></h3>
+<h3>"It is totally unproductive to think the world has been unfair to you. Every tough stretch is an opportunity."<br /><strong>-Charlie Munger</strong></h3>
+<h3>"Extreme patience combined with extreme decisiveness. You may call that our investment process. Yes, it's that simple."<br /><strong>-Charlie Munger</strong></h3>
+<h3>“Intelligent people make decisions based on opportunity costs.”<br />-<strong>Charlie Munger</strong></h3>
+<h3>“In my whole life, I have known no wise people (over a broad subject matter area) who didn’t read all the time – none, zero.”<br />-<strong>Charlie Munger</strong></h3>
+<h3>“You know what Kipling said? Treat those two imposters just the same — success and failure. Of course, there’s going to be some failure in making the correct decisions. Nobody bats a thousand. I think it’s important to review your past stupidities so you are less likely to repeat them, but I’m not gnashing my teeth over it or suffering or enduring it. I regard it as perfectly normal to fail and make bad decisions. I think the tragedy in life is to be so timid that you don’t play hard enough so you have some reverses.”<br /><strong>-Charlie Munger</strong></h3>
+<h3>“Over the long term, it’s hard for a stock to earn a much better return that the business which underlies it earns. If the business earns six percent on capital over forty years and you hold it for that forty years, you’re not going to make much different than a six percent return – even if you originally buy it at a huge discount. Conversely, if a business earns eighteen percent on capital over twenty or thirty years, even if you pay an expensive looking price, you’ll end up with one hell of a result.”<br />-<strong>Charlie Munger</strong></h3>
+<h3>“It’s not given to human beings to have such talent that they can just know everything about everything all the time. But it is given to human beings who work hard at it – who look and sift the world for a mispriced bet – that they can occasionally find one. And the wise ones bet heavily when the world offers them that opportunity. They bet big when they have the odds. And the rest of the time they don’t. It’s just that simple.”<br />-<strong>Charlie Munger</strong></h3>
+<h3>“Experience tends to confirm a long-held notion that being prepared, on a few occasions in a lifetime, to act promptly in scale, in doing some simple and logical thing, will often dramatically improve the financial results of that lifetime. A few major opportunities, clearly recognizable as such, will usually come to one who continuously searches and waits, with a curious mind that loves diagnosis involving multiple variables. And then all that is required is a willingness to bet heavily when the odds are extremely favorable, using resources available as a result of prudence and patience in the past.”<br />-<strong>Charlie Munger</strong></h3>
+<h3>“The game of life is the game of everlasting learnings. At least it is if you want to win.”<br /><strong>-Charlie Munger</strong></h3>
+<h3>“Intense interest in any subject is indispensable if you’re really going to excel in it.”<br />-<strong>Charlie Munger</strong></h3>
+<h3>“Most people are too fretful, they worry too much. Success means being very patient, but aggressive when it’s time.”<br />-<b>Charlie Munger</b></h3>
+<h3>“To command is to serve, nothing more and nothing less.”<br /><strong>-Andre Malraux</strong></h3>
+<h3>"There are 99 men who believe in honesty for every honest man."<br />-<strong>Gandhi</strong></h3>
+<h3>"A man's mind may be likened to a garden, which may be intelligently cultivated or allowed to run wild; but whether cultivated or neglected, it must, and will, bring forth. If no useful seeds are put into it, then an abundance of useless weed-seeds will fall therein, and will continue to produce their kind.”<br /><strong>-James Allen, As a Man Thinketh</strong><span id="quote_book_link_81959"><i></i></span></h3>
+<h3>“A man is literally what he thinks, his character being the complete sum of all his thoughts.”<br /><strong>-James Allen, As a Man Thinketh</strong></h3>
+<h3>“He who would accomplish little need sacrifice little; he who would achieve much must sacrifice much. He who would attain highly must sacrifice greatly.”<br /><strong>-James Allen, As a Man Thinketh</strong></h3>
+<h3>“All that a man achieves and all that he fails to achieve is the direct result of his own thoughts.”<br /><strong>-James Allen, As a Man Thinketh</strong><span id="quote_book_link_81959"><i></i></span></h3>
+<h3>"If I have lost confidence in myself, I have the universe against me."<br />-<strong>Emerson</strong></h3>
+<h3>“That which we persist in doing becomes easier to do, not that the nature of the thing has changed, but that or ability to do has increased”<br /><strong>-Emerson</strong></h3>
+<h3>"Nothing great was ever achieved without enthusiasm."<br />-<strong>Emerson</strong></h3>
+<h3>"The ancestor of every action is a thought."<br />-<strong>Emerson</strong></h3>
+<h3>"Wit makes its own welcome and levels all distinctions. No dignity, no learning, no force of character can make any stand against good wit."<br />-<strong>Emerson</strong></h3>
+<h3>“Prices fluctuate more than values—so therein lies opportunity. Why do the prices fluctuate so widely when values can’t possibly? I will tell you the answer I have come up with: The answer is I don’t know and I don’t care. We could waste a lot of time about psychology but it always happens and it continues to happen. I just want to take advantage of it. We could sit there and figure it all out, but I like to keep it simple.  It happens; it continues to happen; the opportunities are there.<br />I just want to take advantage of prices away from value...If you do good valuation work and you are right, Mr. Market will pay you back.  In the short term, one to two years, the market is inefficient.  But in the long-term, the market has to get it right—it will pay you back in two to three years. Keep that in mind when you do your analysis. You don’t have to look at the next quarter, the next six months if you do good valuation work—Mr. Market will pay you.”<br /><strong>-Joel Greenblatt</strong></h3>
+<h3>"The growth and development of people is the highest calling of leadership."<br /><strong>-Harvey S. Firestone</strong></h3>
+<h3>"Most men die at 25... we just don't bury them until they are 70."<br /><strong>-Benjamin Franklin</strong></h3>
+<h3>"If people knew how hard I had to work to gain my mastery, it would not seem so wonderful at all."<br /><strong>-Michelangelo</strong></h3>
+<h3>"I start with the premise that the function of leadership is to produce more leaders, not more followers."<br /><strong>-Ralph Nader</strong></h3>
+<h3>"Effective leadership is not about making speeches or being liked; leadership is defined by results not attributes."<br /><strong>-Peter Drucker</strong></h3>
+<h3>"Before you are a leader, success is all about growing yourself. After you become a leader, success is all about growing others."<br /><strong>-Jack Welch</strong></h3>
+<h3>"When your desires are strong enough you will appear to possess superhuman powers to achieve. "<br /><strong>-Napoleon Hill</strong></h3>
+<h3 class="quoteText">“The great virtue of a free market system is that it does not care what color people are; it does not care what their religion is; it only cares whether they can produce something you want to buy. It is the most effective system we have discovered to enable people who hate one another to deal with one another and help one another.”<br /><strong>-Milton Friedman</strong></h3>
+<h3>“A society that puts equality before freedom will get neither. A society that puts freedom before equality will get a high degree of both.”<br /><strong>-Milton Friedman</strong></h3>
+<h3>“A major source of objection to a free economy is precisely that it ... gives people what they want instead of what a particular group thinks they ought to want. Underlying most arguments against the free market is a lack of belief in freedom itself.”<br /><strong>-Milton Friedman</strong></h3>
+<h3>"Optimism is the engine of Capitalism"<br /><strong>-Daniel Kahneman </strong></h3>
+<h3>“Management is doing things right; leadership is doing the right things.”<br /><strong>-Peter Drucker</strong></h3>
+<h3>"What gets measured gets managed."<br /><strong>-Peter Drucker</strong></h3>
+<h3>"It is not from the benevolence of the butcher, the brewer, or the baker that we expect our dinner, but from their regard to their own interest."<br /><strong>-Adam Smith</strong></h3>
+<h3 class="quoteText">“In a nation distracted by faction, there are, no doubt, always a few, though commonly but a very few, who preserve their judgment untainted by the general contagion. They seldom amount to more than, here and there, a solitary individual, without any influence, excluded, by his own candour, from the confidence of either party, and who, though he may be one of the wisest, is necessarily, upon that very account, one of the most insignificant men in the society.”<br /><strong>-Adam Smith</strong></h3>
+<h3>“The whole trick to investing is identifying when problems are already discounted in prices.”<br /><strong>-Jeff Gundlach</strong></h3>
+<h3>"The ultimate irony of the investment business is that there’s no question that an obstetrician will deliver babies better than the husband or the wife. Or if you take dentists as a whole, they will remove teeth or fill teeth better than if the patients try to do it themselves. But in the investment world, somebody who believes in American business — and who will seek out the lowest way to participate in business and do it consistently — will achieve results that exceed those of investment professionals as a group. It’s the only industry I can think of where the professional’s efforts subtract value from what the layman can do himself."<br /><strong>-Warren Buffett</strong></h3>
+<h3>"In investing, just as in baseball, to put runs on the scoreboard, one must watch the playing field, not the scoreboard."<br /><strong>-Warren Buffett</strong></h3>
+<h3>"I don't like that man; I must get to know him better."<br /><strong>-Abraham Lincoln</strong></h3>
+<h3>"Things may come to those who wait, but only the things left by those who hustle."<br /><strong>-Abraham Lincoln</strong></h3>
+<h3>"Always bear in mind that your own resolution to succeed is more important than any other one thing."<br /><strong>-Abraham Lincoln</strong></h3>
+<h3>“I do not think much of a man who is not wiser today than he was yesterday.”<br /><strong>-Abraham Lincoln</strong></h3>
+<h3>“It is the mark of an educated mind to be able to entertain a thought without accepting it."<br /><strong>-Aristotle</strong></h3>
+<h3>"America represents something universal in the human spirit. I received a letter not long ago from a man who said, 'You can go to Japan to live, but you cannot become Japanese. You can go to France to live and not become a Frenchman. You can go to live in Germany or Turkey, and you won't become a German or a Turk.' But then he added, 'Anybody from any corner of the world can come to America to live and become an American."<br /><b>-Ronald Reagan</b></h3>
+<h3>"Life is nothing if you're not obsessed."<br /><strong>-John Waters</strong></h3>
+<h3>"I worked at NeXT the summer of 94. I was in the break room with 2 colleagues when Steve Jobs walked in and started making a bagel.<br />We were sitting at a table eating ours when he out of the blue asked us "Who is the most powerful person in the world?"  I said Mandela since I had just been there as an international observer for the elections. In his confident fashion he stated "NO!...you are all wrong...the most powerful person in the world is the storyteller."<br />At this point I was thinking to myself "Steve, I love you but there is a fine line between genius and loco..and I think I am witnessing this right now". Steve continued, "The storyteller sets the vision, values and agenda of an entire generation that is to come and Disney has a monopoly on the storyteller business. You know what? I am tired of that bullshit, I am going to be the next storyteller"  and he walked out with his bagel."<br /><strong>-Thomas Higbey, from <a href="https://www.quora.com/What-are-the-best-stories-about-people-randomly-meeting-Steve-Jobs/answer/Tomas-Higbey">Quora</a></strong></h3>
+<h3>The mistake people make is thinking the story is just about marketing. No, the story <em>is</em> the strategy. If you make your story better, you make the strategy better. The company story IS the company strategy. Storytelling is the most underrated skill.”<br /><strong>-Ben Horowitz</strong></h3>
+<h3>To grow your company, you will need to tell your company’s story in high-stakes situations over and over again. Because of this, venture capitalists place huge positive weight on how good you are at this skill. The great storytellers…are going to recruit better, they will be darlings in the press, they are going to raise money more easily and at higher prices, they are going to close amazing business developer partnerships, and they are going to have a strong and cohesive corporate culture. Perhaps more to the point, they are more likely to deliver a positive investment return.<br /><strong>-Bill Gurley</strong></h3>
+<h3>"VC is a sales profession."<br /><strong>-Bill Gurley</strong></h3>
+<h3>"The most important skill in finance is salesmanship."<br /><strong>-Warren Buffett</strong></h3>
+<h3>“The person who says he knows what he thinks but cannot express it usually does not know what he thinks.”<br /><strong>-Mortimer J. Adler</strong></h3>
+<h3>“It is not enough to be busy. So are the ants. The question is: What are we busy about?”<br /><strong>-Thoreau</strong></h3>
+<h3>"Every battle is won before it is fought"<br /><strong>-Sun Tzu</strong></h3>
+<h3>"In the matter of reforming things, as distinct from deforming them, there is one plain and simple principle; a principle which will probably be called a paradox. There exists in such a case a certain institution or law; let us say, for the sake of simplicity, a fence or gate erected across a road. The more modern type of reformer goes gaily up to it and says, “I don’t see the use of this; let us clear it away.” To which the more intelligent type of reformer will do well to answer: “If you don’t see the use of it, I certainly won’t let you clear it away. Go away and think. Then, when you can come back and tell me that you do see the use of it, I may allow you to destroy it.”<br />This paradox rests on the most elementary common sense. The gate or fence did not grow there. It was not set up by somnambulists who built it in their sleep. It is highly improbable that it was put there by escaped lunatics who were for some reason loose in the street. Some person had some reason for thinking it would be a good thing for somebody. And until we know what the reason was, we really cannot judge whether the reason was reasonable. It is extremely probable that we have overlooked some whole aspect of the question, if something set up by human beings like ourselves seems to be entirely meaningless and mysterious. There are reformers who get over this difficulty by assuming that all their fathers were fools; but if that be so, we can only say that folly appears to be a hereditary disease. But the truth is that nobody has any business to destroy a social institution until he has really seen it as an historical institution. If he knows how it arose, and what purposes it was supposed to serve, he may really be able to say that they were bad purposes, or that they have since become bad purposes, or that they are purposes which are no longer served. But if he simply stares at the thing as a senseless monstrosity that has somehow sprung up in his path, it is he and not the traditionalist who is suffering from an illusion."<br /><strong>-G.K. Chesterton, <a href="http://en.wikiquote.org/wiki/G._K._Chesterton#The_Thing_.281929.29"><i>The Thing: Why I Am A Catholic</i></a></strong></h3>
+<h3>"The root of all superstition is that men observe when a thing hits, but not when it misses"<br /><strong>-Francis Bacon</strong></h3>
+<h3>"People are generally better persuaded by the reasons which they have themselves discovered. When we wish to correct with advantage, and to show another that he errs, we must notice from what side he views the matter, for on that side it is usually true, and admit that truth to him, but reveal to him the side on which it is false. He is satisfied with that, for he sees that he was not mistaken, and that he only failed to see all sides. Now, no one is offended at not seeing everything; but one does not like to be mistaken, and that perhaps arises from the fact that man naturally cannot see everything, and that naturally he cannot err in the side he looks at, since the perceptions of our senses are always true."<br /><strong>-Blaise Pascal</strong></h3>
+<h3>“Between stimulus and response, there is a space. In that space is our power to choose our response. In our response lies our growth and freedom.”<br /><strong>-Viktor Frankl</strong></h3>
+<h3>“Anything less than a conscious commitment to the important is an unconscious commitment to the unimportant.”<br /><strong>-Stephen Covey</strong></h3>
+<h3>"The great enemy of communication is the illusion of it."<br /><strong>-William Whyte</strong></h3>
+<h3>"All the time you're saying to yourself, 'I could do that, but I won't,' - which is just another way of saying that you can't."<br /><strong>-Richard Feynman</strong></h3>
+<h3>"Conflict is where the truth is. When there’s conflict you do not want to smooth it over. You want to sharpen the contradictions."<br /><strong>-Ben Horowitz</strong></h3>
+<h3>"Wise men talk because they have something to say; fools, because they have to say something."<br /><strong>-Plato</strong></h3>
+<h3>"Nothing taught by force stays in the soul."<br /><strong>-Plato</strong></h3>
+<h3>“You can’t tell by looking at an outcome if the decision that led to it was good or bad.”<br /><strong>- Howard S. Marks <a class="twitter-atreply pretty-link js-nav" href="https://twitter.com/Oaktree"><s>@</s>Oaktree</a></strong></h3>
+<h3>“Life must be understood backward. But … it must be lived forward.”<br /><strong>-Kierkegaard</strong></h3>
+<h3>“Understanding both the power of compound interest and the difficulty of getting it is the heart and soul of understanding a lot of things.”<br /><strong>-Munger</strong></h3>
+<h3>"When you make something no one hates, no one loves it."<br /><strong>-Tibor Kalman</strong></h3>
+<h3>You are what your record says you are.<br /><strong>-Bill Parcells</strong></h3>
+<h3>“Life is a long game. Take it as comes and do the best you can, and if you live to an old age, you will get your full share of opportunities, which will be two in total, maybe, but seize one of the two, and you will be alright.”<br /><strong>-Munger</strong></h3>
+<h3>“The two rules of fishing are to fish where the fish are, and don’t forget the first rule. Investing is the same thing. In some places, no matter how good a fisherman you are, you won’t do well.”<br /><strong>-Charlie Munger</strong></h3>
+<h3>“It’s a real pleasure to earn the trust of your customers slowly over time by doing what’s right”<br /><strong>-Charlie Munger</strong></h3>
+<h3>"If you know in advance that it is going to work, it is not an experiment."<br /><strong>-Jeff Bezos</strong></h3>
+<h3>“The exciting thing about market economies is that stupidity equals opportunity.”<br /><strong>-Paul Graham</strong></h3>
+<h3>"My advice is to read a lot. There are no secrets in the business that only the priesthood knows. It’s all right there."<br /><strong>-Warren Buffett</strong></h3>
+<h3>"One of our directors said very simply, 'We should make a list of everything that irritates the customer, and then we should eliminate those defects one by one.' That is the way to compete in a service business."<br /><strong>-Charlie Munger</strong></h3>
+<h3>"If you’re customer-focused, you’re always waking up wondering, how can we make that customer say, wow? ... That kind of divine discontent comes from observing customers and noticing that things can always be better.”<br /><strong>-Jeff Bezos</strong></h3>
+<h3>“People calculate too much and think too little.”<br /><strong>-Charlie Munger</strong></h3>
+<h3>"I believe in intuitions and inspirations. I sometimes feel that I am right. I do not know that I am."<br /><strong>-Albert Einstein</strong></h3>
+<h3>“The plain fact remains that men the world over possess amounts of resource, which only very exceptional individuals push to their extremes of use.”<br /><strong>-William James in Science, 1907</strong></h3>
+<h3>"The idea that life is a series of adversities and each one is an opportunity to behave well instead of badly, is a very very good idea."<br /><strong>-Charlie Munger</strong></h3>
+<h3>"There are two things that are important in outcome—one is tide, one is swimmer. If the tide is tough enough, a good swimmer loses."<br /><strong>-Munger</strong></h3>
+<h3>“Intelligent people make decisions based on opportunity costs - in other words, it's your alternatives that matter.”<br /><strong>-Charlie Munger</strong></h3>
+<h3>“I’m a card-carrying capitalist, &amp; I believe we wouldn’t be sitting here except for the market system and the rule of law. I also think capitalism involves regulation taking care of people who are left behind particularly when a country gets enormously prosperous”<br /><strong>-Warren Buffett</strong></h3>
+<h3>“People think data is a way to compel people, but it’s the story that compels people, and that has never changed, whether you’re talking about political campaigns or business presentations."<br /><strong>-Andy Rachleff</strong></h3>
+<h3>"Concentrate on what will produce results rather than on the results, the process rather than the prize"<br /><strong>-Bill Walsh (Score Takes Care of Itself)</strong></h3>
+<h3>“I directed our focus less to the prize of victory than to the process of improving — obsessing, perhaps, about the quality of our execution and the content of our thinking; that is, our actions and attitude. I knew if I did that, winning would take care of itself.”<br /><strong>-Bill Walsh</strong></h3>
+<h3>"A new idea proposed in a halfhearted and casual way is almost certainly confined to oblivion."<br /><strong>-George Stiller</strong></h3>
+<h3>"Become the best in the world at what you do. Keep redefining what you do until this is true."<br /><strong>-Naval</strong></h3>
+<h3><span class="css-901oao css-16my406 r-1qd0xha r-ad9z0x r-bcqeeo r-qvutc0">“Accomplishing great things by working smart but not working hard is, as far as I can tell, entirely a myth."<br /><strong>-Marc Andreessen</strong></span></h3>
+<h3>"You can work long, hard, or smart, but at Amazon you can't choose two out of three."<br /><strong>-Jeff Bezos</strong></h3>
+<h3>"Anybody who decides to take me on needs to put on knuckle-dusters. If you think you can hurt me more than I can hurt you, try. There is no other way you can govern a Chinese society".<br /><strong>-Lee Kuan Yew (1st PM of Singapore)</strong></h3>
+<h3>“Boos don’t block dunks.”<br /><strong>-Kobe Bryant</strong></h3>
+<h3>"The level of respect he [Michael Jordan] had for you when he spoke about you, was different than anyone else. And you were 18 at the time. How did that make you feel?" "It made me feel good. <span class="r-b88u0q">But, he didn't say anything I didn't already know</span>."<br /><strong>-Kobe Bryant</strong></h3>
+<h3>"Fight like you're right, listen like you're wrong"<br /><strong>-Andy Grove</strong></h3>
+<h3>“I don’t like that man. I must get to know him better.”<br /><strong>-Abraham Lincoln (for real)</strong></h3>
+<h3>“Whenever you think something or some person is ruining your life, it’s you. A victimization mentality is so debilitating.”<br /><strong>–Charlie Munger</strong></h3>
+<h3>"It's a real pleasure to earn the trust of your customers slowly over time by doing what's right."<br /><strong>-Charlie Munger</strong></h3>
+<h3>“Empowered engineers are the single most important thing that you can have in a company."<br /><strong>-Bill Campbell (the legend)</strong></h3>
+<h3>“Victorious warriors win first and then go to war, while defeated warriors go to war first and then seek to win.”<br /><strong>-Sun Tzu</strong></h3>
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2024/12/img_6103.jpg" alt="" class="wp-image-787" /></figure>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

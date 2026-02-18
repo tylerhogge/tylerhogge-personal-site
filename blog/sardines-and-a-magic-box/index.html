@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sardines and the Magic Box — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Sardines and the Magic Box</h1>
+  <div class="post-date">October 2, 2023</div>
+</div>
+<div class="post-body">
+<p>In his excellent book “Margin of Safety”, Seth Klarman tells a story of a famous bubble you probably haven’t heard of: the sardine bubble in Southern California.</p>
+
+
+
+<blockquote>
+<p><em>There is an old story about the market craze in sardine trading when the sardines disappeared from their traditional waters in Monterey, California. The commodity traders bid them up and the price of a can of sardines soared. One day a buyer decided to treat himself to an expensive meal and actually opened a can and started eating. He immediately became ill and told the seller the sardines were no good. The seller said, “You don’t understand. These are not eating sardines, they are trading sardines.”</em></p>
+</blockquote>
+
+
+
+<p>Over the last several years the market for startups has followed a similar story. There are far, far too many trading sardines, and very few eating sardines.</p>
+
+
+
+<p>The path of a trading sardine was simple: raise 4-5 rounds of venture capital, at increasingly higher valuations to the next bidder, until an IPO and the public becomes the greatest fool. But Uncle Jerome has changed all that. The public markets are chewing up and spitting out trading sardines. It won’t buy them anymore. And when the public market won’t buy the crap, the pyramid crumbles.</p>
+
+
+
+<p>The latest example of this was Better.com. It had raised $1b in funding across many rounds. IPO in August. Chewed up. Spit out. Down 97%. Worth $150m. Rancid sardines and massive value destruction. I admire any founder for trying, and I also think it’s important to learn from the failures.&nbsp;</p>
+
+
+
+<figure><img src="https://lh3.googleusercontent.com/y0W70AEVNUWJBe7453aeIDf0HjtgYU40EqvM9Rl4OgddzAS88tm8A3wd4rQkbW3tjOM2OZXoBCbQ3k6o3BrwWCCCGK5bMCXIrt2tiuMCWbZg6UkXIzKnpZtXn1lP1xZRTIWA0ygXxuPDl_7u4e8zOp0" alt="" /></figure>
+
+
+
+<p></p>
+
+
+
+<p>So what makes a startup an “eating” sardine instead of a “trading” sardine? </p>
+
+
+
+<p>The answer is simple: free cash flow. Cash flow is what makes a business real.</p>
+
+
+
+<figure><img src="https://lh5.googleusercontent.com/5b_XxaZdCMEEovUn1pofC2R2VCKiitSqfQW9refl9s0TwB9nDSgO_5iJ62s3maaLFp6ZGZuShJw4h5LemFAQKKy40p3oYBTOi55w7j1VFWu7kKGbyQxwhDYR0lKpF_3oL8Rgi73c7ByF97Y9Lldcm3c" alt="" /></figure>
+
+
+
+<p></p>
+
+
+
+<p>Why is free cash flow the difference maker? </p>
+
+
+
+<p>Think of it this way: a real business can be thought of as a magic box. Magic because it takes 1 dollar in and eventually spits out more than 1 dollar. It does this by creating a product/service and charging a customer more than the costs necessary to create the product/service <em>and</em> run the business.&nbsp;</p>
+
+
+
+<p>One dollar in. Two dollars out. Magic.&nbsp;</p>
+
+
+
+<p>It is excruciatingly hard to create this magic box. But how could it be any other way? It’s magic, after all! It’s a box that creates money! If it was easy, everyone would do it.&nbsp;</p>
+
+
+
+<p>And that’s just the point. For a while, it <em>was</em> easy. It was almost like you didn’t have to create a magic box in tech - like tech startups were the exception to the rule. My dad is a CEO who has never worked in tech, and during 2021 I would have a weekly conversation with him where he was dumbfounded that “it seems like software companies never have to turn a profit and I just don't understand why.” Now he understands.&nbsp;</p>
+
+
+
+<p>We can discuss why it seemed so easy in a separate post, but surely low (and negative) interest rates were a primary culprit. For many years money was free (even cheaper than free!), and that created a whole bunch of market distortions, including a shit ton of trading sardines.&nbsp;</p>
+
+
+
+<p>Many venture capitalists also are to blame. Motivated by the incentives of larger and larger funds (also made possible by extremely low interest rates), some (many?) VCs plowed too much money into too many trading-sardine startups, hoping to pump growth and exit the company on a high multiple before the clock struck 12.&nbsp;</p>
+
+
+
+<p>Building an enduring, generational business? Nah. That’s an afterthought. These sardines don’t need to be <em>eaten</em>, after all.&nbsp;</p>
+
+
+
+<p>So, what does it look like to build an “eating sardine” startup? Or, in other words, a magic box?</p>
+
+
+
+<p>It means to <strong><em>build something enduring</em></strong>. And enduring, definitionally, means it can sustain itself on its own cash flow rather than relying on the kindness of strangers. Enduring means building to go public, not building to sell, because you know that building to go public is actually the best way to get bought anyways. The right goal for <em><strong>every single venture-backed business is to be a public company</strong>.</em> And to be a public company now, you have to build a <em>real business</em>.&nbsp;</p>
+
+
+
+<p>This path - the path to being a public business - is <em>not</em> the right path for most startups, which is why almost no startups should raise venture capital. But if you choose to raise - if you step on that path - you should have a singular focus on building a cash-flowing, fast-growing, rocketship business that eventually goes public.</p>
+
+
+
+<p>This means that startups will need to show profitability at much lower levels of scale. Amazon was famously profitable early on in 2001. Google as well. Microsoft as well. You may still choose to forgo profits, but you should prove you can be profitable early.</p>
+
+
+
+<p>I think of this tweet from Sarah Guo:</p>
+
+
+
+<figure><img src="https://lh3.googleusercontent.com/r7lv-WjSAFapMnPCLP-Di4vMFlaW8sjew_iUVxKwDGbK6cop4RT89cBFrgFqvyiE2Alj2wR_uivAwOJkI5505dnuyy-8PhWYSYBR_5lyzyCgogB6jMkqE6eoHdn2OUSPAKIAKJHroYYHtMt0YbayA_c" alt="" /></figure>
+
+
+
+<p></p>
+
+
+
+<p>In many ways, founders are on an impossible journey. They are dead by default. They don’t have enough cash. They don’t have enough help. No one believes. And the mission is to take some capital and transform it into hundreds and thousands of happy customers, who pay you for a product that in many ways is inferior to an incumbent product. On top of that, you’re asked to spend less than you make, and to build a magic box that prints money <em>on top of</em> a magic product, all while growing extremely fast. It’s just impossible. Almost no one can do it.&nbsp;</p>
+
+
+
+<p>But…</p>
+
+
+
+<p>The ones who can do it enjoy the glory and satisfaction that few people ever know. They build an enduring business that benefits the lives of everyone involved, including customers, employees, and communities.&nbsp;</p>
+
+
+
+<p>Reject the trading sardines, and go build a magic box.</p>
+
+
+
+<p>What could be better use of our time on earth than that?</p>
+
+
+
+<figure><img src="https://lh5.googleusercontent.com/QRZ6I_Umn7I1C7eTo0P5tE2FDOBderuxcsUnFN-gVv3tqR1PfYse2rmCAKpKzn6oRRxqe5JqulZFB1tCT4QHO623yT5m874GFf1FqgG7cDmoiec7Ulin0ShU7S2cYX2iaw86m95QEUV-uLZajwLcjDw" alt="" /></figure>
+</div>
+<div class="post-nav"><a href="/blog/elements-of-exceptional-startups/">← Elements of Exceptional Startups</a>
+<a href="/blog/27-things-i-learned-from-don-valentine/">27 Things I Learned From Don Valentine →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

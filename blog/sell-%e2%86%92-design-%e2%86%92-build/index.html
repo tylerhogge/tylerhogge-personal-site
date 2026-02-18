@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sell → Design → Build — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Sell → Design → Build</h1>
+  <div class="post-date">July 23, 2024</div>
+</div>
+<div class="post-body">
+<blockquote>
+<p>“Victorious warriors win first and then go to war, while defeated warriors go to war first and then seek to win.” –Sun Tzu</p>
+</blockquote>
+
+
+
+<p>I have come to believe that one framework is more important than any other in the pursuit of product market fit. It is called Sell, Design, Build.&nbsp;</p>
+
+
+
+<p>I learned it originally from Andy Rachleff (surprise!) while at Wealthfront, and I’ve seen it used by some of the best startups in the world to launch products that quickly strike a nerve with customers.&nbsp;</p>
+
+
+
+<p>I’ll lay out the framework in detail below and share a few case studies.</p>
+
+
+
+<p><strong>What is it?</strong></p>
+
+
+
+<p>Sell Design Build describes the process of pre-selling your product in order to test for desperation in a prospective customer before you go through the very costly process of actually building something by writing code. Most founders, especially technical founders, tend to do the opposite: they <strong>build</strong> something on the backend, add <strong>designs</strong> onto the front end, and go out to <strong>sell</strong> it (build, design, sell).&nbsp;</p>
+
+
+
+<p>Sell Design Build advocates for the opposite. Sell something first. Once you can sell it successfully, go out and design and build it. This framework is closely related to a classic customer development process as outlined in Steve Blank’s canonical book, Four Steps To The Epiphany, which I highly recommend.&nbsp;&nbsp;</p>
+
+
+
+<p><strong>Why is it so important?</strong></p>
+
+
+
+<p>The vast majority of startups never find a desperate customer, which means they never build something people want, which means they never find product market fit. This is the root cause of almost all startup failure, and even worse, it’s the default outcome for all startups. Desperation is key here, and is different from ‘need’ or ‘want’.&nbsp;</p>
+
+
+
+<p>As Andy Rachleff says: “The only way you are likely to succeed as a startup is if you find a <em>desperate</em> customer. If the incumbent offers something that is good enough, they are going to win because they are far less risky for the consumer to use. So why take the chance on something that is slightly better? For someone who is desperate, there’s not a good enough solution!”</p>
+
+
+
+<p>The best founders are actually risk <em>killers</em>, not risk <em>seekers</em>. So if the biggest risk of a startup is to fail to find product market fit, the best founders <em>kill that risk first. </em>The best way to kill that risk first is by following this framework.</p>
+
+
+
+<p>Think of it this way: at some point you are going to publicly launch. The default outcome is that you publicly launch, and no one cares. It falls flat. That is the outcome of almost all startups. If you want to avoid that, you are hoping to launch something that <em>truly strikes a nerve</em>. If you strike a nerve, then people will tell others about it. And if people tell others about it, you have a shot at success. If you want that type of launch, sell design build helps you figure out whether you will strike a nerve before you actually launch.</p>
+
+
+
+<p><strong>Why does it work?</strong></p>
+
+
+
+<p>It works because it brings clarity to whether or not a customer is desperate enough for your product before you build it.</p>
+
+
+
+<p>Think of it this way: buyers are liars. Most founders have many conversations with potential customers, seeking feedback on their ideas. The problem with this is that no one, especially your friends, will tell you your baby is ugly. They will say things like “this is cool!” and “I am very interested!” which you should interpret as essentially meaningless. Buyers are liars.</p>
+
+
+
+<p>The only way to get a true signal in these conversations is to sell. By asking for money you shift from the niceties of a social conversation to an economic conversation, which activates a part of the brain in buyers that you care about: whether or not they will part ways with their money to use your product. There are other, less valuable, signals you can ask for: such as a commitment of time to help you build (aka design partner), which are better than nothing, but worse than money.</p>
+
+
+
+<p><strong>How does it work in practice?</strong></p>
+
+
+
+<p>In practice, you generally need a set of figma designs in order to sell, or a prototype, so it’s probably more accurate to say Design, Sell, Design, Build. But that isn’t as crisp 🙂.&nbsp;</p>
+
+
+
+<p>Here’s how it works in practice.</p>
+
+
+
+<ol>
+<li><strong>The founder has a unique insight</strong>.
+<ol>
+<li>This is absolutely key. As Steve Blank says, “An important insight is that the goal of customer development is <em>not to collect feature lists</em> from prospective customers, <em>nor is it to run lots of focus groups</em>. In a startup, the <em>founder defines the first product</em><strong>.</strong> Customer development is to test whether there are customers and a market for that vision. Read that last sentence again. It is not intuitively obvious. The initial product specification comes from a founder’s vision, not the sum or a set of focus groups.” As an aside, it’s even better if your insight is truly non-consensus.&nbsp;</li>
+</ol>
+</li>
+
+
+
+<li><strong>The founder puts the insight into Figma.</strong>
+<ol>
+<li>In order to run a proper process, you almost always need to show something. Words are not enough. This is why you need a figma prototype, almost always. If you can sell it without visuals, great, but the underlying principle is to do the minimum amount of building before you can sell. I find that generally requires a figma.</li>
+</ol>
+</li>
+
+
+
+<li><strong>The founder sets up a set of sales conversations.</strong>
+<ol>
+<li>Set up 30 sales calls with the target buyer. You tell them you want to show them something, and that you plan to ask them whether they’d buy it.&nbsp;</li>
+</ol>
+</li>
+
+
+
+<li><strong>At the end of each convo, the founder asks if the customer would buy this today.</strong>
+<ol>
+<li>This is self explanatory. Give them a price at the end of the call, and see if they’d buy it. If they say yes, tell them you will charge them $100 today in order to get on the waitlist (you can refund this $100 once they start paying as a customer). If they say yes, send them the Stripe link, and collect money. Congrats. You have a sale.</li>
+</ol>
+</li>
+
+
+
+<li><strong>Iterate. The founder iterates on the who (target persona) or the what (designs + messaging) aggressively based on feedback and continues to sell.</strong>
+<ol>
+<li>What is more likely is that they do not buy just yet. This is where the gold lies. If that’s the case, listen closely to their objections. You are like a <a href="https://en.wikipedia.org/wiki/Truffle_hog">truffle hog</a> looking for desperation. Let them tell you where it is. Based on their feedback, you iterate. There are two ways to iterate: the first is to adjust <em>who</em> you sell too (perhaps you are targeting the wrong ICP, and you can find desperation if you change that), and then, on <em>what </em>you are selling (you likely need to tweak the designs, the pitch, the presentation in order to close the sale.) In practice both are usually true.&nbsp;</li>
+</ol>
+</li>
+
+
+
+<li><strong>If the product eventually sells above a certain threshold, the founder moves forward.</strong>
+<ol>
+<li>You continue to iterate on the <em>who</em> or the <em>what </em>until you are able to successfully sell your designs at a reasonable rate. This does not mean everyone buys, but I think if over 30% of your calls land a sale, you likely have found desperation.</li>
+</ol>
+</li>
+
+
+
+<li><strong>Now, go build and have a successful launch.</strong>
+<ol>
+<li>Now that you have successfully de-risked the process, your build should go much smoother, your marketing should be much clearer, and your launch should be much more successful.</li>
+</ol>
+</li>
+</ol>
+
+
+
+<p><strong>What are some case studies?</strong></p>
+
+
+
+<p>Flexport</p>
+
+
+
+<ul>
+<li>In a classic <a href="https://www.youtube.com/watch?v=hjUs7o-TnjY&amp;t=1000s">YC interview</a>, Ryan Peterson describes how he got his first 3 customers:</li>
+
+
+
+<li>“The earliest customer for Flexport we got via adwords on google. People found us on the internet, signing up for the service, pre-launch. When I was still experimenting, I built a landing page, because I was trying to see if people would buy this service if it existed. We got Foxconn signed. Cargill signed up. Then one day Saudi Aramco signed up. All for my fake website. I knew it was going to be a big company, and that I needed to go get this (freight forwarding) license. I’m not a big risk taker. I didn’t want to start this business unless I knew people actually wanted it.”</li>
+</ul>
+
+
+
+<p>Redo</p>
+
+
+
+<ul>
+<li>Redo is one of the fastest-growing companies in the country right now, and their entire product process relies on Sell Design Build.</li>
+
+
+
+<li>For each new product they launch, they follow the 7-step process above. They are the creators of the “pay $100 to get on the waitlist” idea to test for desperation, which I absolutely love.&nbsp;</li>
+</ul>
+
+
+
+<p>Jump</p>
+
+
+
+<figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeAmlngAQDm8WncATWkAhuNVp9x5QP7nSzws5M3v5rDrvLdDHZ5j0zTAUAeJ29x3vudd7Zsz5FEDrJtkB9GdkulX_nyc1ve2kk2JDCIkBeW865-UpWAuQvg4acF8NOD2-I9sdkyLxrmMHA2tCmxPvT_2h2b?key=XauzTQPNkBm3C4XQdF0XdQ" alt="" /></figure>
+
+
+
+<p>Hona</p>
+
+
+
+<figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfx55rXYHdrsjM_HV-Xj-KRA-XAYR-0EK5mBI_gjK280Ey9N0usXmXqFQgGy2e6cCXjEy-wDwgdqfj0uUn7dIOwJQNlAEufK3LsQuXfemSa1zrnKLlL2eDgRBCU_6wPLTYP8yHydHENsXWrkm9YaBg64ni_?key=XauzTQPNkBm3C4XQdF0XdQ" alt="" /></figure>
+
+
+
+<p>I also asked the Manny, Hona’s CEO for more insight, and here is what he shared: <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXf_c_izf0heF8ue_U9TYF-Ylqm8rfCkU5nhY25LRnaS8-i8vcweE9m_BBmab5OiplwZ8NGKDraG_8XaIbMcYocqVpKYmjTiH_fnoU1eZEiZhv3jCh6X3El4r5IY6XyOphB9mKKf9ZXCum6_sIMF5SkJ0hF2?key=XauzTQPNkBm3C4XQdF0XdQ" width="624" height="264"></p>
+
+
+
+<p>There are many dozens of more examples, from many of the best startups in the world, that use a very similar process. And it should not be surprising, because the logic is so clear.&nbsp;</p>
+
+
+
+<p>As <a href="https://www.tiktok.com/@yougrow.club/video/7213430811951942954?_r=1&amp;_t=8oEyKrkROQA">Sam Altman says</a>:</p>
+
+
+
+<p>“Startups come to me all the time hoping for the secret, and it’s really this simple. If you build something so good that people spontaneously tell their friends about it, you have done the most important thing. This is extremely hard to do. But it’s really that simple.”</p>
+
+
+
+<p>And in order to build something that good, I think you need to sell it first.</p>
+
+
+
+<p>So, go out and sell your vision. If it strikes a nerve, build it.&nbsp;</p>
+
+
+
+<p>It’s really that simple, and it’s really that impossible 🙂.</p>
+</div>
+<div class="post-nav"><a href="/blog/only-first-class-business-in-a-first-class-way/">← Only First-Class Business In a First-Class Way</a>
+<a href="/blog/why-we-invested-in-remi/">Why We Invested In Remi →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Awful Arithmetic Of Valuation — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>The Awful Arithmetic Of Valuation</h1>
+  <div class="post-date">December 6, 2023</div>
+</div>
+<div class="post-body">
+<p>Why does someone invest their cash into a tech company? Or into anything, for that matter?</p>
+
+
+
+<p>The answer, of course, is so that they can get <em>more</em> cash back, later.</p>
+
+
+
+<p>Funny enough, those two sentences essentially describe the entirety of financial markets.&nbsp;</p>
+
+
+
+<p>Some people want cash <em>now</em>. Other people want cash <em>later</em>. The people who want cash now have two choices: they can either borrow money (and incur a debt), or sell a piece of the upside (equity).&nbsp;</p>
+
+
+
+<p>On the other side, the people who are willing to give up their cash now for more cash later decide if they prefer fixed income payments to get repaid (debt) or, rather, the possibility of larger dividends later, and hopefully appreciation of the asset itself along the way (equity).&nbsp;</p>
+
+
+
+<p>The two sides find each other, align on specifics (like price and terms), and transact. A market for cash is created.</p>
+
+
+
+<p>People (and companies) simply trade current cash, for future cash. And vice versa. That’s it.</p>
+
+
+
+<p>But how do you decide what price to pay? In other words, how does “valuation” work?</p>
+
+
+
+<p>To value something, you try to find the ‘present value of its future cash flows'. Since that phrase is meaningless to many, all it means is that you take <em>all</em> the cash something will produce over its lifetime, sum it together, and “discount” it back to today. Cash that is further out is worth less, so you must “discount” that cash back into today’s dollars. And if the interest rate is higher, those cash flows are worth even less now (because they were discounted at a higher rate!)</p>
+
+
+
+<p>You now understand why tech stocks collapsed when interest rates rise. Congratulations.</p>
+
+
+
+<p>Simple, right?</p>
+
+
+
+<p>Well, if you really think about the underlying arithmetic behind valuation, especially in technology companies, it starts to get very scary. And very hard.</p>
+
+
+
+<p>What do I mean?&nbsp;</p>
+
+
+
+<p>In the case of technology companies, all the cash is many years away - In the “terminal value”. And tech companies typically don’t pay dividends along the way, at least until they are public, if then.&nbsp;</p>
+
+
+
+<p>When cash is really far out into the future, that means it has to be discounted back more years, which means it is worth “less” today.</p>
+
+
+
+<p>That’s the first strike against tech valuations. The "cash back" is very far away.</p>
+
+
+
+<p>Let me give you a pop quiz example:</p>
+
+
+
+<p>If I offered to pay you $1m every year, into perpetuity, how much would you pay for that?</p>
+
+
+
+<p>It turns out there is a very simple formula to answer that question.</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/md9upgVPAto-IQGo6m7Ti10mXgapx8zz91Nag3Ps8a5mcrcar3lQglQ3B5aS9MRfU7hhHm94U4mY9zKnnN-QVk-RQ1-3Cjnr1CEqlqGeBo4OGKrNrIPG7Cfw8MKmVvBgbe9K3zDHVGWQ9vk62Q0lDAXwyOZYffLApOml93x4TfPN2r6a0-Kme4LChAzU8Q" alt="" /></figure>
+
+
+
+<p>You take the $1m (your annual payment) and divide it by what’s called a “discount rate”. That’s it. A discount rate can be thought of as the rate you want to earn on your money - your required return - like a hurdle rate. It’s what you could earn with cash if you had it on your next best investment.</p>
+
+
+
+<p>Let’s use 10% as the discount rate for simplicity (although 10% is fairly realistic). You want to earn 10% on your money.</p>
+
+
+
+<p><strong>$1m / 10% = $10m.</strong></p>
+
+
+
+<p>You should pay $10 million dollars in order to earn $1m per year, <strong>for the rest of your life.</strong></p>
+
+
+
+<p>Think about that for a second.&nbsp;</p>
+
+
+
+<p><strong>Something that will pay you one million dollars every year, for the next 40, 50, 60 years….is worth just $10m?</strong></p>
+
+
+
+<p>Yes.</p>
+
+
+
+<p>Why? Because many of those $1m payments are SO far out...they’re discounted heavily.</p>
+
+
+
+<p>Just like compounding is magical the more years it applies….discounting does the opposite.</p>
+
+
+
+<p>Now you can better understand this Warren Buffett quote:</p>
+
+
+
+<blockquote>
+<p>"Think about a company with a market cap of $500 billion. To justify paying this price, you would have to earn $50 billion every year until perpetuity, assuming a 10% discount rate. And if the business doesn't begin this payout for a year, the figure rises to $55 billion annually, and if you wait three years, $66.5 billion. Think about how many businesses today earn $50 billion, or $40 billion, or $30 billion. It would require a rather extraordinary change in profitability to justify that price."</p>
+</blockquote>
+
+
+
+<p>For a tech stock to be worth $50b, you are saying it needs to pay out FIVE BILLION DOLLARS EVERY YEAR STARTING NOW.</p>
+
+
+
+<p>And since most tech stocks do not pay out 10% of their market cap now, it has to be way more per year, later!</p>
+
+
+
+<p>The point of this post is to remind folks, especially myself, of two crucial facts:</p>
+
+
+
+<ol>
+<li>An investment is only worth the cash it can produce over time</li>
+
+
+
+<li>And, if it’s not producing cash now (like almost all startups), it better be producing much more cash later in order to justify a price of x today.</li>
+</ol>
+
+
+
+<p>A superficial test we can use:</p>
+
+
+
+<p>Will this company produce 10% of its market cap in cash per year, every year, at some point in order to justify the current valuation? What would need to be true for that to happen?</p>
+
+
+
+<p>If you can’t ever see it generating cash of that magnitude, it’s likely you’re looking at a <a href="https://tylerhogge.com/2023/10/02/sardines-and-a-magic-box/">trading sardine</a>. And the market is done with trading sardines, for now.</p>
+
+
+
+<p>But when it does work, wow.&nbsp;</p>
+
+
+
+<p>...It’s like a magic box:</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/_p7j48A2I9gDrHm8rV1VXHi6gxRYs3RqXhgP6WX8RHedMUmpAIZG43qoGrG9fd4J9KgmDmuDCRAdShECZhvq2UW6ZpXRX94zNGXf_nSWIz0MdKJl7EtgLKUvqdACwvN46OkrpSkeewbk6JqqQC-ZUTtgyeJG-eB9IHXI4vJpL5mRqkK9VvYqWXEmo5zV9g" alt="" /></figure>
+</div>
+<div class="post-nav"><a href="/blog/27-things-i-learned-from-don-valentine/">← 27 Things I Learned From Don Valentine</a>
+<a href="/blog/different-is-better-than-better/">Different Is Better Than Better →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

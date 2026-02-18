@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What I learned about leadership from a 4-star general — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>What I learned about leadership from a 4-star general</h1>
+  <div class="post-date">January 10, 2015</div>
+</div>
+<div class="post-body">
+<p class="p1"><span class="s1">It's not every day you get a chance to learn from a four-star general.</span></p>
+<p class="p1"><span class="s1">So when I received an email from the MBA registrar at Cornell University's Johnson Graduate School of Management about an upcoming class taught by Gen. George W. Casey Jr., former chief of staff of the US Army, I jumped at the chance. </span></p>
+<p class="p2"><span class="s1">Casey's class focused on leadership skills for a "VUCA world" — that is, one that's volatile, uncertain, complex, and ambiguous.</span></p>
+<p class="p2"><span class="s1">He has earned his stripes on the subject: As leader of the US Army from 2007 to 2011 under two US presidents, Casey oversaw 1.1 million soldiers during some of the most complex military operations in history.</span></p>
+<p class="p2"><span class="Apple-style-span"><img class="" src="http://static2.businessinsider.com/image/546cb48eeab8ea365be8f0b9-480/george-w-casey-jr.jpg" alt="George W. Casey, Jr." width="306" height="231" /></span></p>
+<p class="p2"><span class="s1">As a first-year MBA student seeking a transformative learning experience, I was fascinated with his stories and advice. Here are my takeaways:</span></p>
+
+<h3 class="p1"><span class="s1"><strong>A leader finds the opportunity in every challenge.</strong></span></h3>
+<p class="p1"><span class="s1">There was a particularly sensitive time in Iraq when Casey was tasked with forming a partnership with local leadership. Just as discussions were beginning, a soldier who had recently arrived in Iraq mistakenly drove down a street that was specifically supposed to be avoided. A full-blown battle broke out across the southern part of the country.</span></p>
+<p class="p1"><span class="s1">In Casey's words: "We used this tense situation as an opportunity to accomplish the objective. Instead of the partnership unraveling, we actually turned it to our benefit and used it as an example of how we could strengthen our relations. When a challenge is presented, it can be a gift."</span></p>
+
+<h3 class="p1"><span class="s1"><strong>A leader simplifies their message before communicating.</strong></span></h3>
+<p class="p1"><span class="s1">"One of the most difficult challenges of any leader is to cut out complexity, especially before presenting an idea," Casey said. "Clarity and simplicity are the antidotes to complexity and uncertainty." He talked about soldiers who tried to explain complex military issues to members of Congress without understanding their audience. The soldiers often used military-specific jargon in their explanations, leaving the lawmakers confused.</span></p>
+<p class="p1"><span class="s1">Casey explained: "It's essential to distill a message into a few key points and hone its delivery. After trying and failing to communicate our strategy, we went back to the drawing board and came up with 'Clear. Hold. Build.' and re-communicated it. It was much better understood. </span>Clear communication is like sharpening a pencil: You slowly remove the unnecessary until you are left with a pointed, useful message."</p>
+<p class="p1">He suggested presenting your message to a spouse or friend first to check its cogency.</p>
+
+<h3 class="p1"><span class="s1"><strong><span class="KonaFilter image-container display-table click-to-enlarge"><span class="image on-image"><a class="zoomin" href="http://static2.businessinsider.com/image/546a7dfbecad04d35f4453c0-960/us-army-best-photos-2012-gold-spurs.jpg"><img class="" src="http://static2.businessinsider.com/image/546a7dfbecad04d35f4453c0-1200-600/us-army-best-photos-2012-gold-spurs.jpg" alt="us army best photos 2012, gold spurs" width="443" height="225" border="0" /></a></span></span></strong></span></h3>
+<h3 class="p1"><span class="s1"><strong><span class="KonaFilter image-container display-table click-to-enlarge"><span class="image on-image"><span class="caption">Before you can be a great leader, you need to learn how to garner loyal followers.</span></span></span></strong></span></h3>
+<h3 class="p1"><span class="s1"><strong>A leader is first a great follower.</strong></span></h3>
+<p class="p1"><span class="s1">As a 21-year old student, Casey had an opportunity to work for famed NFL coach Vince Lombardi over the summer. Casey told a story in which Lombardi asked him to block the locker room door while the coach talked to the team after a loss. Instead of diligently blocking the door, Casey drifted to listen to the speech. Several people burst in and interrupted the coach, prompting Lombardi to rip into Casey for failing to do his job.</span></p>
+<p class="p1"><span class="s1">Full of remorse, Casey remembers sitting on the team plane when Lombardi walked up to him and said, "I really came down on you hard back there, son," then patted his back and kept walking. Casey never forgot that moment or the lesson he learned: that a great leader knows how to garner loyalty from followers.</span></p>
+
+<h3 class="p1"><span class="s1"><strong>A leader is bi-focal.</strong></span></h3>
+<p class="p1"><span class="s1">"Success lives in the future. Therefore you must block time on your calendar to deal with the future," Casey said. "At the same time, a leader must not be far removed from the day-to-day affairs of his or her team." The general talked about once meeting with the president and secretary of defense to discuss overall strategy, then within hours meeting with soldiers to understand conditions on the ground. "The most successful leaders are bi-focal: One eye is on the present and details of execution; one eye is on the future and our strategy."</span></p>
+
+<h3 class="p1"><span class="s1"><strong>A leader sets the culture.</strong></span></h3>
+<p class="p1"><span class="s1">One of Casey's biggest initiatives as chief of staff was to drastically improve the military's struggle with post-traumatic stress disorder. He recalled a survey from which he learned that 90% of soldiers with PTSD said they would not seek assistance because they felt it would hurt their careers. He set a goal to change this culture.</span></p>
+<p class="p1"><span class="s1">"When you seek to change the culture, you have to start with education," he said. "You have to change the dialogue. You have to get buy-in from key leaders. We adopted a slogan of 'Mental fitness is as important as physical fitness' as we sought to de-stigmatize the conversation around PTSD.</span></p>
+<p class="p1"><span class="s1">"By the end of five years," he continued, "the number of soldiers who wouldn't seek help was reduced to 30%. But I'll tell you this: In my four years overseeing the Army, I only took on one major cultural change. That's how hard it is. But we were successful, and that's something I'm very proud of."</span></p>
+</div>
+<div class="post-nav"><a href="/blog/stock-market-investing-for-the-know-nothing-investor/">← Investing in the stock market: my advice to friends</a>
+<a href="/blog/the-least-appreciated-part-of-great-software/">The least-appreciated part of great software →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

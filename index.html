@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/" style="color:#1a1a1a;font-weight:600">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="home-bio">
+  <p>Howdy. I'm Tyler Hogge — first and foremost a husband and father in a tribe called Hogge.</p>
+  <p>I'm a Partner at <a href="https://pelionvp.com/" target="_blank" rel="noopener">Pelion</a>, where I lead Seed and Series A investments in <a href="http://exceptionalstartups.com" target="_blank" rel="noopener">exceptional startups</a>.</p>
+  <p>Previously I led the product and risk organizations at <a href="https://getdivvy.com" target="_blank" rel="noopener">Divvy</a> (acquired by BILL for $2.5B), product teams at <a href="https://wealthfront.com" target="_blank" rel="noopener">Wealthfront</a>, interned at <a href="https://a16z.com" target="_blank" rel="noopener">a16z</a>, and led sales at <a href="https://clearwateranalytics.com" target="_blank" rel="noopener">Clearwater</a>. I've also invested out of my own fund, <a href="http://kindlingcapital.co" target="_blank" rel="noopener">Kindling Capital</a>.</p>
+  <p>I graduated in finance from SUU (the MIT of Southern Utah, where I was captain of the D1 baseball team), and with an MBA from Cornell. I'm also a CFA Charterholder.</p>
+</div>
+
+<div class="section-heading">Recent Writing</div>
+<ul class="post-list">
+
+<li>
+  <div class="post-title"><a href="/blog/a-few-thoughts-on-conviction/">A few thoughts on conviction.</a></div>
+  <div class="post-meta">December 11, 2025</div>
+  <div class="post-excerpt">“One man with conviction will overwhelm a hundred who have only opinions.”-Winston Churchill.”
+
+
+
+Have I ever told you my favorite venture capitalist joke? (h/t Kristy M)
+
+
+
+Why…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/why-we-invested-in-valinor/">Why we invested in Valinor</a></div>
+  <div class="post-meta">December 10, 2025</div>
+  <div class="post-excerpt">Today Valinor announced it has raised $13m in funding from Pelion, Harpoon, CRV, and others. We could not be more thrilled to co-lead this round with several incredible investors.…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/why-we-invested-in-honey-health/">Why We Invested in Honey Health</a></div>
+  <div class="post-meta">October 28, 2025</div>
+  <div class="post-excerpt">Honey Health announced it has raised $7.8M to build AI Agents for the healthcare back office. Pelion is fired up to lead the round and I could not be more excited to join the…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/redo-and-the-rise-of-the-profitable-compound-startup/">Redo and the rise of the profitable compound startup</a></div>
+  <div class="post-meta">September 3, 2025</div>
+  <div class="post-excerpt">Redo announced it has been named as a Forbes / Bessemer Rising Star - one of the top 20 startups best positioned to join their famous Cloud 100 list. It’s an incredible list with…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/why-we-invested-in-vector/">Why We Invested In Vector</a></div>
+  <div class="post-meta">September 3, 2025</div>
+  <div class="post-excerpt">Today Vector announced it has raised over $61m, with a vision to build the next great modern defense tech company. We at Pelion are very proud to have led Vector’s series A, and I…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/what-i-learned-from-my-dad/">What I Learned From My Dad.</a></div>
+  <div class="post-meta">June 15, 2025</div>
+  <div class="post-excerpt">For the past year I have tried to compile the top lessons I have learned from my Dad. There are so many. Everyone who knows him will agree that he is a uniquely amazing person.…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/pattern-matching-20-habits-of-exceptional-startups/">Pattern Matching 20 Habits of Exceptional Startups</a></div>
+  <div class="post-meta">May 29, 2025</div>
+  <div class="post-excerpt">I have been fortunate enough to work for 3 exceptional startups, invest in a few more, interview several on our podcast, and over the last 3 weeks, attend the board meetings of…</div>
+</li>
+
+<li>
+  <div class="post-title"><a href="/blog/agree-com-and-the-power-of-disruption/">Agree.com and the power of disruption</a></div>
+  <div class="post-meta">May 6, 2025</div>
+  <div class="post-excerpt">In December 2024 I was perusing twitter (as I am fond of doing) and came across this company, Agree.com. Not long after I sent a DM to Marty Ringlein, the co-founder and…</div>
+</li>
+</ul>
+<a class="view-all" href="/blog/">View all posts →</a>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

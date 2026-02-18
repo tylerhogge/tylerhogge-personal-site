@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pattern Matching 20 Habits of Exceptional Startups — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Pattern Matching 20 Habits of Exceptional Startups</h1>
+  <div class="post-date">May 29, 2025</div>
+</div>
+<div class="post-body">
+<p>I have been fortunate enough to work for 3 exceptional startups, invest in a few more, interview several <a href="https://www.investoroperator.io/">on our podcast</a>, and over the last 3 weeks, attend the board meetings of 4.</p>
+
+
+
+<p>A few things are very clear to me.</p>
+
+
+
+<p>Exceptional startups do things very differently from the median startup (and of course the median startup is a failure), and once you see how different an exceptional startup is, you won’t settle for working for, investing in, or joining anything less.</p>
+
+
+
+<p>A large part of my job is to study what makes these startups exceptional, and then do all I can to be good enough to attract them and invest in them. I have written a bunch about these types of startups. First I shared <a href="https://tylerhogge.com/2023/09/07/elements-of-exceptional-startups/">5 elements of exceptional startups</a>. Then I shared the <a href="https://tylerhogge.com/2024/01/29/a-few-thoughts-on-intensity/">#1 trait of</a> an exceptional startup (intensity).&nbsp;</p>
+
+
+
+<p>Today I want to expand on these two posts and share 20 habits these startups tend to have.</p>
+
+
+
+<p>Exceptional Startups:&nbsp;</p>
+
+
+
+<ol>
+<li>Beat and raise expectations.</li>
+
+
+
+<li>Recruit top talent obsessively.</li>
+
+
+
+<li>Ship product incredibly fast.</li>
+
+
+
+<li>Obsess over product quality.</li>
+
+
+
+<li>Are allergic to bureaucracy.</li>
+
+
+
+<li>Work long hours.</li>
+
+
+
+<li>Don’t waste time at useless events.&nbsp;</li>
+
+
+
+<li>Don’t burn money inefficiently, if at all.</li>
+
+
+
+<li>Create enduring enterprise value.</li>
+
+
+
+<li>Have healthy conflict.</li>
+
+
+
+<li>Have a beautiful websites and pitch decks.</li>
+
+
+
+<li>Write clear copy.&nbsp;</li>
+
+
+
+<li>Fire fast.</li>
+
+
+
+<li>Have cult-like employee enthusiasm.</li>
+
+
+
+<li>CEO replies instantly.</li>
+
+
+
+<li>CEO is directly talking to many customers every week.</li>
+
+
+
+<li>Leaders aren’t empty suit executives.</li>
+
+
+
+<li>Have competitive, aggressive engineers.</li>
+
+
+
+<li>Turn crisis into momentum.</li>
+
+
+
+<li>Are intense.</li>
+</ol>
+
+
+
+<p>A few sentences on each of these below.</p>
+
+
+
+<h3>Beat and raise expectations</h3>
+
+
+
+<p>There is a singular mark of a great company: they consistently do what they say they are going to do. The addendum to this is that “the things that they say they are going to do” are sufficiently ambitious. In other words, you can consistently beat a target and still fail if the target is not sufficiently aggressive.&nbsp;</p>
+
+
+
+<p>Generally speaking, this means a startup will create a “budget” plan in a model with a revenue target (and a profitability target, etc, but revenue is most important). They will communicate that plan to the team and to investors. Then they go and beat that plan. I have learned a great deal about <em>how</em> companies execute this playbook, which I will write about separately.</p>
+
+
+
+<p>Almost no startups consistently beat their numbers. Seriously, it has to be less than 10%. But exceptional startups beat their numbers.&nbsp;</p>
+
+
+
+<p>Not always – not literally every time. But…almost.</p>
+
+
+
+<h3>Obsess over recruiting top talent</h3>
+
+
+
+<p>Great startups are the vector sum of the people. Full stop. This is not just a quip, it is literally true. So if you want to increase that vector sum, you must find great people.</p>
+
+
+
+<p>Founders who win know this and prioritize it above essentially all else. The true war is for talented, hungry, people. And these people have endless options of how to spend their time. You must convince them to join you. </p>
+
+
+
+<p>Founders who win also realize that good is the enemy of great when it comes to hiring. Exceptional hires are simply so, so, much better than a good hire. Founders who win find and close the <em>great</em>. </p>
+
+
+
+<p>These startups have unreasonably high hiring bars. They put engineers through technical evaluations that almost none can pass. They require sales reps to prove they can beat aggressive numbers. They required product people to actually own outcomes. The hiring process is intense and brutal. But the end result is the startup wins the battle for talent.</p>
+
+
+
+<h3>Obsess over product quality</h3>
+
+
+
+<p>Exceptional founders know that unless their product is truly delightful, the market will eventually kill them. There are some exceptions to this, but those exceptions are generally due to distribution advantages, which startups don’t have. Therefore they are left to the merits of their product.</p>
+
+
+
+<p>The product must be so good that people spontaneously tell their friends about it. That is the bar. Great startups know this, and prioritize product quality like their life depends on it, because it does. They kill bugs as fast as they are found. They don’t allow for page loads &gt;500 milliseconds. They build experiences that actually solve the problem a customer has. For exceptional startups, quality is the north star.</p>
+
+
+
+<h3>Obsess over speed</h3>
+
+
+
+<p>Just like startups don’t have distribution to cover up product deficiencies, they also don’t have time. Startups are dead by default. Every day the clock ticks, and every day a company burns money is one more day marched towards the cliff. As a result, exceptional startups have created cultures of intense, maniacal speed.</p>
+
+
+
+<p>In these board meetings over the last month, I am seeing full products get built in days that competitors cannot ship in 18 months. You must ship, ship, ship. Significantly faster than ever before. But it's not just engineering that moves at light speed. It’s everything. Meetings get scheduled for later that day, not next week. Decisions happen in real time, not later. Everything is done fast. Uncomfortably fast.&nbsp;</p>
+
+
+
+<h3>Are allergic to bureaucracy&nbsp;</h3>
+
+
+
+<p>Startups are meant to be the opposite of the government. No layers, no red tape. These startups don’t follow prescribed lines of communication. They don’t “manage up”, have endless meetings, or drag decisions on. There is a clear throat to choke for every meaningful objective. Teams are small. People <a href="https://tylerhogge.com/2024/01/04/speak-plainly/">speak plainly</a>.</p>
+
+
+
+<h3>Are allergic to events</h3>
+
+
+
+<p>I’ve never seen an exceptional founder at an event unless it’s for meeting prospects, customers, or speaking. Attending events (as an attendee) is one of the highest signals of a failing startup.&nbsp;</p>
+
+
+
+<h3>Are allergic to inefficient burn</h3>
+
+
+
+<p>The world has changed dramatically in the last 5 years. We used to burn several million dollars a month at Divvy (which was only about 10%-20% of what our competitors were burning!). Wealthfront also burned cash and raised tons of capital.&nbsp;</p>
+
+
+
+<p>Today? It’s a 180. The four startups I sit on the board of are either profitable, or if not, the burn is extremely, extremely efficient (and could be profitable). That was nearly unheard of 5 years ago. Startups are 100x fitter than before, especially the exceptional ones.&nbsp;</p>
+
+
+
+<p>It doesn’t mean never burn. But….man, it's much rarer and very different.</p>
+
+
+
+<h3>Focus on enduring enterprise value</h3>
+
+
+
+<p>The only great business is an enduring business. In terms of a DCF, all the value is in the terminal value. And the terminal value is dependent on building true, defensible, enterprise value. No hacky, inefficient growth. Exceptional startups work hard to build a castle that can endure. They build <a href="https://tylerhogge.com/2023/10/02/sardines-and-a-magic-box/">eating sardines, not trading sardines</a>.</p>
+
+
+
+<h3>Have healthy conflict</h3>
+
+
+
+<p>Great startups surface conflict proactively and lean into it. At bad companies, the biggest problem is the one that cannot be discussed. And there are many that cannot be discussed. In exceptional startups, arguments are common, and truth is found in the conflict. Respectful, controlled conflict, but conflict nonetheless. Great startups run towards problems and solve them with controlled conflict.</p>
+
+
+
+<h3>Have a beautiful website and deck</h3>
+
+
+
+<p>Not much else to say. How you do anything is how you do everything. And exceptional startups realize that having a beautiful website, and clear, amazingly structured decks, especially board decks (but including pitch decks), is the right way to convey to the world who you are.</p>
+
+
+
+<h3>Write great copy</h3>
+
+
+
+<p>Great writing is a window into great thinking. And great thinking is necessary for a startup to survive. Great startups know how to write: on the website, in posts, and anywhere else.</p>
+
+
+
+<h3>Fire within 3 months</h3>
+
+
+
+<p>One of the startups I work with hired a head of product from a top 5 unicorn. Everyone was very excited. Within about 2 weeks they knew it was a mistake. Within a few more weeks, that person was gone. What a valuable muscle to build. If you cannot part ways with mediocre hires, you eventually lose momentum, morale, and the market.</p>
+
+
+
+<h3>Create a cult culture</h3>
+
+
+
+<p>The best startups are cults. Employees are proud to be a part of it. The post about it. They brag about it. They have run clubs together. One employee even gets a company tattoo. They are so happy to signal their membership in the club that they can't help but talk about it to anyone who will listen. Work is such a large part of our life, and when you have created a cult-like culture, magic happens.</p>
+
+
+
+<h3>CEO instant replies</h3>
+
+
+
+<p>The best operators I know reply insanely quickly to anything that is a priority. Period.</p>
+
+
+
+<h3>CEO talking directly to customers</h3>
+
+
+
+<p>Every great startup leader maintains a strong connection, directly, with customers. They absolutely will not outsource it. They treat the customer as their boss, the person to whom they are most accountable.</p>
+
+
+
+<h3>No empty suit executives</h3>
+
+
+
+<p>The leaders of these types of startups are doers. They are not above the work. They are not <a href="https://tylerhogge.com/2024/10/16/the-empty-suit-executive/">empty suit executives</a>.</p>
+
+
+
+<h3>Work very long hours</h3>
+
+
+
+<p>I have yet to see an exceptional startup where the majority of people are not working more than normal hours. Many even push this to the extreme - working 12-15 hour days is the norm.&nbsp;</p>
+
+
+
+<h3>Have aggressive engineers</h3>
+
+
+
+<p>A powerful ingredient: how competitive are your engineers?</p>
+
+
+
+<p>The best engineers want to win. They want speed. They want to be pushed. The crave the accomplishment that comes from building something exceptional for customers, quickly. If you find yourself having to pull engineers along, rather than chase them, you don’t have good enough engineers. Great engineers are aggressive, competitive, and fast.</p>
+
+
+
+<h3>Turn every crisis into momentum</h3>
+
+
+
+<p>One thing that is true about each of these startups is that there is always another crisis. Always. Startups are dead by default. The odds are impossible. But – the best ones simply find a way to turn every crisis into a chance to harden the business and to get better. I see it time, and time, and time, and time again. You simply jump from crisis to crisis, without losing enthusiasm, and eventually you are worth a billion dollars.</p>
+
+
+
+<h3>Intensity everywhere</h3>
+
+
+
+<p>The most important ingredient deserves its own shoutout. <a href="https://tylerhogge.com/2024/01/29/a-few-thoughts-on-intensity/">Intensity</a>.</p>
+</div>
+<div class="post-nav"><a href="/blog/agree-com-and-the-power-of-disruption/">← Agree.com and the power of disruption</a>
+<a href="/blog/what-i-learned-from-my-dad/">What I Learned From My Dad. →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

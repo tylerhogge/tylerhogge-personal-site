@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>You can't rely on customers to innovate (but you *must* rely on customers to iterate) — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>You can't rely on customers to innovate (but you *must* rely on customers to iterate)</h1>
+  <div class="post-date">January 11, 2019</div>
+</div>
+<div class="post-body">
+<h3>Be careful about the&nbsp;customer</h3>
+An interesting question any product person faces is “when should I rely on my customers for product feedback, and when should I not?”
+
+After all, “talk to your users” is so often repeated it’s now a truism. But when, if ever, should we&nbsp;<strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">not</em></strong>&nbsp;rely on client feedback?
+
+I believe the answer is straightforward and invaluable: you can (and should) use customer feedback to&nbsp;<strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">iterate</em></strong>&nbsp;(defined here as making an existing product better), but you cannot rely on clients to&nbsp;<strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">innovate</em></strong>&nbsp;(defined here as making a new product).
+
+The best summary of this concept is found in this interview with legendary “Coach” Bill Campbell, the former CEO of Intuit and trusted advisor of Apple, Google, and Amazon:
+
+<section class="section section--body section--first">
+<div class="section-content">
+<div class="section-inner sectionLayout--insetColumn">
+<figure id="a268" class="graf graf--figure graf-after--p">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded"><img class="progressiveMedia-image js-progressiveMedia-image" src="https://tylerhogge.com/wp-content/uploads/2019/01/c0783-16V2Pj_O-WcU1IUKY8xcZqA.png"></div>
+</div></figure>
+<p id="847d" class="graf graf--p graf-after--figure graf--trailing">Bill has it exactly right: clients can make your&nbsp;<em class="markup--em markup--p-em">existing</em>&nbsp;products better. But they can’t conceive of&nbsp;<em class="markup--em markup--p-em">new</em>&nbsp;products. And any leader who relies on user feedback when building something new is destined to fail.</p>
+
+<h3 class="graf graf--p graf-after--figure graf--trailing">Innovation — Or, making new&nbsp;products</h3>
+</div>
+</div>
+</section>
+<section class="section section--body">
+<div class="section-content">
+<div class="section-inner sectionLayout--insetColumn">
+<blockquote id="025b" class="graf graf--blockquote graf--startsWithDoubleQuote graf-after--h3">“It’s really hard to design products by focus groups. A lot of times, people don’t know what they want until you show it to them.”
+<strong class="markup--strong markup--blockquote-strong">-Steve Jobs</strong></blockquote>
+Figuring out the right product is the innovator’s job, not the customer’s job. Customers typically imagine in things that already exist, and if they knew what was next, they’d be building it.
+
+</div>
+<div class="section-inner sectionLayout--insetColumn">It’s common to mistake “customer development” for “if I just talk to enough users they will tell me what to build.”</div>
+<div class="section-inner sectionLayout--insetColumn">
+<p class="graf graf--p graf-after--blockquote">No.</p>
+<p class="graf graf--p graf-after--blockquote">Customer development is to&nbsp;<em class="markup--em markup--p-em">test</em>&nbsp;your hypothesis, your unique insight, not to generate insight. Start with your unique insight; your vision of the future state of the world.</p>
+<p class="graf graf--p graf-after--blockquote">When products are built by a collection of user requests — focus groups — they are, by definition, consensus products. And consensus products will not be breakout successes.</p>
+<p class="graf graf--p graf-after--blockquote">Apple is the best example of the ignore-the-customer-when-innovating approach, starting with the touchscreen back in 2007 all the way to the killing of the headphone jack, the home button, and cordless headphones in 2018.</p>
+<p class="graf graf--p graf-after--blockquote">My favorite story on this comes from Marc Andreessen:</p>
+
+<blockquote id="18e8" class="graf graf--blockquote graf-after--p">In 2007, right before the first iPhone launched, I asked Steve Jobs the obvious question: The design of the iPhone was based on discarding every physical interface element except for a touchscreen. Would users be willing to give up the then-dominant physical keypads for a soft keyboard?</blockquote>
+<blockquote id="8243" class="graf graf--blockquote graf-after--blockquote">His answer was brusque: “They’ll learn.”</blockquote>
+<blockquote id="6f06" class="graf graf--blockquote graf-after--blockquote">Steve turned out to be right. Today, touchscreens are ubiquitous and seem normal, and other interfaces are emerging. An entire generation is now coming of age with a completely different tactile relationship to information, validating all over again Marshall McLuhan’s observation that “the medium is the message”.</blockquote>
+<p id="4463" class="graf graf--p graf-after--blockquote">or consider this quote from Jeff Bezos:</p>
+
+<blockquote id="2721" class="graf graf--blockquote graf-after--p">Market research and customer surveys can become proxies for customers — something that’s especially dangerous when you’re inventing and designing products. “Fifty-five percent of beta testers report being satisfied with this feature. That is up from 47% in the first survey.” That’s hard to interpret and could unintentionally mislead.</blockquote>
+<blockquote id="6a96" class="graf graf--blockquote graf-after--blockquote">Even when they don’t yet know it, customers want something better, and your desire to delight customers will drive you to invent on their behalf.</blockquote>
+<h3 class="graf graf--blockquote graf-after--blockquote">Iteration — Or, improving existing&nbsp;products</h3>
+<p class="graf graf--h3 graf-after--blockquote">So, when does it make sense to tap into your customers for insight?</p>
+<p class="graf graf--h3 graf-after--blockquote">I used to watch “Who wants to be a millionaire” growing up, and I was fascinated by how often the audience was correct when they were polled.</p>
+<p class="graf graf--h3 graf-after--blockquote">Especially on the really tricky questions&nbsp;:)</p>
+
+<figure id="a00a" class="graf graf--figure graf-after--p">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="aspectRatioPlaceholder-fill"></div>
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded"><img class="progressiveMedia-image js-progressiveMedia-image" src="https://cdn-images-1.medium.com/max/1600/0*ohYUgvIXRmxTtfTd"></div>
+</div></figure>
+<p id="5922" class="graf graf--p graf-after--figure">As it turns out,&nbsp;<a class="markup--anchor markup--p-anchor" href="https://www.opinionoutpost.com/en/blog/if-youre-stumped-on-who-wants-to-be-a-millionaire-always-ask-the-audience#.W_8a0pNKifU" target="_blank" rel="nofollow noopener">the audience was right 91% of the time, and this was a prime example of the “wisdom of crowds” phenomenon.</a></p>
+<p class="graf graf--p graf-after--figure">When a group of people is independent, decentralized, diverse, and their opinions are aggregated, the wisdom of crowds becomes a source of insight. And these criteria typically hold if you’re looking at existing software products. Given a constrained problem (how do I make this better), with a fairly clear solution set, the wisdom of crowds becomes an incredibly powerful tool to find the optimal result.</p>
+<p class="graf graf--p graf-after--figure">For example, the product I manage at Wealthfront is our advice engine, Path. It was originally built to help our 250,000 clients plan for future financial goals like retirement. And when we first shipped it in January 2017, retirement was the only “goal” we supported. But we quickly learned that our clients had a bunch of other large financial goals, and we had to prioritize the next one to build. Client feedback proved valuable here, and we quickly learned the next problem they had in their financial life was buying a home. So we used client feedback to “iterate” on Path, by prioritizing a new home planning experience.</p>
+<p class="graf graf--p graf-after--figure">But, what exactly should the home planning experience be?</p>
+<p class="graf graf--p graf-after--figure">Here’s where it gets nuanced: the “home goal” was a new product in itself, and we knew we’d need to&nbsp;<em class="markup--em markup--p-em">innovate</em>&nbsp;to make it work. There was no other holistic home planning experience available anywhere else (just simple home affordability calculators), so we were back in innovate mode.</p>
+<p class="graf graf--p graf-after--figure">Using a combination of customer development, user testing, and product intuition,&nbsp;<a class="markup--anchor markup--p-anchor" href="https://blog.wealthfront.com/path-homeownership/" target="_blank" rel="noopener nofollow">our team built a delightful home planning experience</a>&nbsp;(not relying on focus groups or feature surveys) and added it to Path.</p>
+<p class="graf graf--p graf-after--figure">And — once it shipped, we were back to iterate mode, talking to hundreds of our users about&nbsp;<em class="markup--em markup--p-em">how to make home planning&nbsp;</em>(a now-existing product)<em class="markup--em markup--p-em">&nbsp;better.</em></p>
+<p class="graf graf--p graf-after--figure">Since then, we’ve continued to improve Path by allowing users to plan to&nbsp;<a class="markup--anchor markup--p-anchor" href="https://blog.wealthfront.com/an-upgraded-path-to-college/" target="_blank" rel="noopener nofollow">plan for a child’s college</a>&nbsp;or to&nbsp;<a class="markup--anchor markup--p-anchor" href="https://blog.wealthfront.com/time-off-travel/" target="_blank" rel="noopener nofollow">take extended time off to travel</a>, making Path the only&nbsp;<a class="markup--anchor markup--p-anchor" href="https://www.wealthfront.com/planning" target="_blank" rel="noopener nofollow">holistic, free financial planning experience available anywhere.</a>&nbsp;And all along, we used both the wisdom of client feedback to iterate and improve Path, as well as the tricky innovation process to create the new product features.</p>
+<p class="graf graf--p graf-after--figure">I learned that great product teams jump seamlessly and often between innovation and iteration.</p>
+<p class="graf graf--p graf-after--figure">After all, even the most innovative visionaries use client feedback to iterate to the top of their existing product mountain:</p>
+https://twitter.com/elonmusk/status/1060759329039515648
+<h2 id="adde" class="graf graf--h3 graf-after--figure">Building a faster&nbsp;horse</h2>
+<p id="0141" class="graf graf--p graf-after--h3">The cliche quote on this concept is&nbsp;<a class="markup--anchor markup--p-anchor" href="https://hbr.org/2011/08/henry-ford-never-said-the-fast" target="_blank" rel="noopener nofollow">(supposedly) from Henry Ford</a>:</p>
+
+<blockquote id="bfc1" class="graf graf--blockquote graf--startsWithDoubleQuote graf-after--p">“If I had asked people what they wanted, they would have said faster horses.”</blockquote>
+<p id="0103" class="graf graf--p graf-after--blockquote">And of course the point is correct: if Ford, Steve Jobs, and other visionaries relied on customers to&nbsp;<strong class="markup--strong markup--p-strong">innovate</strong>, we’d all be far worse off. Great products are born from great insight, and great insight comes from great product minds.</p>
+<p id="f96c" class="graf graf--p graf-after--p graf--trailing">But, this conclusion neglects one obvious point: often, product leaders need to figure out how to&nbsp;<strong class="markup--strong markup--p-strong">iterate</strong>&nbsp;on the horse. And the customers in the saddle know how.</p>
+
+</div>
+</div>
+</section>
+<section class="section section--body section--last">
+<div class="section-divider">
+
+<hr class="section-divider">
+
+</div>
+<div class="section-content">
+<div class="section-inner sectionLayout--insetColumn">
+<p id="ff4c" class="graf graf--p graf--leading graf--trailing"><em class="markup--em markup--p-em">**Thank you to Andy Rachleff who not only inspired the ideas behind this post but reviewed it and provided feedback**</em></p>
+
+</div>
+</div>
+</section>
+<div class="uiScale uiScale-ui--regular uiScale-caption--regular u-flexCenter u-marginVertical24 u-fontSize15 js-postMetaLockup">
+<div class="u-flex0"></div>
+</div>
+</div>
+<div class="post-nav"><a href="/blog/a-linkedin-message-an-email-and-a-tweet/">← A LinkedIn message, an email, and a tweet</a>
+<a href="/blog/the-3-tenets-of-capitalism-2/">The 3 Tenets of Capitalism →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

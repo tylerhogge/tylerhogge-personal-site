@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Humans'  Worst Cognitive Flaw &amp; How to Fix It — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Humans'  Worst Cognitive Flaw &amp; How to Fix It</h1>
+  <div class="post-date">July 29, 2016</div>
+</div>
+<div class="post-body">
+When I played baseball and we had team conditioning, there was one workout that many of us dreaded the most: wall sits. For those who aren't familiar:
+
+https://twitter.com/Cajun_73/status/739661924518924288
+
+What makes them so tough is&nbsp;the tension your body feels. All you want is one of two things: to sit down, or to stand up. Either one works, as long as you can get out of the middle.
+
+If you do this&nbsp;for a few minutes your body starts to shake. Our&nbsp;bodies just aren't meant&nbsp;for these in-between poses, and we desperately try to get to a resting position.
+
+Turns out, our mind works the same way.
+
+Our mind&nbsp;<em>loathes</em> ambiguity. It shudders at uncertainty.
+
+It immediately seeks rest by trying to find&nbsp;a conclusion instead of living in a state of tension where you have to think deeply about two conflicting ideas.
+<h3 style="text-align:center"><strong>In short, humans would much rather be certain than right.</strong></h3>
+
+<hr>
+
+Perhaps this is why F. Scott Fitzgerald said: <strong>&nbsp;</strong>
+<blockquote>
+<h2 style="text-align:center"><strong>"The test of a first-rate intelligence is the ability to hold two opposing ideas in mind at the same time and still retain the ability to function."</strong></h2>
+</blockquote>
+And&nbsp;Aristotle:
+<blockquote>
+<h2 style="text-align:center"><strong>"It is the mark of an educated mind to be able to entertain a thought without accepting it."</strong></h2>
+</blockquote>
+Smart companies have figured out how valuable dealing&nbsp;with ambiguity is in employees. If you <a href="http://www.indeed.com/jobs?q=ambiguity&amp;l=">search indeed.com</a> for job postings that contain the word "ambiguity", you see it's highly valued by companies like Amazon, Stripe, and over 15,000 others.
+
+If you pay attention, you'll see this problem everywhere, which is why I think it's the most widespread cognitive bug humans have. We hate thinking hard about things. Perhaps theres an evolutionary reason and our bodies&nbsp;are meant to preserve energy for physical tasks and not cognitive ones, but whatever the reason, it's a flaw.
+
+This flaw goes my many names: <a href="https://en.wikipedia.org/wiki/False_dilemma">false binary, false dilemma, false choice, black-and-white thinking</a>, etc.
+
+But one way I think about it is &nbsp;"either/or" thinking when really most things can be "both/and". Most things are not mutually exclusive, and you can actually have both -- or at least the best of both.
+<h4><strong>Here's how it&nbsp;manifests itself: </strong></h4>
+<ol>
+ 	<li>
+<h4><strong><em>An original argument is made (the thesis), </em></strong></h4>
+</li>
+ 	<li>
+<h4><strong><em>Then an opposing argument creates two teams (the antithesis)</em></strong></h4>
+</li>
+ 	<li>
+<h4><strong><em>From that point on, anyone who engages in the debate typically picks a side</em></strong></h4>
+</li>
+</ol>
+But, logically, you don't have to flee to one side. There's a third option, which is to pause, mull the arguments over, live in a state of ambiguity, and find the truths in both arguments in order to forge a better third argument.
+
+Here are some examples:
+<ul>
+ 	<li>Blue lives matter vs. black lives matter</li>
+ 	<li>Creationism vs. Evolution</li>
+ 	<li>Terrorism is the&nbsp;major U.S threat&nbsp;vs. &nbsp;U.S. gun culture is the&nbsp;major threat</li>
+ 	<li>"Let all the refugees in" vs. "Let none of the refugees in"</li>
+ 	<li>"Privilege is why that guy&nbsp;succeeded" &nbsp;vs. &nbsp;"Privilege doesn't exist, it's a pure meritocracy"</li>
+ 	<li>Lebron vs. Kobe</li>
+ 	<li><a href="http://avc.com/2015/06/profits-vs-growth/">Profits vs. growth</a></li>
+ 	<li>A large&nbsp;government can solve our problems vs. government is the source of all our problems</li>
+ 	<li>People kill people vs. guns kill people</li>
+ 	<li>Perfectly efficient markets (EMH) vs. markets are completely irrational</li>
+ 	<li>Nature vs. nurture</li>
+ 	<li>Republicans vs. Democrats</li>
+ 	<li>Hard work vs. talent</li>
+</ul>
+And so on, and so on, and so on. I keep a running list in my iPhone and there are hundreds more.
+
+It feels so good to be settled on single causality in our mind that we don't consider that the world is a complex adaptive system rarely with singular cause and effect.
+
+The truth is, in each of those &nbsp;examples, there is either a <a href="https://en.wikipedia.org/wiki/Golden_mean_(philosophy)">golden mean</a> between the two, or both are outright true and there's no conflict at all. Black-and-white thinking leads to other cognitive errors like <a href="https://en.wikipedia.org/wiki/Confirmation_bias">confirmation bias</a> (maybe the second biggest human bug).
+
+The solution&nbsp;is to learn to think in <a href="https://www.farnamstreetblog.com/2016/06/value-grey-thinking/">shades of grey</a>. It's to learn to love the mental "wall sits", even though they hurt.
+
+Here's the best way I know to do that, summarized in one quote from the O.G. Charlie Munger:
+<blockquote>
+<h3><strong>“I’m not entitled to have an opinion unless I can state the arguments against my position better than the people who are in opposition. I think that I am qualified to speak only when I’ve reached that state.”</strong></h3>
+</blockquote>
+That is, when you first hear an argument,&nbsp;<strong>resist the urge to flee to certainty.</strong> Embrace the uncertainty and see if you can restate the argument and it's underlying premise and evidence. Too often we dismiss arguments as coming from someone stupid and flee to the comfort of the second argument.
+
+Here's a quick example in the form of a fake conversation:
+
+<strong>Lazy:</strong> "Anyone who supports Donald Trump is stupid."
+<strong>Not Lazy:</strong> "What do you think it is that causes someone to vote for Trump?"
+<strong>Lazy:</strong> "Stupidity. Ignorance."
+<strong>Not Lazy:</strong> "Hmm. do you think it's because he's highlighting problems they think are overlooked?"
+<strong>Lazy:</strong> "No - Trump supporters think the world is terrible, but really we are all better off then we've ever been."
+<strong>Not Lazy:</strong> "Did you know that the <a href="https://www.bloomberg.com/view/articles/2016-03-03/donald-trump-has-a-point-about-american-decline">medium income in America is decreasing</a>? I wonder if that's part of their argument. Do you think they have a point about an overly politically-correct&nbsp;culture? &nbsp;Trump speaks to both."
+
+I've learned that in almost all&nbsp;cases <a href="https://medium.com/@SeanBlanda/the-other-side-is-not-dumb-2670c1294063#.9k6dab3a6">the other side is not&nbsp;dumb</a>.
+
+Too often we seek out the oppositions&nbsp;<em>weakest&nbsp;</em> argument, usually a caricature, when we really should do the opposite: find&nbsp;the <em>strongest,&nbsp;</em><em>smartest </em>opposing&nbsp;argument and see&nbsp;if your belief really is bullet proof.
+
+Before I invest in a company, I like to find the smartest investor's short thesis and fully understand each of their points before I pull the trigger. If we really look for for disconfirming evidence, it becomes&nbsp;the only antidote for confirmation bias.
+
+In philosophy, this is known as <a href="https://en.wikipedia.org/wiki/Dialectic">Hegel's Dialectic</a>, or the ability to keep what's useful about one idea, combine it with an opposing idea, and make the final idea much better than the first. Unity of opposites. Resolving contradiction through a greater truth.
+
+Thesis, Antithesis, Synthesis.
+
+To be clear, I am&nbsp;<em>not</em> suggesting that a greater truth is <em>always</em> between two extremes. That's not the case (and would be an extreme position in itself, defeating the principle). Many have pointed out that the midway point between an evil lie and a solid truth is still a lie. This is called the <a href="https://en.wikipedia.org/wiki/Argument_to_moderation">argument to moderation fallacy</a>.
+<p style="text-align:center"><a href="https://tylerhogge.com/wp-content/uploads/2016/07/screen-shot-2016-07-29-at-1-42-48-pm-e1469826390146.png"><img class="alignnone size-full wp-image-245" src="https://tylerhogge.com/wp-content/uploads/2016/07/screen-shot-2016-07-29-at-1-42-48-pm-e1469826390146.png" alt="Screen Shot 2016-07-29 at 1.42.48 PM" width="740" height="503"></a></p>
+<p style="text-align:left">But, more often than not, the truth really is a synthesis of two opposing points, and it takes hard work to get there.</p>
+<p style="text-align:left">And, just like the wall sits, this tension creates&nbsp;a strong core so that when we&nbsp;<em>do</em> take a standing or sitting position, we're strong enough not to get knocked around by opposition, <a href="https://www.farnamstreetblog.com/2013/04/the-work-required-to-have-an-opinion/">because we've already done the work necessary to hold an opinion</a>.</p>
+</div>
+<div class="post-nav"><a href="/blog/lemons-peaches-understanding-adverse-selection/">← Lemons and Peaches: Understanding Adverse Selection</a>
+<a href="/blog/the-problem-with-politics-and-useful-idiots/">The problem with politics (and useful idiots) →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redo and the rise of the profitable compound startup — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Redo and the rise of the profitable compound startup</h1>
+  <div class="post-date">September 3, 2025</div>
+</div>
+<div class="post-body">
+<p>Redo announced it has been named as a <a href="https://www.forbes.com/sites/victoriafeng/2025/09/03/cloud-100-rising-stars-2025-the-next-generation-of-superstar-cloud-companies/">Forbes / Bessemer Rising Star</a> - one of the top 20 startups best positioned to join their famous Cloud 100 list. It’s an incredible list with many of the world’s top up-and-coming startups. It’s also been a full year since the <a href="https://tylerhogge.com/2024/08/20/the-redo-opportunity/">last Redo deep dive</a>, so I thought it would be fun to share more about what I’ve observed over the past few years as a Redo board member, and how things have evolved in the last 12 months with the company and the market overall.</p>
+
+
+
+<h3>Compound Startup 2.0</h3>
+
+
+
+<p>When Sterling and I first joined Pelion over 2 years ago, we spent many hours debating the future of startups and how they will be built. One thing we both agreed on: the best startups of the future will be compound. This seemed obvious for several reasons. For one, we were many years into an unbundling phase that left companies with dozens (sometimes hundreds!) of point-solution software vendors, and they had an appetite to consolidate. Second, the main con of building a compound startup - how hard it is to build excellent software - dramatically changed with AI. You need fewer engineers than ever to build more software than ever, and that formula means startups can go compound much sooner and with much more success.</p>
+
+
+
+<p>What we didn’t realize at the time was that AI would enable a new phase of compound startups, what I am calling compound startup 2.0: the <em>profitable</em> compound startup. The other con of going compound was just how expensive it was: it required a massive up front investment into engineers, PMs, and designers that made the startup burn far more cash than if it just had a single product. But Redo has found a way to execute the compound startup playbook incredibly well, <em>while staying profitable every month.</em> It’s the best example I know of of a profitable compound startup that is hitting world-class growth metrics. Truly incredible.&nbsp;</p>
+
+
+
+<p>As of this writing, Redo now has 9 live products, 6 of which are over $1m in annualized revenue, with all new products growing faster than Redo’s original returns product.</p>
+
+
+
+<figure><img src="https://tylerhogge.wordpress.com/wp-content/uploads/2025/09/image.png?w=1024" alt="" class="wp-image-837" /></figure>
+
+
+
+<p>And yes, Redo has still been profitable nearly every month of operation.</p>
+
+
+
+<h3>Talent Density and the GM Model</h3>
+
+
+
+<p>The output of every startup is the vector sum of the people within it. For compound startups, whose output must be multiple startups in one, this truth is even more important. In order for Redo to successfully launch so many products, it needs to attract people capable of both <em>owning a number</em> and <em>shipping delightful software</em>. There are very few of these people in all of tech, and they are generally founders themselves.</p>
+
+
+
+<p>This is exactly why Redo has built its team of GMs with many former founders, and just as important, future founders.&nbsp;</p>
+
+
+
+<p>So how does the GM model work?</p>
+
+
+
+<p>The guiding principle is that every new product is treated like a new business inside of Redo. The GM is the founder of that new business. In order to receive funding, the GM raises money via an internal pitch process. In that process they also get clarity on their roadmap and the numbers they’ll hit in order to land “the next round of funding.”</p>
+
+
+
+<p>GMs get exceptionally good at <a href="https://tylerhogge.com/2024/07/23/sell-%e2%86%92-design-%e2%86%92-build/">Sell, Design, Build</a> which ensures that when their product ships, it finds market pull immediately.&nbsp;</p>
+
+
+
+<p>Here’s an example of a role Redo is currently hiring for: a founding engineer for a new product team.</p>
+
+
+
+<figure><img src="https://tylerhogge.wordpress.com/wp-content/uploads/2025/09/image-1.png?w=1024" alt="" class="wp-image-838" /></figure>
+
+
+
+<h3>Intensity to beat and raise</h3>
+
+
+
+<p>None of this matters without the most important ingredient in any startup: intensity. And Redo is intense.</p>
+
+
+
+<p>The team has a culture of outworking anyone else, especially direct competitors. It has become common among the most intense startups in tech to classify yourself as a 9-9-6 startup (9am to 9pm, 6 days a week). Many on the redo team do this and more.&nbsp;</p>
+
+
+
+<p>This intensity has led Redo to consistently beat the number they set out to beat each month, and then raise the expectation for future numbers. This habit of “beat and raise” is something all the best startups eventually fall into over time, as it sets them up to be public companies eventually.&nbsp;</p>
+
+
+
+<p>Whenever I see a Redo employee in the elevators (Pelion shares a building with them). I sometimes will ask how working at Redo is different from their prior job. The answer is always fun to hear: “Redo is unlike any place I’ve worked. It’s harder than anything I’ve done professionally, but there is nowhere else I’d rather be.”</p>
+
+
+
+<p>It’s not a culture for everyone. But for the right person, it can’t be beat.</p>
+
+
+
+<p>There is one more aspect of Redo that is worth mentioning: the team has wholly embraced AI internally. Every role uses AI to be more efficient and innovative. They have regular AI hackathons to build ambitious new products internally that often make it live to customers.&nbsp;</p>
+
+
+
+<h3>The Broader Vision</h3>
+
+
+
+<p>It’s worth mentioning a few words on what exactly Redo is building.&nbsp;</p>
+
+
+
+<p>In last year’s post about Redo, the focus was on the original returns product and the path to becoming a platform. With 9 live products today, the platform is now live, and it’s working.&nbsp;</p>
+
+
+
+<p>The secret to Redo’s platform is that it enables brands to own the <em>shopper record</em> and the <em>product record</em>, and when you combine the two you can unlock some amazing product experiences.</p>
+
+
+
+<ul>
+<li><strong>Shopper record</strong>. Owning the shopper record means you capture data through the full shopper journey, which allows you to create unique experiences to benefit both the shopper and the merchant. For example, better data on what a customer has returned enables an e-commerce brand to proactively show products more likely to sell. This enables better marketing to the customer via customized emails, texts, and displays that lead to greater checkout conversion.</li>
+
+
+
+<li><strong>Product record</strong>. Owning the product record means you have clear visibility into every product a merchant offers, which helps the merchant sell more. For example, how often is product A returned vs product B? How many support tickets come in through product A vs Product B? How often does product A sell at full price, vs discount? This allows Redo’s AI to create an inventory management system (IMS) that gives a merchant dramatically more confidence in what inventory to buy, and how to price it. </li>
+</ul>
+
+
+
+<p>If Redo is successful, every e-commerce brand relies on it for its marketing, support, and operations, with AI agents that switch returns to exchanges, review returns requests for you and approve or deny them automatically, create marketing plans that convert, and reply to support tickets automatically.&nbsp;</p>
+
+
+
+<figure><img src="https://tylerhogge.wordpress.com/wp-content/uploads/2025/09/image-2.png?w=1024" alt="" class="wp-image-839" /></figure>
+
+
+
+<p>Redo has already become irreplaceable for over 2,500 merchants, including some of the highest quality brands on earth. If they are successful, that number will be hundreds of thousands in the coming years, and redo will build one of the largest businesses in e-commerce history.&nbsp;</p>
+
+
+
+<p>For now, Redo is the best example I know of a startup that is hitting world-class growth goals while staying profitable. A compound startup 2.0.</p>
+</div>
+<div class="post-nav"><a href="/blog/why-we-invested-in-vector/">← Why We Invested In Vector</a>
+<a href="/blog/why-we-invested-in-honey-health/">Why We Invested in Honey Health →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

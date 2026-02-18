@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My New Favorite Product — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>My New Favorite Product</h1>
+  <div class="post-date">April 16, 2024</div>
+</div>
+<div class="post-body">
+<h3><strong>I’ve seen the future and it is electric.</strong></h3>
+
+
+
+<p>In 2021 I hopped on a zoom to catch up with my friend, Nate Walkingshaw. I had followed Nate’s career for many years - he is one of the best product leader’s I’ve studied as the CXO of Pluralsight and he’s who I tried to emulate while I was Divvy’s head of product. Nate’s “Directed Discovery” framework is used by hundreds of companies worldwide, including some of the biggest and best in the world. But on this call, Nate walked me through what he was building next. It was called Torus. And the idea was huge.</p>
+
+
+
+<p>Nate explained to me that the future of the electric grid would be decentralized - that instead of every home relying on a central utility for their electricity needs, every home would <em>become its own utility </em>by generating its own power (solar) and storing its own power (home batteries). On top of that, my home could become a <em>reverse utility</em> - at a certain point during the day, after my batteries are full and my home is covered, I could actually send power back to the grid and help power my neighbor’s homes. I pictured a time where everyone in my neighborhood had this system, and we effectively could take whole sections of our town off the grid. Mind blowing.</p>
+
+
+
+<p>He then described magical software experiences where an app could teach me about my power usage and save me a ton of money on my power bill. I remember being blown away. This was the biggest swing any Utah entrepreneur had ever taken. I also remember thinking this would be 1,000 harder than any software product I’d ever worked on 🙂.</p>
+
+
+
+<p>The other reason this resonated with me is I’ve always been desperate to be independent from the grid. I am a prepper - I want to make sure no matter what disaster comes, my family is safe. I’ve always been anxious about the electric grid failing, and having no way to heat or cool my home, refrigerate my food, or any other of the hundreds of things for which the Hogge family relies on electricity. So when Nate told me Torus could make me completely grid independent, I was converted.&nbsp;</p>
+
+
+
+<p>Flash forward a few years. Nate called me up to say they were ready for me and wondered if I was ready for them. I said yes. So a few months ago, we installed the full Torus system.</p>
+
+
+
+<p><strong>Here is the spoiler: Torus is the best product I’ve purchased in the last several years, and it’s one of my favorite products ever. </strong>I thought I’d walk you through why.</p>
+
+
+
+<p>Here is what Torus looks like installed:</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/q0iX7QtOxcOmhD9dg8wQL97Fl9zYcE_GJRCEM_fNdShCoTnOeq0p_bRiHZOnum8wO0VRmKDp8u2PzKUPCDzLtee5zKLHny87juNkcRVHgE-3TyhhMwCWLjsA8p5HIWhtGsJT_tfc0fQ_BzyxdJNVGW0" alt="" /></figure>
+
+
+
+<p>The hardware (batteries, inverter, and computer) itself is beautiful. It’s quiet, modern, and doesn’t get in the way of anything in our garage. But the magic is in the software. I use the app 5+ times a day because it’s just that good.</p>
+
+
+
+<p>Let me share my 7 favorite things about the app:</p>
+
+
+
+<ol>
+<li>The Torus Score</li>
+
+
+
+<li>Live production and usage data</li>
+
+
+
+<li>Daily / weekly production and usage stats</li>
+
+
+
+<li>Exporting excess power back to the grid</li>
+
+
+
+<li>Weather forecast and automatic adjustments</li>
+
+
+
+<li>Cost savings screens</li>
+
+
+
+<li>Tesla charging integration</li>
+</ol>
+
+
+
+<p><strong>The Torus Score:</strong></p>
+
+
+
+<p>Every day Torus calculates how much of my power comes from Torus (solar + battery) vs the grid. I love it. Front and center of the app, and always a chase against 100%. I can view my Torus score for any day, and it also can summarize it by week, month, or all time. Here is my Torus score from yesterday:</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/QjUcwIajU-BcfpqCcV3-ZCk1rBYI23ctpTN-4hS98IpYRI0kyCBUX_exa2oh8Ez1tLzIGn5yVUzyHAlBIu2Pr3yBUni1m9_MZuiVD1QdLe6eI31mUwm4ox6B2Bh9PaSr7RnEiduaIxDjoJTS_dOHyBg" alt="" /></figure>
+
+
+
+<p><strong>Live Production + Usage Data:</strong></p>
+
+
+
+<p>This might actually be my most viewed screen in the app: a live view of how much I am producing and consuming in real time. Here is what it looks like:&nbsp;</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/AbuK3OZcneVQjklinXUp1PoSALz4jg73NH3Sll9kLTuCxMacb-D76utuNi0-PXQwQ__X7anEPLrgQz080GnRHMmprnyYneUMcZEn9WfcYjzAHlxb1wJ5LdjA5gMzcKgiFeBBscY6b5csqzTX14VX83w" alt="" /></figure>
+
+
+
+<p>The app actually updates the numbers second by second. If we turn on the laundry, the “using” number spikes up immediately. When the sun goes behind the clouds, the “producing” number goes down immediately. And even better, I can see where I am using the energy (am I using solar, battery, or grid?) and where the production is going to (my home, the batteries, or back to the grid). Amazing.</p>
+
+
+
+<p><strong>Daily / Weekly view of the data</strong></p>
+
+
+
+<p>This is the same screen as above, except not live, but historical looking. Check out this day summary:</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/yVgXwU2ZCsTejtAZ4flriE1sZsZeN2PyOvf598O7_VGrYthFEzhKn647mOqRU8cl1mdwGDx9i3s-q1CMrgfLP8pA5VUb3ELRNGTH-dRMDzViYt0RHZIdDWgtfx9Gt5LL1jzE2ZZyew0RVyApW1z_Rjk" alt="" /></figure>
+
+
+
+<p>The app clearly shows me how much I produced and used over a full data (instead of the live view from above). On april 11, we produced 51 kWh and used 50 as of 5pm. And I can see the full breakdown of used vs produced here too. I can do the same thing for week, month, year, and all time. Gorgeous.</p>
+
+
+
+<p><strong>Exporting excess power back to the grid</strong></p>
+
+
+
+<p>On many or most days, the solar panels produce more energy during parts of the day that I can use in real time or store in the batteries (because our batteries are full). What do we do with the excess power? Send it back to Rocky Mountain Power, our utility provider, and get paid, of course! I literally become my own utility most days. And my neighbors now get to use electricity that the Hogge family produced. Can you believe how cool that is? The app also does an amazing job of showing me this data, in real time. Check out below, where I was exporting 6,000 watts back to the grid (and getting paid for doing so).&nbsp;</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/slotuWYP4xbqBGYKLnmnC_kKCgtTEUfXxNAQzS9rLqJEsSS-iaqkxArTWlJ6vaGPd9Sv3WjBjJMJctJObdcrX9qskYNz0oK3g0gZpiqVf3j1OsHrhejcP7mP_byKt413P2rRQU-eJ53Q3fnrO-qSpn0" alt="" /></figure>
+
+
+
+<p><strong>Weather forecast and automatic adjustments</strong></p>
+
+
+
+<p>Part of the Torus product is a small weather detection device they attached to my roof which forecasts the weather at my home specifically. If a storm is coming, the software will charge my batteries asap, pulling from the grid if necessary. But besides that, it gives me a sense for how much power I might generate over the next few days. Awesome.</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/uHZ3ZVRupP1VmGLwIF7PNvGvnJdZlWp3nZUqVp5KAk0dEb5mo2Yrff5qhrCyrBulb5v7iqN-fULPp_aOatFsoK1_JWUShzdcCz1Kz9ltqdm9c2Lv-yisoo9kvi1jOdswLbZVq2cfiHq4ycLRXAyFroI" alt="" /></figure>
+
+
+
+<p><strong>Cost savings screens</strong></p>
+
+
+
+<p>How much is Torus saving me? They tell me. Check this out: yesterday my electric bill was .39 cents. Read that again. I can see this view by day, week, month, and all time too. Magical.</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/8hH5mx5cluXI7fbV5rrvBWTMbgVJgX0xrjOinTsnLm0ibmylTBXHjomjflZzJEgpSMFyeoZUEHH9EzmvphXyF4ENe9sxAHu5WxozMZl7ZidPSq3e89S4iFngpd4nFTpcp8Zegn75MOD-ATz31uQFhHo" alt="" /></figure>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/ientKNMMJeT_dwoKmn-1aXXRWRqbhLKMi0TU4HSlm_lPIlhbxNOgFdanjYWW-CwTr-m4r_DfPjb2jcltwcNdSrURg5Ly1SpdAKNL53X7OuZCvXX7ErDHD0kAOt1Vk2FDDVIsdFhJZSGPKzgxXE43qgU" alt="" /></figure>
+
+
+
+<p><strong>Tesla integration</strong></p>
+
+
+
+<p>My last favorite feature is the Tesla integration. The Torus app integrates with my Tesla app seamlessly - it lets me set my charging limits for my Tesla, shows me how much it costs to charge, and when my Tesla is plugged in, it can actually use my Tesla to charge the home battery and vice versa.</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/wjqTD5oPnGLgxfcPGIHHjr2mtwWWnOHpolfOlyy1dQbUtNRU6lH41ml3Rpn99jBrAFeCrvlc1G_JqxazTbYmkJ9YZPkk2bJ6OoCmf_8Qdu_HK9ax8DxilHJ037l-LB2ia_vmIqv8yDqeInaEsqVv7LA" alt="" /></figure>
+
+
+
+<p>After a month of having the full Torus system, it seems clear to me: every single home needs one of these. Smart home builders will want to partner with Torus to differentiate their offering. Smart utility providers will want to partner with Torus to increase grid resilience. And smart home owners will want one of these for outage backup and a lower power bill. </p>
+
+
+
+<p>The first consumer refrigerator was developed around 1927. By the 1940’s, 85% of Americans had a refrigerator in their home. Less than 20 years. I imagine a world where every home has its own utility system - and becomes a reverse utility -&nbsp; in a shorter time frame than that. Thanks to Torus, it’s possible today.</p>
+</div>
+<div class="post-nav"><a href="/blog/what-i-learned-from-peter-fenton/">← What I Learned From Peter Fenton</a>
+<a href="/blog/obsession-is-what-it-comes-down-to/">Obsession Is What It Comes Down To →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

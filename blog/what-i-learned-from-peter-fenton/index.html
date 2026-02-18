@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What I Learned From Peter Fenton — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>What I Learned From Peter Fenton</h1>
+  <div class="post-date">March 20, 2024</div>
+</div>
+<div class="post-body">
+<p>My next “what I learned from…” series is from one of the best venture capitalists of the last 20 years, Peter Fenton.</p>
+
+
+
+<p>My learnings come from two sources. I watched <a href="https://www.youtube.com/watch?v=XWEP6vUomi8">his interview by Logan Bartlett</a> and thought it was one of the best podcasts I have ever heard. And the second is this masterful <a href="https://writingsessions.quora.com/Session-with-Peter-Fenton">Quora session</a> Peter did many years ago.&nbsp;</p>
+
+
+
+<p>Peter strikes me as one of the deepest thinkers in venture capital. He speaks about venture capital in a way that no one else does. I first realized this when I read his quote in Quora many years ago, which to this day, is my favorite quote on venture capital ever:</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/lucdMGTPTmrdYTIC90AfeGoN0mtGsAxGBV1DG-McIhOfgP1wjUfYGUji5DO0y-vZZgY-iEWx9W4SERLmdS59SFecRZr0Wz7n5-I5HknqKefeDtJfAPSURWeaKJrnz6_g8G9DzDW7nWR8ZkXlOkktFls" alt="" /></figure>
+
+
+
+<p>And this classic:</p>
+
+
+
+<figure><img src="https://lh7-us.googleusercontent.com/8fFfWiovLWhGKMtUsrxC2Fyd_CsG49k3PCvunbCAD9OClDK7JNXc1sbGzXiwvNMuCb8m5-FfnEInm2vjfn-OtyskoEGSrDI9QZgQZ3JQe-8ji_laMi1Et1_WjyJx1xa-muGArv6Ecp9TGZVHcC2RhVw" alt="" /></figure>
+
+
+
+<p>Here are the 26 more things I learned from Peter Fenton (with a few comments from me):</p>
+
+
+
+<ol>
+<li><strong>“One of the roles of a director is truth, and truth seeking. Truth seeking is almost never socially rewarded. You don’t make someone feel good if there;s a truth they don’t want to see. The relationship side of the business is important, but isn’t what creates greatness. What creates greatness is truth seeking.”</strong>
+<ol>
+<li>I absolutely love this framing of truth over everything else. Some startups are TRULY meant to be enduring, world-changing companies. The job of a great investor is to find that truth.</li>
+</ol>
+</li>
+
+
+
+<li><strong>“Experience is a weak proxy for character.”</strong></li>
+
+
+
+<li><strong>“No one picks you cause you’re better at anything, they are gonna pick you because of who you are. It’s a career bet for them.”</strong>
+<ol>
+<li>VC is the ultimate people business. The dynamics are much closer to marriage than any other business I’ve seen. And, like marriage, what matters is whether you can “fall in love” with someone and go on a journey together and choose to stay in love along the way.</li>
+</ol>
+</li>
+
+
+
+<li><strong>“If you tap into what is deeply your expression, and it’s truthful, a great entrepreneur will respond to that level of depth.”</strong>
+<ol>
+<li>Water finds its own level. I actually think this is the core truth of this business: you have to attract an exceptional entrepreneur. What is the best way to do that? Be exceptional - authentically exceptional - yourself. </li>
+</ol>
+</li>
+
+
+
+<li><strong>“There are few key parts to the Benchmark culture: equal partnership, high fluidity, less structure.”</strong></li>
+
+
+
+<li><strong>“This firm destroys the idea that you are better than anyone else. As soon as you start to think that, you get destroyed.”</strong></li>
+
+
+
+<li><strong>“Authentic is what you’d find in a great poem. It’s a unique contribution to reality. You see the world differently after having read a great poem. It changes your eyes. If I see an entrepreneur that does that to me…you read the poem and think, thats a great fucking poem. my own investment style evolved from a truth: there are parts that activate you uniquely, where you lose your sense of self. You aren’t trying to do something to win a deal, or make money, you are just swept off your feet. We’re all different. I’m principally relating to a human being. That’s what compels me.”</strong></li>
+
+
+
+<li><strong>“My partners say, you have to do some due diligence, I don’t really like to.”</strong></li>
+
+
+
+<li><strong>“We should be elevating consciousness for the entrepreneurs we work with around the stuff that really matters, and we shouldn’t elevate the stuff that doesn’t matter.”</strong>
+<ol>
+<li>The ultimate test of judgment: what do you put your focus on?</li>
+</ol>
+</li>
+
+
+
+<li><strong>“The prepared mind has a place….preconditions are important. Let’s be vulnerable to areas where there is no incumbent.”</strong></li>
+
+
+
+<li><strong>“In consumer…. the big winners take off before they had venture money. That really weighed on me. The crystal ball doesn’t work as well in consumer.”</strong></li>
+
+
+
+<li><strong>“[During a great pitch] I feel rapture. You arent on your device. you are on the edge of your seat. It’s gripping. It’s a secret. Just at the beginning of being manifested.”</strong></li>
+
+
+
+<li><strong>“Is there some part of me that would quit right now to go work with this person? If the answer is no, you probably shouldn’t invest, because you are going to be a terrible recruiter.”</strong>
+<ol>
+<li>I call this being <a href="https://tylerhogge.com/2023/06/30/startup-spiritual-conversion/">spiritually converted</a> by a founder. </li>
+</ol>
+</li>
+
+
+
+<li><strong>“If it [the company] doesn’t take 7-10 years to manifest, it’s a problem. Many companies have childhood actor syndrome, where you are too big too early.”</strong>
+<ol>
+<li>Lemons ripen early! Enduring companies take time to build. What is easily created is easily taken away. </li>
+</ol>
+</li>
+
+
+
+<li><strong>“You must be long-term and short term-focused. Bite off what you can chew, while having in the background, the most absurdly radical ambition. It’s insanely hard to keep both. If you only focus on the long term, you lose your team and investors. If you only focus on the short term, you lose your purpose. you must have a dynamic for both.”</strong></li>
+
+
+
+<li><strong>“We run into more problems when founders lose their energy, motivation. I come back to the human connection. It’s a function of the human founder. Is the founder's joy insatiable, or does it end when they get their private jet? The outcome probabilities have to have a human story. we need to believe that the pull of the purpose will allow them to turn down the temptation to sell.”</strong>
+<ol>
+<li>I loved this as the actual variable that determines whether a company can go the distance.</li>
+</ol>
+</li>
+
+
+
+<li><strong>“If you let your ego develop, you start to assume great people will find you. but they don’t. We cold call them.”</strong></li>
+
+
+
+<li><strong>“I’m starting a company now with a founder…”</strong>
+<ol>
+<li>Venture Capital, the right way, looks a lot more like company building that investment management. I love that Peter is building startups with founders at the earliest stages.</li>
+</ol>
+</li>
+
+
+
+<li><strong>“Private venture investing doesn’t outperform the NASDAQ. and that is a tough pill that people have to swallow.”</strong>
+<ol>
+<li>It’s not really an asset class. It’s the wrong thing to do for everyone….except about 30-ish firms.</li>
+</ol>
+</li>
+
+
+
+<li><strong>“I don’t invest in trends…” </strong></li>
+
+
+
+<li><strong>“Venture is a shoe-leather business, you can only be great if you are out looking engaging and hustling.”</strong></li>
+
+
+
+<li><strong>“Never turn down a company on valuation. It's a mental trap, and allows for weak thinking.”</strong>
+<ol>
+<li>Bill Gurley hints at <a href="https://quorasessionwithbillgurley.quora.com/What-are-your-top-pieces-of-advice-youd-give-to-your-younger-self">this</a> being one of his mistakes. </li>
+</ol>
+</li>
+
+
+
+<li><strong>“Boards are responsible to ensure the integrity of the Strategy, Stucture, and Staff. If the strategy is clear, the structure of the org should be aligned to that strategy, and the staff should be aligned to that org model.”</strong></li>
+
+
+
+<li><strong>“Entrepreneurial culture and professional culture will be in constant tension and conflict, and the art of the CEO is to balance both, and most CEOs don't.”</strong></li>
+
+
+
+<li><strong>“What I've learned about people, the biggest lesson is that, simply put, the magic of human connection is the reason to do this job forever. The joy of being a partner, in the fullest sense, to a leader on the heroic journey of a startup inspires everything I want to contribute to this world. In terms of specifics, I've learned that the one variable that defines a great relationship above all else is trust. I believe that comes from clarity of purpose, and shared-purpose. If there's a “hidden agenda” it's immediately obvious to the subconscious mind, and it destroys trust. In a high trust relationship, I've found that CEOs adapt and evolve at a higher positive rate.”</strong></li>
+
+
+
+<li><strong>“Doing this job for almost twenty years now has taught me far more about people than about business. So let me first answer what I've learned about business, and in this case I mean the business of investing in startups. I started out as someone who had all the conceptual overhead needed to sound intelligent in our world, Porter's 5 Forces, the Innovators Dillema, and Crossing the Chasm. I would, in my former firm's parlance, develop a “prepared mind” in a sector so I could see where the logical opportunities should exist. I became an expert on Storage, on Application Software, on SupplyChain. All of that, I came to realize, was useless without the alchemy of an entrepreneur who was playing around with explosive market forces. Yes we can look, and it helps to look with a lens, but the best ideas and companies aren't filling logical white spaces. They are touching a nuclear reactor of some force that will yield, and yield quickly, to an entrepreneurial leader.”</strong>
+<ol>
+<li>Something about ‘alchemy of an entrepreneur’ and ‘touching a nuclear reactor’ has always stuck with me about the dynamic of seeing a startup take off like a rocketship.</li>
+</ol>
+</li>
+</ol>
+</div>
+<div class="post-nav"><a href="/blog/a-few-thoughts-on-intensity/">← A few thoughts on intensity.</a>
+<a href="/blog/my-new-favorite-product/">My New Favorite Product →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Different Is Better Than Better — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Different Is Better Than Better</h1>
+  <div class="post-date">December 14, 2023</div>
+</div>
+<div class="post-body">
+<p>One of the most common venture capitalist beliefs is that a product must be 10x better than the alternative to be an interesting investment. I have spent many hours thinking about this and I believe it to be true, but I prefer a different framing:</p>
+
+
+
+<p><strong>Different is better than better.</strong></p>
+
+
+
+<p>What do I mean by this?</p>
+
+
+
+<p>In order to make a product an order of magnitude better, you likely need to actually be <em>different</em> in a fundamental way.</p>
+
+
+
+<p>“Different” stands out. “Better” blends in and invites comparison.</p>
+
+
+
+<p>In technology, being merely better is often not enough to get people to switch.&nbsp;</p>
+
+
+
+<p>Andy Rachleff <a href="https://www.youtube.com/watch?v=PzUQ1XbMgsA">says it</a> this way: “Building a better version of something that currently exists seldom if ever leads to success in technology. It’s solving a different problem for which people are desperate."</p>
+
+
+
+<p>He also <a href="https://x.com/thogge/status/1679165158516731907?s=20">teaches</a>: “The only way you are likely to succeed as a startup is if you find a desperate customer. If the incumbent offers something that is good enough, they are going to win because they are far less risky for the consumer to use. So why take the chance on something that is slightly better? For someone who is desperate, there’s not a good enough solution!”</p>
+
+
+
+<p>Perhaps sharing a few examples will help:</p>
+
+
+
+<ul>
+<li>Salesforce didn’t build a better Siebel. It built a different Siebel - in the cloud.&nbsp;</li>
+
+
+
+<li>Divvy didn’t build a better expensify or concur. It built a different expensify or concur - attached to a card.</li>
+
+
+
+<li>Figma didn’t build a better Adobe Photoshop. It built a different photoshop - in the browser.</li>
+
+
+
+<li>Tesla didn’t build a better Ford. It built a different Ford - electric.</li>
+</ul>
+
+
+
+<p>And maybe my favorite example, as told by Don Valentine, the founder of Sequoia:</p>
+
+
+
+<p><em>“Ten years ago, there was a product on the market, only one of its kind. They had basically 100 percent market share. Anybody who wanted to listen to music while they were moving had a Walkman. So you had a cassette, and it was all there was, so it was spectacular. And Sony owned the market. There were no competitors of any consequence in the world. The technology was fairly simple. The biggest part of their success was their distribution system. But just as recently as three-and-a-half or four years ago, a local company by the name of Apple eliminated the Walkman forever with a radically different product.”&nbsp;</em></p>
+
+
+
+<p>And there are many more such examples.</p>
+
+
+
+<p>In each of the above examples, being different allowed the startup to build a 10x product on a key criteria the customer cared about.&nbsp;</p>
+
+
+
+<ul>
+<li>Salesforce got rapidly better as improvements were delivered via the cloud rather than installed software yearly upgrades.</li>
+
+
+
+<li>Divvy got rid of dreaded expense reports that Expensify/Concur were built on by giving every employee a corporate card tied to software that made expense reports irrelevant.</li>
+
+
+
+<li>Figma allowed for live design collaboration by multiple people on different computers because it was in the browser and not on a machine.</li>
+
+
+
+<li>Tesla was the fastest production car ever made because electricity fundamentally beats gas.</li>
+
+
+
+<li>And finally, the iPod allowed for “1,000 songs in your pocket” by changing the format to mp3 instead of a cassette.</li>
+</ul>
+
+
+
+<p>Different. Not merely better.</p>
+
+
+
+<p>Being different also means you are often worse in some ways. Salesforce didn’t have all the features Siebel did, nor did Divvy compared to Expensify. Tesla didn’t have as far of a range as gas powered cars. iPods famously had lower battery life. Etc. etc. But when you are different, the areas in which you are worse matter less, because being different allows you to be <em>radically </em>better on one or two key things.</p>
+
+
+
+<p>It reminds me of the story of Johnny Weissmuller, one of the best swimmers of all time (a 5x Olympic gold medalist), and even more famously the actor for the original Tarzan. Johnny was at a party one night when someone challenged him to an arm wrestle, thinking it would be fun to brag about beating the Olympian Tarzan in a feat of strength. Johnny’s answer was great: “I’ll tell you what, I’ll do anything you want to do as long as we are in 10 feet of water.”</p>
+
+
+
+<p>Johnny was happy to compete….but on his terms. And startups should be happy to compete …but on their terms (which should be different from the market).</p>
+
+
+
+<p>If you want to build a 10x product, be different. Not merely better.</p>
+
+
+
+<p></p>
+
+
+
+<p>*<em><strong>Thank you to Andy Rachleff who not only taught me these principles but also gave feedback on this post.</strong></em>*</p>
+</div>
+<div class="post-nav"><a href="/blog/the-awful-arithmetic-of-valuation/">← The Awful Arithmetic Of Valuation</a>
+<a href="/blog/speak-plainly/">Speak Plainly. →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>

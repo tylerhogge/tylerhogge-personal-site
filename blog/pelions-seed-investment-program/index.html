@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pelion’s Seed Investment Program — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><span class="nav-name">Tyler Hogge</span><span class="nav-tagline">always happy; never satisfied</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/podcast/">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Pelion’s Seed Investment Program</h1>
+  <div class="post-date">August 27, 2024</div>
+</div>
+<div class="post-body">
+<p>We’re excited to share a few announcements about our plans to invest at the seed stage at <a href="https://pelionvp.com/">Pelion</a>.&nbsp;</p>
+
+
+
+<p>But first, some quick context.</p>
+
+
+
+<p>Pelion has been around for over 30 years and, throughout its history, has always made seed investments in addition to our core focus on Series A and B.</p>
+
+
+
+<p>For example, we invested $800k in Cloudflare at the seed stage. We incubated Rivet Health and Neighbor inside our office at the seed stage. Recently we incubated Redo as they’ve worked out of our office from the seed stage (before they had much if any revenue), to where they are now with more than 60 employees.</p>
+
+
+
+<p>But occasionally we hear from founders who aren’t sure whether Pelion invests super early and, if so, how our process or criteria might differ from a Series A.&nbsp;</p>
+
+
+
+<p>So today, we thought we’d clear that up and share more details on how we think about a seed program at Pelion:</p>
+
+
+
+<ul>
+<li><strong>Investment amount: </strong>As opposed to a $5-10m Series A investment, our Seed Program will make $1-3m investments into much earlier-stage companies.</li>
+
+
+
+<li><strong>Lead or follow: </strong>We prefer to lead the round. In the past, we’ve been more open to small “test the water” investments and have decided we don’t really like these, for one main reason: it doesn’t require intense conviction. We want to get enough conviction to lead a round, and we think that’s both in the founder’s best interest and our own. We don’t care who else is investing and are comfortable being the only believers. In fact, we might prefer it.</li>
+
+
+
+<li><strong>What we look for: </strong>Perhaps it’s not surprising, but we look for exceptional founders with unique insights. We want to meet with outlier individuals – founders who are in the top 10 basis points in some particular thing. We believe startups are an irrational act in many ways, so we are looking for irrational people to build them. Extreme personalities produce extreme results. In addition to the founder, we want a unique insight – a secret – that the founder has earned from their unique experience. We want to know why this startup is a founder’s unique expression to the world.</li>
+
+
+
+<li><strong>Number of investments: </strong>We expect to make about 15 of these Seed investments over the next 2-3 years, although this number could be more or less.&nbsp;</li>
+
+
+
+<li><strong>How early we invest: </strong>Early. We’ve made 3 recent investments at the seed stage. The first was about $250k in ARR. The second was about $400k in ARR. And the third is pre revenue, pre product. Generally speaking, the earlier we go, the more history we have with the founder.</li>
+
+
+
+<li><strong>How we decide:</strong> Every partner and member of our investment team can lead, source, and/or evaluate seed-stage investments. Chad Packard, Sterling Snow, and Tyler Hogge will lead the Seed Program, which can help us make quick investment decisions. </li>
+
+
+
+<li><strong>Where we will focus: </strong>We are generalists both geographically and by sector. We will invest in any geo in the US, with a particular emphasis on Utah, and across any sector within tech. That being said, we are particularly excited about vertical AI applications, marketplaces, security/infrastructure, and fintech. But we are open to anything. Bring it.</li>
+
+
+
+<li><strong>The product we offer founders: </strong>We think founders should think about choosing a seed investor like they are purchasing a product. So we asked ourselves: What product do we want to offer founders that is highly differentiated from any other product they could buy? After speaking with hundreds of founders, we think what a founder actually desperately wants from its seed investor is <em>improved odds of success.</em> So, that is the product we strive to offer: To bend the odds of success for your startup. Generally speaking, that includes being a trusted advisor, and a helping machine:</li>
+</ul>
+
+
+
+<ol>
+<li><strong>A trusted advisor. </strong>Founders want someone they can trust at the earliest stages. Someone they actually enjoy receiving a text from, and someone they enjoy texting with all news (good or bad). Someone who will always tell them the truth, and someone who will always put the founder’s needs first. Someone whose response time is measured in seconds, not days. Someone who has deep empathy for the company-building process. That’s what it means to be a trusted advisor to us.&nbsp;</li>
+
+
+
+<li><strong>A helping machine. </strong>We also think seed-stage companies are like wet cement: Not yet fully formed, moldable, and in a crucial period where the operating models are not yet hardened. This is where we like to be the most helpful. How do we help? There are a few common ways:</li>
+</ol>
+
+
+
+<ul>
+<li><strong>Customer intros - </strong>We set quotas to deliver a certain amount of qualified customer introductions.</li>
+
+
+
+<li><strong>Recruiting help - </strong>We help you find exceptionally talented people for your most critical roles. In the last year we’ve placed CROs, 3 VPs of Product, and several VPs of sales and engineering into some of the fastest growing companies in the country.</li>
+
+
+
+<li><strong>Product help. </strong>Tyler ran the product org at Divvy, and led much of the product experiences at Wealthfront before that. He loves helping any founder think through product strategy, hiring, or execution.</li>
+
+
+
+<li><strong>GTM help. </strong>Sterling ran the revenue org at Divvy, and much of the revenue org at Jive before that. He’s also the CEO of Redo today, which is one of the <a href="https://tylerhogge.com/2024/08/20/the-redo-opportunity/">fastest-growing companies in the country</a>. And while Redo will take the bulk of Sterling’s focus and time, he will still be able to help seed-stage companies as a part of this program.&nbsp;</li>
+
+
+
+<li><strong>Office space. </strong>Pelion has some of the best office space in Utah and several of our seed stage startups choose to work out of our dedicated incubation space.</li>
+
+
+
+<li><strong>Pelion network access. </strong>We open our network to you. This could be for advisors, customers, partners, bankers, lawyers, or any other thing your startup might need.</li>
+</ul>
+
+
+
+<p>We’re excited to find and partner with many more seed-stage companies in Utah and throughout the country, with a product we believe can bend the odds of success for any exceptional startup.</p>
+
+
+
+<p>If you’d like to go on that journey with us, please reach out.</p>
+
+
+
+<figure><img src="https://tylerhogge.com/wp-content/uploads/2024/08/image-3.png?w=912" alt="" class="wp-image-754" /></figure>
+</div>
+<div class="post-nav"><a href="/blog/the-redo-opportunity/">← The Redo Opportunity</a>
+<a href="/blog/you-probably-shouldnt-raise-venture-capital/">You probably shouldn’t raise venture capital →</a></div>
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #f0f0f0">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">← All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>
