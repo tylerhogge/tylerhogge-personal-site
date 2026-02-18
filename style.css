@@ -220,6 +220,8 @@ main {
 .page-body a { text-decoration: underline; text-decoration-color: #bbb; }
 .page-body a:hover { text-decoration-color: #666; opacity: 1; }
 .page-body strong { font-weight: 600; }
+.page-body ul { padding-left: 1.25rem; margin-bottom: 1.5rem; }
+.page-body ul li { margin-bottom: 0.4rem; }
 .page-header { margin-bottom: 2.5rem; }
 .page-header h1 {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -227,6 +229,8 @@ main {
   font-weight: 700;
   letter-spacing: -0.03em;
 }
+.page-header h1 a { text-decoration: none; }
+.page-header h1 a:hover { opacity: 0.65; }
 
 /* ── FOOTER ── */
 footer {
