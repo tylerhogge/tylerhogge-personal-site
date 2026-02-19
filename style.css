@@ -372,6 +372,34 @@ footer a:hover { color: #555; }
 }
 .share-btn:hover { color: #1a1a1a; border-color: #999; opacity: 1; }
 
+/* ── TICKER POPUP ── */
+.ticker-hover {
+  cursor: default;
+  border-bottom: 1px dashed #ccc;
+  transition: border-color 0.15s;
+}
+.ticker-hover:hover { border-color: #888; }
+.ticker-popup {
+  position: fixed;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07);
+  overflow: hidden;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  pointer-events: none;
+  width: 380px;
+  height: 230px;
+}
+.ticker-popup.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.ticker-popup iframe { display: block; border: none; }
+
 /* ── RESPONSIVE ── */
 
 /* Tablet: compress nav slightly */

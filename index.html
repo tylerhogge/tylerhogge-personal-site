@@ -91,7 +91,7 @@
 <div class="home-bio">
   <p>Howdy, I'm <a href="https://x.com/thogge" target="_blank" rel="noopener">Tyler</a> — first and foremost a husband and father in a tribe called Hogge.</p>
   <p>I'm a Partner at <a href="https://pelionvp.com/" target="_blank" rel="noopener">Pelion</a>, where I lead Seed and Series A investments in <a href="http://exceptionalstartups.com" target="_blank" rel="noopener">exceptional startups</a>.</p>
-  <p>Previously I led the product and risk organizations at <a href="https://getdivvy.com" target="_blank" rel="noopener">Divvy</a> (acquired by BILL for $2.5B), product teams at <a href="https://wealthfront.com" target="_blank" rel="noopener">Wealthfront</a> ($WLTH, $1.5B market cap), interned at <a href="https://a16z.com" target="_blank" rel="noopener">a16z</a>, and led sales at <a href="https://clearwateranalytics.com" target="_blank" rel="noopener">Clearwater</a> ($CWAN, $7B market cap).</p>
+  <p>Previously I led the product and risk organizations at <a href="https://getdivvy.com" target="_blank" rel="noopener">Divvy</a> (acquired by BILL for $2.5B), product teams at <a href="https://wealthfront.com" target="_blank" rel="noopener">Wealthfront</a> (<span class="ticker-hover" data-ticker="NASDAQ:WLTH">$WLTH</span>, $1.5B market cap), interned at <a href="https://a16z.com" target="_blank" rel="noopener">a16z</a>, and led sales at <a href="https://clearwateranalytics.com" target="_blank" rel="noopener">Clearwater</a> (<span class="ticker-hover" data-ticker="NYSE:CWAN">$CWAN</span>, $7B market cap).</p>
   <p>I graduated in finance from SUU (the MIT of Southern Utah, where I was captain of the D1 baseball team), and with an MBA from Cornell. I'm also a CFA Charterholder.</p>
 </div>
 
@@ -163,5 +163,47 @@ Why…</div>
     <a href="mailto:tylerhogge@gmail.com">Email</a>
   </p>
 </footer>
+<script>
+(function(){
+  var popup=null,timer=null;
+  function mkPopup(){
+    if(popup) return popup;
+    popup=document.createElement('div');
+    popup.className='ticker-popup';
+    document.body.appendChild(popup);
+    popup.addEventListener('mouseenter',function(){clearTimeout(timer);});
+    popup.addEventListener('mouseleave',hide);
+    return popup;
+  }
+  function show(el){
+    clearTimeout(timer);
+    var t=el.dataset.ticker;
+    var p=mkPopup();
+    if(p.dataset.ticker!==t){
+      p.dataset.ticker=t;
+      var src='https://www.tradingview.com/widgetembed/?symbol='+encodeURIComponent(t)
+        +'&interval=W&hidesidetoolbar=1&hidetoptoolbar=1&theme=light&style=2&locale=en'
+        +'&allow_symbol_change=0&save_image=0&withdateranges=0';
+      p.innerHTML='<iframe src="'+src+'" width="380" height="230" frameborder="0" scrolling="no"></iframe>';
+    }
+    var r=el.getBoundingClientRect(),pw=380,ph=230,gap=10;
+    var left=r.left+r.width/2-pw/2;
+    var top=r.top-ph-gap;
+    if(top<gap) top=r.bottom+gap;
+    if(left<gap) left=gap;
+    if(left+pw>window.innerWidth-gap) left=window.innerWidth-pw-gap;
+    p.style.left=left+'px';
+    p.style.top=top+'px';
+    p.classList.add('visible');
+  }
+  function hide(){
+    timer=setTimeout(function(){if(popup)popup.classList.remove('visible');},200);
+  }
+  document.querySelectorAll('.ticker-hover').forEach(function(el){
+    el.addEventListener('mouseenter',function(){show(el);});
+    el.addEventListener('mouseleave',hide);
+  });
+})();
+</script>
 </body>
 </html>
