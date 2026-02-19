@@ -241,47 +241,5 @@ These are the types of…">
     <a href="mailto:tylerhogge@gmail.com">Email</a>
   </p>
 </footer>
-<script>
-(function(){
-  var popup=null,timer=null;
-  function mkPopup(){
-    if(popup) return popup;
-    popup=document.createElement('div');
-    popup.className='ticker-popup';
-    document.body.appendChild(popup);
-    popup.addEventListener('mouseenter',function(){clearTimeout(timer);});
-    popup.addEventListener('mouseleave',hide);
-    return popup;
-  }
-  function show(el){
-    clearTimeout(timer);
-    var t=el.dataset.ticker;
-    var p=mkPopup();
-    if(p.dataset.ticker!==t){
-      p.dataset.ticker=t;
-      var src='https://www.tradingview.com/widgetembed/?symbol='+encodeURIComponent(t)
-        +'&interval=W&hidesidetoolbar=1&hidetoptoolbar=1&theme=light&style=2&locale=en'
-        +'&allow_symbol_change=0&save_image=0&withdateranges=0';
-      p.innerHTML='<iframe src="'+src+'" width="380" height="230" frameborder="0" scrolling="no"></iframe>';
-    }
-    var r=el.getBoundingClientRect(),pw=380,ph=230,gap=10;
-    var left=r.left+r.width/2-pw/2;
-    var top=r.top-ph-gap;
-    if(top<gap) top=r.bottom+gap;
-    if(left<gap) left=gap;
-    if(left+pw>window.innerWidth-gap) left=window.innerWidth-pw-gap;
-    p.style.left=left+'px';
-    p.style.top=top+'px';
-    p.classList.add('visible');
-  }
-  function hide(){
-    timer=setTimeout(function(){if(popup)popup.classList.remove('visible');},200);
-  }
-  document.querySelectorAll('.ticker-hover').forEach(function(el){
-    el.addEventListener('mouseenter',function(){show(el);});
-    el.addEventListener('mouseleave',hide);
-  });
-})();
-</script>
 </body>
 </html>
