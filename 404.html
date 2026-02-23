@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Not Found — Tyler Hogge</title>
+  <meta name="description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Tyler Hogge">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Page Not Found — Tyler Hogge">
+  <meta property="og:description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@thogge">
+  <meta name="twitter:title" content="Page Not Found — Tyler Hogge">
+  <meta name="twitter:description" content="Tyler Hogge — Partner at Pelion. Writing about startups, VC, and leadership.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/quotes/">Quotes</a></li>
+<li><a href="https://www.investoroperator.io/" target="_blank" rel="noopener">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div style="text-align:center;padding:4rem 0">
+  <div style="font-family:-apple-system,sans-serif;font-size:5rem;font-weight:700;color:#f0f0f0;line-height:1">404</div>
+  <h1 style="font-family:-apple-system,sans-serif;font-size:1.5rem;font-weight:600;margin:1rem 0 0.5rem;color:#1a1a1a">Page not found</h1>
+  <p style="font-family:-apple-system,sans-serif;color:#888;margin-bottom:2rem">That page doesn't exist. Try one of these instead:</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+    <a href="/" style="font-family:-apple-system,sans-serif;font-size:0.9rem;color:#555;text-decoration:none;border:1px solid #e0e0e0;border-radius:20px;padding:0.4rem 1rem">Home</a>
+    <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:0.9rem;color:#555;text-decoration:none;border:1px solid #e0e0e0;border-radius:20px;padding:0.4rem 1rem">Writing</a>
+    <a href="/investments/" style="font-family:-apple-system,sans-serif;font-size:0.9rem;color:#555;text-decoration:none;border:1px solid #e0e0e0;border-radius:20px;padding:0.4rem 1rem">Investments</a>
+    <a href="/quotes/" style="font-family:-apple-system,sans-serif;font-size:0.9rem;color:#555;text-decoration:none;border:1px solid #e0e0e0;border-radius:20px;padding:0.4rem 1rem">Quotes</a>
+  </div>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> ·
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+</body>
+</html>
