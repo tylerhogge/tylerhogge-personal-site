@@ -253,6 +253,34 @@ main {
 .page-header h1 a { text-decoration: none; }
 .page-header h1 a:hover { opacity: 0.65; }
 
+/* ── SCROLL TO TOP ── */
+#scroll-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #888;
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.15s;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#scroll-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+#scroll-top:hover { border-color: #999; color: #333; }
+
 /* ── FOOTER ── */
 footer {
   border-top: 1px solid #e8e8e8;
