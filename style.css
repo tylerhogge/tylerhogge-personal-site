@@ -71,7 +71,10 @@ main {
   user-select: none;
 }
 @media (max-width: 900px) {
-  .home-monogram { display: none; }
+  .home-monogram {
+    position: static;
+    margin-bottom: 1.5rem;
+  }
 }
 .home-bio {
   margin-bottom: 4rem;
