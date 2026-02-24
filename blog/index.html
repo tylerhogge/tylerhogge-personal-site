@@ -543,7 +543,15 @@ So when I received an email from the MBA registrar at Cornell University's Johns
 Among my friends, several of whom don’t share my passion for finance,…</div>
 </li>
 </ul>
-
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+<script>
+(function(){
+  var btn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', function(){
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+})();
+</script>
 </main>
 <footer>
   <p>
