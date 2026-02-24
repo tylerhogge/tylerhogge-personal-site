@@ -35,6 +35,12 @@ The answer, of course, is so that they can get more cash back,…">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/favicon.png" type="image/png">
   <script defer src="/_vercel/insights/script.js"></script>
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+      document.documentElement.setAttribute('data-theme',t);
+    })();
+  </script>
 </head>
 <body>
 <nav>
@@ -304,5 +310,21 @@ The answer, of course, is so that they can get more cash back,…">
     <a href="mailto:tylerhogge@gmail.com">Email</a>
   </p>
 </footer>
+<button id="theme-toggle" title="Toggle dark/light mode"></button>
+<script>
+(function(){
+  var btn = document.getElementById('theme-toggle');
+  var html = document.documentElement;
+  function apply(dark) {
+    html.setAttribute('data-theme', dark ? 'dark' : 'light');
+    btn.textContent = dark ? '☀ Light' : '◑ Dark';
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+  }
+  var stored = localStorage.getItem('theme');
+  var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  apply(dark);
+  btn.addEventListener('click', function() { apply(!html.getAttribute('data-theme').includes('dark')); });
+})();
+</script>
 </body>
 </html>
