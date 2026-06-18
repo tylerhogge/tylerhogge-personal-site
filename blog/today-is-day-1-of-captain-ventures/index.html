@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Today is Day 1 of Captain Ventures — Tyler Hogge</title>
+  <meta name="description" content="Captain Ventures is a seed-stage venture capital firm built around a simple belief: the founder - the Captain - is the primary determinant of a startup's success.">
+  <link rel="canonical" href="https://tylerhogge.com/blog/today-is-day-1-of-captain-ventures/">
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Tyler Hogge">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Today is Day 1 of Captain Ventures — Tyler Hogge">
+  <meta property="og:description" content="Captain Ventures is a seed-stage venture capital firm built around a simple belief: the founder - the Captain - is the primary determinant of a startup's success.">
+  <meta property="og:url" content="https://tylerhogge.com/blog/today-is-day-1-of-captain-ventures/">
+  <meta property="article:published_time" content="2026-06-18">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@thogge">
+  <meta name="twitter:title" content="Today is Day 1 of Captain Ventures — Tyler Hogge">
+  <meta name="twitter:description" content="Captain Ventures is a seed-stage venture capital firm built around a simple belief: the founder - the Captain - is the primary determinant of a startup's success.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+      document.documentElement.setAttribute('data-theme',t);
+    })();
+  </script>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/quotes/">Quotes</a></li>
+<li><a href="https://www.investoroperator.io/" target="_blank" rel="noopener">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Today is Day 1 of Captain Ventures</h1>
+  <div class="post-date">June 18, 2026</div>
+</div>
+<div class="post-body">
+
+<p><a href="https://captain.ventures/" target="_blank" rel="noopener">Captain Ventures</a> is a seed-stage venture capital firm built around a simple belief: the founder - the Captain - is the primary determinant of a startup's success. This belief shapes everything we do to win and help founders win.</p>
+
+<p>Captain Ventures will have offices in SLC and SF. For now, it will just be me. But my favorite thing in life is winning with a team, so I will build a team over time.</p>
+
+<p>My goal is to create one of the best seed firms in the world that endures for decades.</p>
+
+<h3>What's in a name?</h3>
+
+<p>Several years ago I was listening to a great investor share how he thinks about early-stage investing. He shared that every great startup has a strong current that pulls it and a captain to navigate that current. I immediately wrote in my notes: "The captain and the current". It has become a framework I use daily. And as important as the current is (and it is crucially important), I believe the prime mover, the main determinant of an outlier startup, is the Captain. After all, when the current changes, the right Captain finds a new one.</p>
+
+<p>I am obsessed with finding many of the next great founders and helping them win.</p>
+
+<h3>Why now?</h3>
+
+<p>Over the last 3 years I have met with hundreds of founders. It's the best part of the job. But as I met with many, I often felt unequal. Across from me would sit someone who has gone all in, who has risked their money, time, and reputation on an idea. And there I sat, supposed to judge if they were good enough. And even though I have been an early part of three exceptional startups, I had never actually started something myself. So I don't actually get it. This ate at me. All of the time, it ate at me.</p>
+
+<p>In my heart I knew I had to eventually start something myself. This is why I started Captain Ventures.</p>
+
+<p>I want to be worthy of the best founders.</p>
+
+<p>I'm not saying every investor has to start something to be a worthy partner. I don't think that's true. But I know it is true for me.</p>
+
+<p>There is a lot of talk about how the bar has been raised for startups. If you used to grow by x% in y months, that is no longer good enough. Now it has to be more revenue, and faster. And this is true. But there is almost no talk about how the bar should be raised for VCs.</p>
+
+<p>The next great founders will demand to work with investors who meet a higher bar.</p>
+
+<p>The type of investor who:</p>
+
+<ul>
+<li>Responds in 24 seconds not 24 hours.</li>
+<li>Makes you smile, not tense, when they text.</li>
+<li>You want to call first with bad news or good.</li>
+<li>Has advice from actually working at exceptional startups.</li>
+<li>Has conviction in you, even if no one else does.</li>
+<li>Puts your needs ahead of their own. Always.</li>
+<li>Bends the odds of success for your startup.</li>
+</ul>
+
+<p>There are shockingly few of these investors. I aspire to be one.</p>
+
+<p>I am starting Captain Ventures with a large portion of my net worth. I will be one of the largest individual investors, and my plan is to eventually be the largest. I am fortunate to have a great group of early friends and partners who will support the firm, including my friends at Pelion, many of the founder Captains I've worked with, invested in, or helped over the past 15 years, and many of the best investors in the world that I've studied and learned from. I am deeply grateful.</p>
+
+<p>I believe being a venture capitalist is the very best job in the world. I am lucky to dedicate the rest of my career to becoming great.</p>
+
+<p>If you are a Captain I should meet, or you know a Captain I should meet, I welcome the connection.</p>
+
+<p><a href="mailto:Tyler@captain.ventures">Tyler@captain.ventures</a></p>
+
+<p style="font-size:0.8rem;color:#888;margin-top:2rem;"><em>This announcement is for informational purposes only and is directed at founders and entrepreneurs – not investors. Nothing in this post constitutes an offer to sell, or a solicitation of an offer to buy, any securities. Any such offer or solicitation will be made only pursuant to formal offering documents and only to qualified investors in compliance with applicable law.</em></p>
+
+</div>
+<div style="margin-top:1.5rem">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">&larr; All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> &middot;
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+<button id="theme-toggle" title="Toggle dark/light mode"></button>
+<script>
+(function(){
+  var btn = document.getElementById('theme-toggle');
+  var html = document.documentElement;
+  function apply(dark) {
+    html.setAttribute('data-theme', dark ? 'dark' : 'light');
+    btn.textContent = dark ? '☀ Light' : '◑ Dark';
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+  }
+  var stored = localStorage.getItem('theme');
+  var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  apply(dark);
+  btn.addEventListener('click', function() { apply(!html.getAttribute('data-theme').includes('dark')); });
+})();
+</script>
+</body>
+</html>
