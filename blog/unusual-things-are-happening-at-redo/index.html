@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unusual Things Are Happening At Redo — Tyler Hogge</title>
+  <meta name="description" content="Startups are dead by default. Unless you see unusual things from a startup, that startup really has no shot of defying death. Unusual things are happening at Redo.">
+  <link rel="canonical" href="https://tylerhogge.com/blog/unusual-things-are-happening-at-redo/">
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Tyler Hogge">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Unusual Things Are Happening At Redo — Tyler Hogge">
+  <meta property="og:description" content="Startups are dead by default. Unless you see unusual things from a startup, that startup really has no shot of defying death. Unusual things are happening at Redo.">
+  <meta property="og:url" content="https://tylerhogge.com/blog/unusual-things-are-happening-at-redo/">
+  <meta property="article:published_time" content="2026-06-23">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@thogge">
+  <meta name="twitter:title" content="Unusual Things Are Happening At Redo — Tyler Hogge">
+  <meta name="twitter:description" content="Startups are dead by default. Unless you see unusual things from a startup, that startup really has no shot of defying death. Unusual things are happening at Redo.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+      document.documentElement.setAttribute('data-theme',t);
+    })();
+  </script>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+<li><a href="/blog/">Writing</a></li>
+<li><a href="/investments/">Investments</a></li>
+<li><a href="/quotes/">Quotes</a></li>
+<li><a href="https://www.investoroperator.io/" target="_blank" rel="noopener">Podcast</a></li>
+    </ul>
+    <div class="search-wrap">
+      <input class="search-input" type="search" placeholder="Search…" id="search-input" autocomplete="off" aria-label="Search posts">
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var index = null;
+
+  function loadIndex(cb) {
+    if (index) { cb(); return; }
+    fetch('/search.json').then(function(r) { return r.json(); }).then(function(data) {
+      index = data;
+      cb();
+    });
+  }
+
+  function search(q) {
+    q = q.toLowerCase().trim();
+    if (!q) { results.classList.remove('active'); return; }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+      results.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+    } else {
+      results.innerHTML = matches.map(function(p) {
+        return '<a class="search-result-item" href="/blog/' + p.slug + '/">' +
+          '<div class="search-result-title">' + p.title + '</div>' +
+          '<div class="search-result-date">' + p.date + '</div>' +
+          '</a>';
+      }).join('');
+    }
+    results.classList.add('active');
+  }
+
+  input.addEventListener('focus', function() {
+    loadIndex(function() { if (input.value) search(input.value); });
+  });
+  input.addEventListener('input', function() {
+    loadIndex(function() { search(input.value); });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrap')) results.classList.remove('active');
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { results.classList.remove('active'); input.blur(); }
+  });
+})();
+</script>
+<main>
+
+<div class="post-header">
+  <h1>Unusual Things Are Happening At Redo</h1>
+  <div class="post-date">June 23, 2026</div>
+</div>
+<div class="post-body">
+
+<p>Startups are dead by default. In some ways understanding this truth is freeing.</p>
+
+<p>It means that unless a team takes drastic action and acts with a sense of maniacal urgency, the startup will certainly fail.</p>
+
+<p>It also means that unless you see unusual things from a startup, that startup really has no shot of defying death. The startups doing and seeing unusual things actually have a shot. After all, the usual stuff leads to the usual outcome.</p>
+
+<p>What do I mean by unusual?</p>
+
+<ul>
+<li>Hiring an unusually impressive group of people.</li>
+<li>Landing an unusually impressive set of customers.</li>
+<li>Receiving unusually effusive praise from those customers.</li>
+<li>Beating unusually aggressive revenue and profitability goals.</li>
+<li>Adding an unusually large amount of new products that reach an unusually large scale of revenue in an unusually short period of time.</li>
+</ul>
+
+<p>Unusual things are happening at Redo. Many of them.</p>
+
+<p>Oh, here's one more:</p>
+
+<p>Not only is Redo announcing a massive round, but it's announcing another massive increase in its ambition:</p>
+
+<p>You can think of the Redo opportunity across three chapters:</p>
+
+<ol>
+<li><strong>The best Shopify App for returns.</strong> I wrote about this in "<a href="https://www.tylerhogge.com/blog/the-redo-opportunity/" target="_blank" rel="noopener">The Redo Opportunity</a>" in August 2024. Redo had one of the best wedges in e-commerce history, and quickly won over thousands of brands who saw better conversion through Redo returns. This led Redo to quickly becoming a true compound startup.</li>
+<li><strong>The compound startup emerges.</strong> The full overview of that chapter is found in this piece: "<a href="https://www.tylerhogge.com/blog/redo-and-the-rise-of-the-profitable-compound-startup/" target="_blank" rel="noopener">Redo and the rise of the profitable compound startup</a>" from September 2025, just 9 months ago. As of that article, Redo had 9 live products. 6 of which were over $1m in annualized revenue. The compound strategy was working, unusually well.</li>
+<li><strong>The full stack AI (and physical) infrastructure for global brands.</strong> This brings us to today.</li>
+</ol>
+
+<p>Chapter three is what I will focus on. It's bigger than ever.</p>
+
+<p>Here's the story in one line: Redo has been making some very large multi-year bets that not many know about. They started the compound strategy very early, and added some risky "bet the company" investments that were extremely risky. But those bets are starting to work unusually well.</p>
+
+<p>Here's a quick update on the company overall:</p>
+
+<ul>
+<li>Now 22 live products, 11 of which are over $1m in annualized revenue (up from 9 and 6 just 9 months ago)</li>
+<li>4 acquisitions completed</li>
+<li>11 warehouses in operation</li>
+<li>4,129 brands as customers, up from 2,500 just 9 months ago</li>
+<li>1,600+ brands are paying for 2 or more products!</li>
+</ul>
+
+<p>What a nine month run!</p>
+
+<p>And, I should say, Redo has beat and raised its (highly ambitious) revenue number each and every month since the last update. Truly unheard of execution.</p>
+
+<p>It is common for companies to gradually learn what they are capable of becoming over time. And that is true with Redo. It is now clear Redo can be the robotics and AI backbone for every brand, globally. A key part of this plan is managing returns of physical goods, which is why some of the current funding will also go into building and expanding Redo's fulfillment warehousing network.</p>
+
+<p>In this world, every brand that Redo serves relies on it for the essentially entire customer experience - including the full stack AI agents and infrastructure, and physical warehouses.</p>
+
+<h3>Full-Stack AI Infrastructure for Global Brands</h3>
+
+<p>As AI fundamentally changes how shoppers interact with brands, the number of customer touch-points is going to increase dramatically. Personalized recommendations, conversational commerce, intelligent support, proactive messaging, agent driven shopping experiences, and digital shopping assistants are rapidly becoming the new standard.</p>
+
+<p>Redo is building the infrastructure and agents to help brands navigate that future including:</p>
+
+<ul>
+<li>An exchange agent that retains customers at a 21% higher rate than a normal return flow</li>
+<li>Agentic shopping experiences tailored to each shopper on the site</li>
+<li>A marketing agent that personalizes each email &amp; text to convert shoppers</li>
+<li>A post purchase concierge that increases LTV</li>
+<li>And much more</li>
+</ul>
+
+<h3>Physical Warehouses</h3>
+
+<p>As I mentioned above, Redo now has 11 warehouses. But why?</p>
+
+<h4>Domestically</h4>
+
+<p>Returns don't fail brands at the moment of the return — they fail in what happens next. Most warehouses are built for outbound fulfillment, so returned items sit on the sideline for days or weeks before anyone touches them.</p>
+
+<p>Redo's domestic return centers are built exclusively to fix that:</p>
+
+<ul>
+<li><strong>Faster restocking.</strong> Because returns are our only focus, items are processed and back in inventory within days — not weeks.</li>
+<li><strong>Strategic placement.</strong> Centers located around the country mean returned items are re-fulfilled from wherever is closest, cutting shipping times and costs.</li>
+<li><strong>Higher refurbishment rates.</strong> Dedicated teams focused solely on condition restoration get more items back to resaleable condition than a general-purpose warehouse ever could.</li>
+</ul>
+
+<p>The result: inventory that moves faster, costs less to handle, and loses less value along the way.</p>
+
+<h4>Internationally</h4>
+
+<p>Return centers are located in the UK, Australia, Canada, and other major commerce locations around the globe.</p>
+
+<p>The core value proposition is "sell globally, return locally." Instead of shipping returns internationally, Redo keeps goods in-country using local drop-off networks and forward fulfillment hubs. That returned item in Canada goes back into local inventory and ships to the next Canadian customer, never crossing the border again.</p>
+
+<p>The concrete benefits for brands:</p>
+
+<ul>
+<li><strong>30–60% lower return logistics costs</strong> (no international return shipping)</li>
+<li><strong>Fraud reduction</strong> via in-person item verification before refunds are issued</li>
+<li><strong>Revenue retention</strong> - returned items stay in local inventory and sell faster (up to 65% retained via exchange or store credit)</li>
+<li><strong>Better customer experience</strong> - package-free QR code drop-off at retail locations instead of printing labels and boxing things up</li>
+</ul>
+
+<p>This third chapter of Redo is the biggest vision by far.</p>
+
+<p>Redo organizes its 22 live products across different "clouds":</p>
+
+<ol>
+<li>Marketing Cloud</li>
+<li>Conversion Cloud</li>
+<li>Shipping Cloud</li>
+<li>Reverse Logistics Cloud</li>
+</ol>
+
+<p>But Redo defines Cloud in a very unusual way. The Redo way.</p>
+
+<p>At Redo, a cloud is defined as something that will reach $1b in revenue itself.</p>
+
+<p>That's the vision. Each of these clouds will get to $1b in revenue. And there are 2 more clouds coming.</p>
+
+<p>In just a few years, over 100k brands across the globe will rely on Redo for their AI and physical infrastructure.</p>
+
+<p>The team will continue to beat and raise its highly aggressive goals.</p>
+
+<p>The product will continue to expand at a rate unheard of in tech.</p>
+
+<p>More clouds will get introduced, which reach revenue scale on timelines you wouldn't believe.</p>
+
+<p>All of this is HIGHLY unusual.</p>
+
+<p>Except at Redo.</p>
+
+</div>
+<div style="margin-top:1.5rem">
+  <a href="/blog/" style="font-family:-apple-system,sans-serif;font-size:.85rem;color:#555;text-decoration:none">&larr; All posts</a>
+</div>
+
+</main>
+<footer>
+  <p>
+    <a href="https://x.com/thogge" target="_blank" rel="noopener">@thogge</a> &middot;
+    <a href="mailto:tylerhogge@gmail.com">Email</a>
+  </p>
+</footer>
+<button id="theme-toggle" title="Toggle dark/light mode"></button>
+<script>
+(function(){
+  var btn = document.getElementById('theme-toggle');
+  var html = document.documentElement;
+  function apply(dark) {
+    html.setAttribute('data-theme', dark ? 'dark' : 'light');
+    btn.textContent = dark ? '☀ Light' : '◑ Dark';
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+  }
+  var stored = localStorage.getItem('theme');
+  var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  apply(dark);
+  btn.addEventListener('click', function() { apply(!html.getAttribute('data-theme').includes('dark')); });
+})();
+</script>
+</body>
+</html>
